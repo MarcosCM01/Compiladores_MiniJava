@@ -13,6 +13,9 @@ namespace Compiladores_MiniJava
         public static List<String> Reservadas = new List<string> 
         {"void","int","double","boolean","string", "class", "const", "interface", "null", "this", "extends", "implements", "for", "while", "if", "else", "returns", "break", "New", "System", "out", "println" };
 
+        public static List<String> Operadores = new List<string>
+        {"+","-","*","/","%","<","<=",">",">=","=","==","!=","&&","||","!",";",",",".","[","]","(",")","{","}","[]","()","{}"};
+
         public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() { { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"}, { @"^\b(true|false)\b$", "T_es_ConstBool"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, 
         { @"^\b0(x|X)[a-fA-F0-9]+\b$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.([0-9]*|[0-9]*E(\+|-)?[0-9]+)?$","T_es_ConstDouble"} };
 
@@ -42,10 +45,11 @@ namespace Compiladores_MiniJava
                 var buffer = new char[bufferLenght];
                 using (var reader = new BinaryReader(File))
                 {
+                    var tmp_string = string.Empty;
                     while (reader.BaseStream.Position != reader.BaseStream.Length)
                     {
                         buffer = reader.ReadChars(bufferLenght);
-                        var tmp_string = string.Empty;
+                        
                         for (int posicion = 0; posicion < buffer.Length; posicion++)
                         {
                             var item = buffer[posicion];
