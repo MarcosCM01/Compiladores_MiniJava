@@ -45,6 +45,7 @@ namespace Compiladores_MiniJava
                 var buffer = new char[bufferLenght];
                 using (var reader = new BinaryReader(File))
                 {
+                    bool Bandera_String = false;
                     var tmp_string = string.Empty;
                     while (reader.BaseStream.Position != reader.BaseStream.Length)
                     {
@@ -53,7 +54,39 @@ namespace Compiladores_MiniJava
                         for (int posicion = 0; posicion < buffer.Length; posicion++)
                         {
                             var item = buffer[posicion];
-                            if (item != 9 && item != 10 && item != 13 && item != 32)//tab, /n, CR, espacio
+                            if(Bandera_String == true)
+                            {
+                                if(item == '"')
+                                {
+                                    tmp_string += item;
+                                    if (tmp_string.Length > 2)
+                                    {
+                                        //Analizar el string en una expresion regular
+                                    }
+                                    else
+                                    {
+                                        //String vacio
+                                    }
+                                    
+                                }
+                                else if(item == 10 || item == 13)
+                                {
+                                    //Si es un salto de line entonces mostrar error 
+                                    Bandera_String = false;
+                                }
+                                else
+                                {
+                                    //Concateno items hasta encontrar salto de linea o corchete
+                                    tmp_string += item;
+                                }
+                            }
+                            else if(item == '"')
+                            {
+                                Bandera_String = true;
+                                tmp_string += item;
+                                //Activo la bandera del string 
+                            }
+                            else if (item != 9 && item != 10 && item != 13 && item != 32)//tab, /n, CR, espacio
                             {
                                 tmp_string += item; //verificar que su longitud no sea mayor de 31
                             }
