@@ -12,12 +12,10 @@ namespace Compiladores_MiniJava
         public static List<String> Reservadas = new List<string> 
         {"void","int","double","boolean","string", "class", "const", "interface", "null", "this", "extends", "implements", "for", "while", "if", "else", "returns", "break", "New", "System", "out", "println" };
 
-        public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() { { @"[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"}, {@"true|false", "T_es_ConstBool" }, {@"[0-9]+", "T_es_ConstDecimal"},
-        {@"0x[a-fA-F]" , ""} };
-
+        public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() { { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"}, { @"^\b(true|false)\b$", "T_es_ConstBool"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, 
+        { @"^\b0(x|X)[a-fA-F0-9]+\b$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.([0-9]*|[0-9]*E(\+|-)?[0-9]+)?$","T_es_ConstDouble"} };
         public static bool EsReservada(string palabra) 
         {
-            Regex rx = new Regex(@"0x[a-fA-F]|[0-9]+");
             if (Reservadas.Contains(palabra))
             {
                 return true;
