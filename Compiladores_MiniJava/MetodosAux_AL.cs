@@ -63,7 +63,9 @@ namespace Compiladores_MiniJava
                                 tmp_string += item;
                                 if (tmp_string.Length > 2)
                                 {
-                                    //Analizar el string en una expresion regular
+                                    //Escribir token
+                                    var token = CrearToken(tmp_string, num_linea, num_columna, "T_es_Constante_String");
+                                    ImprimirToken(token);
                                 }
                                 else
                                 {
@@ -71,7 +73,7 @@ namespace Compiladores_MiniJava
                                 }
 
                             }
-                            else if (item == 10 || item == 13)
+                            else if (item == 10 || item == 13)//Agregar caracter nulo y 
                             {
                                 //Si es un salto de linea entonces mostrar error 
                                 Bandera_String = false;
