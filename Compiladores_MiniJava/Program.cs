@@ -18,7 +18,7 @@ namespace Compiladores_MiniJava
                 if (MetodosAux_AL.VerificarArchivoVacio(URL) != true) 
                 {
                     MetodosAux_AL.Analisis_Lexico(URL);
-                    MetodosAux_AL.ImprimirResultado();
+                    //MetodosAux_AL.ImprimirResultado();
                 }
                 else
                 {

@@ -42,88 +42,101 @@ namespace Compiladores_MiniJava
 
         public static void Analisis_Lexico(string URL) 
         {
-            using (var File = new FileStream(URL, FileMode.Open))
+            var line = string.Empty;
+            var num_linea = 1;
+            var num_columna = 1;
+            bool Bandera_String = false;
+            var tmp_string = string.Empty;
+            using (StreamReader reader = new StreamReader(URL))
             {
-                var buffer = new char[bufferLenght];
-                using (var reader = new BinaryReader(File))
+                while ((line = reader.ReadLine()) != null)
                 {
-                    bool Bandera_String = false;
-                    var tmp_string = string.Empty;
-                    while (reader.BaseStream.Position != reader.BaseStream.Length)
+                    for (int posicion = 0; posicion < line.Length; posicion++)
                     {
-                        buffer = reader.ReadChars(bufferLenght);
-                        var c_Columnas = 1;
-                        var c_lineas = 1;
-                        for (int posicion = 0; posicion < buffer.Length; posicion++)
+                        var item = line[posicion];
+                        if (Bandera_String == true)
                         {
-                            var item = buffer[posicion];
-                            if(Bandera_String == true)
+                            if (item == '"')
                             {
-                                if(item == '"')
+                                tmp_string += item;
+                                if (tmp_string.Length > 2)
                                 {
-                                    tmp_string += item;
-                                    if (tmp_string.Length > 2)
-                                    {
-                                        //Analizar el string en una expresion regular
-                                    }
-                                    else
-                                    {
-                                        //String vacio
-                                    }
-                                    
-                                }
-                                else if(item == 10 || item == 13)
-                                {
-                                    //Si es un salto de linea entonces mostrar error 
-                                    Bandera_String = false;
+                                    //Analizar el string en una expresion regular
                                 }
                                 else
                                 {
-                                    //Concateno items hasta encontrar salto de linea o corchete
-                                    tmp_string += item;
+                                    //String vacio
                                 }
+
                             }
-                            else if(item == '"')
+                            else if (item == 10 || item == 13)
                             {
-                                Bandera_String = true;
+                                //Si es un salto de linea entonces mostrar error 
+                                Bandera_String = false;
+                            }
+                            else
+                            {
+                                //Concateno items hasta encontrar salto de linea o corchete
                                 tmp_string += item;
-                                //Activo la bandera del string 
                             }
-                            else if (item != 9 && item != 10 && item != 13 && item != 32)//tab, /n, CR, espacio
-                            {
-                                tmp_string += item; //verificar que su longitud no sea mayor de 31
-                            }
-                            else //se analiza el tmp_string
-                            {
-                                if (tmp_string.Length > 0)
-                                {
-                                    if (MetodosAux_AL.EsReservada(tmp_string) != false)
-                                    {//ES RESERVADA
-                                        tmp_PRUEBA.Add($"{tmp_string},T_es_Reservada");
-                                        //var token = CrearToken(tmp_string, 1);
-                                        AgregarToken(tmp_string, "T_es_Reservada");//DETERMINAR EL NUMERO DE LINEA Y COLUMNA
-                                    }
-                                    //APLICAR EXPRESIONES REGULARES PARA DETERMINAR LO QUE ES
-                                    else
-                                    {//VERIFICAMOS QUE SEA CONSTANTE
-                                        if (MetodosAux_AL.EsConstante(tmp_string) != true)//NO COINCIDIO CON ALGUN TIPO DE CONSTANTE
-                                        {
-
-                                        }
-                                    }
-                                    tmp_string = string.Empty;
-                                }
-                                else if (tmp_string.Length > 0 && posicion + 1 == buffer.Length)//CUANDO SE LEA LO ULTIMO DEL ARCHIVO
-                                {
-
-                                }
-                            }
-                            c_Columnas++;
                         }
-                    }
-                }
+                        else if (item == '"')
+                        {
+                            Bandera_String = true;
+                            tmp_string += item;
+                            //Activo la bandera del string 
+                        }
+                        else if (item != 9 && item != 10 && item != 13 && item != 32)//tab, /n, CR, espacio
+                        {
+                            tmp_string += item; //verificar que su longitud no sea mayor de 31
+                        }
+                        else //se analiza el tmp_string
+                        {
+                            if (tmp_string.Length > 0)
+                            {
+                                if (MetodosAux_AL.EsReservada(tmp_string) != false)
+                                {//ES RESERVADA
+                                    //tmp_PRUEBA.Add($"{tmp_string},T_es_Reservada");
+                                    var token = CrearToken(tmp_string, 1, num_linea, num_columna, "T_es_Reservada");
+                                    ImprimirToken(token);
+                                }
+                                //APLICAR EXPRESIONES REGULARES PARA DETERMINAR LO QUE ES
+                                else
+                                {//VERIFICAMOS QUE SEA CONSTANTE
+                                    var valor = string.Empty;
+                                    if (MetodosAux_AL.EsConstante(tmp_string, ref valor) != false)//NO COINCIDIO CON ALGUN TIPO DE CONSTANTE
+                                    {
+                                        var token = CrearToken(tmp_string, 1, num_linea, num_columna, valor);
+                                        ImprimirToken(token);
+                                    }
+                                }
+                                tmp_string = string.Empty;
+                            }
+                            else if (tmp_string.Length > 0 && posicion + 1 == line.Length)//CUANDO SE LEA LO ULTIMO DEL ARCHIVO
+                            {
 
+                            }
+                        }
+                        num_columna++;
+                    }
+                    num_linea++;
+                }
+                reader.Close();
             }
+            //using (var File = new FileStream(URL, FileMode.Open))
+            //{
+            //    var buffer = new char[bufferLenght];
+            //    using (var reader = new BinaryReader(File))
+            //    {
+            //        while (reader.BaseStream.Position != reader.BaseStream.Length)
+            //        {
+            //            buffer = reader.ReadChars(bufferLenght);
+            //            var c_Columnas = 1;
+            //            var c_lineas = 1;
+            //        }
+            //    }
+
+            //}
         }
         public static bool EsReservada(string palabra) 
         {
@@ -133,7 +146,7 @@ namespace Compiladores_MiniJava
             }
             return false;
         }
-        public static bool EsConstante(string palabra) 
+        public static bool EsConstante(string palabra, ref string valor) 
         {
             var resultado = false;
             foreach (var item in DiccionarioER_Valor.Keys)
@@ -141,8 +154,8 @@ namespace Compiladores_MiniJava
                 Regex rx = new Regex(item);
                 if (rx.IsMatch(palabra))
                 {//ES UNA CONSTANTE
-                    tmp_PRUEBA.Add($"{palabra},{DiccionarioER_Valor[item]}");
-                    //AgregarToken(palabra, item);
+                    //tmp_PRUEBA.Add($"{palabra},{DiccionarioER_Valor[item]}");
+                    valor = $"{DiccionarioER_Valor[item]} (value = {palabra})";
                     resultado = true;
                     break;
                 }
@@ -153,30 +166,34 @@ namespace Compiladores_MiniJava
         {
             ArchivoDeSalida.Add($"*** ERROR {numero_linea}. ***     {def_Error}");
         }
-        public static void AgregarToken(string palabra, string valor_token) 
+        public static void ImprimirToken(Token token) 
         {
-            ArchivoDeSalida.Add( $"{palabra}          line cols  is {valor_token}");
+            Console.WriteLine($"{token.palabra}=    line:{token.linea}, inicio:{token.columna_i}, fin:{token.columna_f}; {token.valor}");
         }
-        public static void ImprimirResultado() 
+        //public static void ImprimirResultado() 
+        //{
+        //    for (int i = 0; i < tmp_PRUEBA.Count; i++)
+        //    {
+        //        Console.WriteLine(tmp_PRUEBA[i]);
+        //    }
+        //    //for (int i = 0; i < ArchivoDeSalida.Count; i++)
+        //    //{
+        //    //    Console.WriteLine(ArchivoDeSalida[i]);
+        //    //}
+        //}
+        public static Token CrearToken(string palabra, int tipo, int num_Linea, int num_columna, string valor) 
         {
-            for (int i = 0; i < tmp_PRUEBA.Count; i++)
-            {
-                Console.WriteLine(tmp_PRUEBA[i]);
-            }
-            //for (int i = 0; i < ArchivoDeSalida.Count; i++)
+            //Regex rgx = new Regex(@"\b(" + string.Join("|", Reservadas.Select(Regex.Escape).ToArray()) + @"\b)");
+            //var matches = rgx.Matches(palabra);
+            //if (matches.Count > 0)
             //{
-            //    Console.WriteLine(ArchivoDeSalida[i]);
             //}
-        }
-        public static Token CrearToken(string palabra, int tipo) 
-        {
-            Regex rgx = new Regex(@"\b(" + string.Join("|", Reservadas.Select(Regex.Escape).ToArray()) + @"\b)");
-            var matches = rgx.Matches(palabra);
-            if (matches.Count > 0)
-            {
-            }
-
             Token t = new Token();
+            t.palabra = palabra;
+            t.valor = valor;
+            t.linea = num_Linea;
+            t.columna_i = num_columna - palabra.Length;
+            t.columna_f = num_columna;
             return t;
             //switch (tipo)
             //{

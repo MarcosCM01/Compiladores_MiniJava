@@ -11,6 +11,7 @@ namespace Compiladores_MiniJava
         public int linea;
         public int columna_i;
         public int columna_f;
+        public string palabra;
         public string valor;
     }
 }
