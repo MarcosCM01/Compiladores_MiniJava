@@ -13,9 +13,11 @@ namespace Compiladores_MiniJava
         public static List<String> Reservadas = new List<string> 
         {"void","int","double","boolean","string", "class", "const", "interface", "null", "this", "extends", "implements", "for", "while", "if", "else", "returns", "break", "New", "System", "out", "println" };
 
-        public static List<String> Operadores = new List<string>
-        {"+","-","*","/","%","<","<=",">",">=","=","==","!=","&&","||","!",";",",",".","[","]","(",")","{","}","[]","()","{}"};
+        public static List<String> Operadores_Simples = new List<string>
+        {"+","-","*","/","%","<",">","=","!",";",",",".","[","]","(",")","{","}"};
 
+        public static List<String> Operadores_Dobles = new List<string>
+        { "<=", ">=","==","!=","&&","||","[]","()","{}"};
         public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() {{ @"^\b(true|false)\b$", "T_es_ConstBool"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, 
         { @"^\b0(x|X)[a-fA-F0-9]+\b$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.([0-9]*|[0-9]*E(\+|-)?[0-9]+)?$","T_es_ConstDouble"}, { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"} };
 
@@ -49,7 +51,7 @@ namespace Compiladores_MiniJava
             var tmp_string = string.Empty;
             using (StreamReader reader = new StreamReader(URL))
             {
-                while ((line = reader.ReadLine()) != null)
+                while ((line = reader.ReadLine()+'\n') != null)
                 {
                     for (int posicion = 0; posicion < line.Length; posicion++)
                     {
@@ -97,17 +99,33 @@ namespace Compiladores_MiniJava
                                 if (MetodosAux_AL.EsReservada(tmp_string) != false)
                                 {//ES RESERVADA
                                     //tmp_PRUEBA.Add($"{tmp_string},T_es_Reservada");
-                                    var token = CrearToken(tmp_string, 1, num_linea, num_columna, "T_es_Reservada");
+                                    var token = CrearToken(tmp_string, num_linea, num_columna, "T_es_Reservada");
                                     ImprimirToken(token);
                                 }
                                 //APLICAR EXPRESIONES REGULARES PARA DETERMINAR LO QUE ES
                                 else
-                                {//VERIFICAMOS QUE SEA CONSTANTE
+                                {//VERIFICAMOS QUE SEA CONSTANTE    
+
                                     var valor = string.Empty;
                                     if (MetodosAux_AL.EsConstante(tmp_string, ref valor) != false)//NO COINCIDIO CON ALGUN TIPO DE CONSTANTE
                                     {
-                                        var token = CrearToken(tmp_string, 1, num_linea, num_columna, valor);
+                                        var token = CrearToken(tmp_string,num_linea, num_columna, valor);
                                         ImprimirToken(token);
+                                    }
+                                    else if (Operadores_Dobles.Contains(tmp_string))
+                                    {
+                                        var token = CrearToken(tmp_string,  num_linea, num_columna, "T_es_Operador_Doble");
+                                        ImprimirToken(token);
+                                    }
+                                    else if (Operadores_Simples.Contains(tmp_string))
+                                    {
+                                        var token = CrearToken(tmp_string, num_linea, num_columna, "T_es_Operador_Simple");
+                                        ImprimirToken(token);
+                                    }
+                                    else
+                                    {
+                                        //Analizar porque no entra a ninguno de los anteriores 
+                                        //Ver string comentario
                                     }
                                 }
                                 tmp_string = string.Empty;
@@ -119,28 +137,24 @@ namespace Compiladores_MiniJava
                         }
                         num_columna++;
                     }
+                    num_columna = 1;
                     num_linea++;
                 }
                 reader.Close();
             }
-            //using (var File = new FileStream(URL, FileMode.Open))
-            //{
-            //    var buffer = new char[bufferLenght];
-            //    using (var reader = new BinaryReader(File))
-            //    {
-            //        while (reader.BaseStream.Position != reader.BaseStream.Length)
-            //        {
-            //            buffer = reader.ReadChars(bufferLenght);
-            //            var c_Columnas = 1;
-            //            var c_lineas = 1;
-            //        }
-            //    }
-
-            //}
+           
         }
         public static bool EsReservada(string palabra) 
         {
             if (Reservadas.Contains(palabra))
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool EsOperador_Doble(string palabra)
+        {
+            if (Operadores_Dobles.Contains(palabra))
             {
                 return true;
             }
@@ -168,26 +182,12 @@ namespace Compiladores_MiniJava
         }
         public static void ImprimirToken(Token token) 
         {
-            Console.WriteLine($"{token.palabra}=    line:{token.linea}, inicio:{token.columna_i}, fin:{token.columna_f}; {token.valor}");
+            Console.WriteLine($"{token.palabra}  :  line:{token.linea}, inicio:{token.columna_i}, fin:{token.columna_f}; {token.valor}");
         }
-        //public static void ImprimirResultado() 
-        //{
-        //    for (int i = 0; i < tmp_PRUEBA.Count; i++)
-        //    {
-        //        Console.WriteLine(tmp_PRUEBA[i]);
-        //    }
-        //    //for (int i = 0; i < ArchivoDeSalida.Count; i++)
-        //    //{
-        //    //    Console.WriteLine(ArchivoDeSalida[i]);
-        //    //}
-        //}
-        public static Token CrearToken(string palabra, int tipo, int num_Linea, int num_columna, string valor) 
+
+        public static Token CrearToken(string palabra, int num_Linea, int num_columna, string valor) 
         {
-            //Regex rgx = new Regex(@"\b(" + string.Join("|", Reservadas.Select(Regex.Escape).ToArray()) + @"\b)");
-            //var matches = rgx.Matches(palabra);
-            //if (matches.Count > 0)
-            //{
-            //}
+  
             Token t = new Token();
             t.palabra = palabra;
             t.valor = valor;
@@ -195,14 +195,7 @@ namespace Compiladores_MiniJava
             t.columna_i = num_columna - palabra.Length;
             t.columna_f = num_columna;
             return t;
-            //switch (tipo)
-            //{
-            //    //1 ES PARA RESERVADA
-            //    case 1:
-            //        { 
-            //        }
-            //        break;
-            //}
+
 
         }
     }
