@@ -15,7 +15,7 @@ namespace Compiladores_MiniJava
             string URL = @"C:\Users\Marcos Andrés CM\Desktop\PRUEBA COMPI.txt";//Direccion archivo de prueba
             //foreach (var arg in args)
             //{
-                if (MetodosAux_AL.VerificarArchivoVacio(URL) != false) 
+                if (MetodosAux_AL.VerificarArchivoVacio(URL) != true) 
                 {
                     MetodosAux_AL.Analisis_Lexico(URL);
                     MetodosAux_AL.ImprimirResultado();

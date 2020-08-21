@@ -16,12 +16,14 @@ namespace Compiladores_MiniJava
         public static List<String> Operadores = new List<string>
         {"+","-","*","/","%","<","<=",">",">=","=","==","!=","&&","||","!",";",",",".","[","]","(",")","{","}","[]","()","{}"};
 
-        public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() { { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"}, { @"^\b(true|false)\b$", "T_es_ConstBool"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, 
-        { @"^\b0(x|X)[a-fA-F0-9]+\b$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.([0-9]*|[0-9]*E(\+|-)?[0-9]+)?$","T_es_ConstDouble"} };
+        public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() {{ @"^\b(true|false)\b$", "T_es_ConstBool"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, 
+        { @"^\b0(x|X)[a-fA-F0-9]+\b$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.([0-9]*|[0-9]*E(\+|-)?[0-9]+)?$","T_es_ConstDouble"}, { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"} };
 
-        public const int bufferLenght = 50;
+        public const int bufferLenght = 10;
 
         public static List<string> ArchivoDeSalida = new List<string>();
+
+        public static List<string> tmp_PRUEBA = new List<string>();
 
         public static bool VerificarArchivoVacio(string URL)
         {
@@ -50,7 +52,8 @@ namespace Compiladores_MiniJava
                     while (reader.BaseStream.Position != reader.BaseStream.Length)
                     {
                         buffer = reader.ReadChars(bufferLenght);
-                        
+                        var c_Columnas = 1;
+                        var c_lineas = 1;
                         for (int posicion = 0; posicion < buffer.Length; posicion++)
                         {
                             var item = buffer[posicion];
@@ -71,7 +74,7 @@ namespace Compiladores_MiniJava
                                 }
                                 else if(item == 10 || item == 13)
                                 {
-                                    //Si es un salto de line entonces mostrar error 
+                                    //Si es un salto de linea entonces mostrar error 
                                     Bandera_String = false;
                                 }
                                 else
@@ -96,6 +99,8 @@ namespace Compiladores_MiniJava
                                 {
                                     if (MetodosAux_AL.EsReservada(tmp_string) != false)
                                     {//ES RESERVADA
+                                        tmp_PRUEBA.Add($"{tmp_string},T_es_Reservada");
+                                        //var token = CrearToken(tmp_string, 1);
                                         AgregarToken(tmp_string, "T_es_Reservada");//DETERMINAR EL NUMERO DE LINEA Y COLUMNA
                                     }
                                     //APLICAR EXPRESIONES REGULARES PARA DETERMINAR LO QUE ES
@@ -113,14 +118,13 @@ namespace Compiladores_MiniJava
 
                                 }
                             }
-                            
+                            c_Columnas++;
                         }
                     }
                 }
 
             }
         }
-
         public static bool EsReservada(string palabra) 
         {
             if (Reservadas.Contains(palabra))
@@ -137,8 +141,10 @@ namespace Compiladores_MiniJava
                 Regex rx = new Regex(item);
                 if (rx.IsMatch(palabra))
                 {//ES UNA CONSTANTE
-                    AgregarToken(palabra, item);
+                    tmp_PRUEBA.Add($"{palabra},{DiccionarioER_Valor[item]}");
+                    //AgregarToken(palabra, item);
                     resultado = true;
+                    break;
                 }
             }
             return resultado;
@@ -153,11 +159,34 @@ namespace Compiladores_MiniJava
         }
         public static void ImprimirResultado() 
         {
-            for (int i = 0; i < ArchivoDeSalida.Count; i++)
+            for (int i = 0; i < tmp_PRUEBA.Count; i++)
             {
-                Console.WriteLine(ArchivoDeSalida[i]);
+                Console.WriteLine(tmp_PRUEBA[i]);
             }
+            //for (int i = 0; i < ArchivoDeSalida.Count; i++)
+            //{
+            //    Console.WriteLine(ArchivoDeSalida[i]);
+            //}
         }
+        public static Token CrearToken(string palabra, int tipo) 
+        {
+            Regex rgx = new Regex(@"\b(" + string.Join("|", Reservadas.Select(Regex.Escape).ToArray()) + @"\b)");
+            var matches = rgx.Matches(palabra);
+            if (matches.Count > 0)
+            {
+            }
 
+            Token t = new Token();
+            return t;
+            //switch (tipo)
+            //{
+            //    //1 ES PARA RESERVADA
+            //    case 1:
+            //        { 
+            //        }
+            //        break;
+            //}
+
+        }
     }
 }
