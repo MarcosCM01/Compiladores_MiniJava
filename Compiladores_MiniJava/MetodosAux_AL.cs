@@ -52,6 +52,7 @@ namespace Compiladores_MiniJava
             {
                 while ((line = reader.ReadLine()) != null)
                 {
+                    num_columna = 1;
                     for (int posicion = 0; posicion < line.Length; posicion++)
                     {
                         if (Posee_Match(tmp_string + line[posicion]) == true)
@@ -65,13 +66,14 @@ namespace Compiladores_MiniJava
                                 var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                 ImprimirToken(token);
                                 tmp_string = "";
+                                var x = line[posicion];
                                 if (Posee_Match(tmp_string + line[posicion]) == true)
                                 {
                                     tmp_string += line[posicion];
                                 }
                                 else if(line[posicion] == 32|| line[posicion] == 10|| line[posicion] == 9 || line[posicion] == 13)
                                 {
-
+                                    
                                 }
                                 else if(line[posicion] < 0)
                                 {
@@ -79,12 +81,13 @@ namespace Compiladores_MiniJava
                                 }
                                 else
                                 {
-                                    //Error char invalido
+                                    Console.WriteLine("ERROR CHAR INVALIDO : " + line[posicion]);
                                 }
                             }
                             else 
                             {
-                                //Error char invalido
+                                if (line[posicion] != 32 && line[posicion] != 10 && line[posicion] != 9 && line[posicion] != 13)
+                                { Console.WriteLine("ERROR CHAR INVALIDO : " + line[posicion]); }
                             }
                         }
                         num_columna++;
@@ -304,7 +307,7 @@ namespace Compiladores_MiniJava
             t.valor = valor;
             t.linea = num_Linea;
             t.columna_i = num_columna - palabra.Length;
-            t.columna_f = num_columna;
+            t.columna_f = num_columna-1;
             return t;
 
 
