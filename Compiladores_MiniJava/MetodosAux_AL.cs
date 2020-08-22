@@ -41,9 +41,118 @@ namespace Compiladores_MiniJava
             }
             return true;
         }
-
-        public static void Analisis_Lexico(string URL) 
+        public static void Analisis_Lex(string URL)
         {
+            var line = string.Empty;
+            var num_linea = 1;
+            var num_columna = 1;
+            bool Bandera_String = false;
+            var tmp_string = string.Empty;
+            using (StreamReader reader = new StreamReader(URL))
+            {
+                while ((line = reader.ReadLine()) != null)
+                {
+                    for (int posicion = 0; posicion < line.Length; posicion++)
+                    {
+                        if (Posee_Match(tmp_string + line[posicion]) == true)
+                        {
+                            tmp_string += line[posicion];
+                        }
+                        else
+                        {
+                            if (tmp_string.Length > 0)
+                            {
+                                var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                                ImprimirToken(token);
+                                tmp_string = "";
+                                if (Posee_Match(tmp_string + line[posicion]) == true)
+                                {
+                                    tmp_string += line[posicion];
+                                }
+                                else if(line[posicion] == 32|| line[posicion] == 10|| line[posicion] == 9 || line[posicion] == 13)
+                                {
+
+                                }
+                                else if(line[posicion] < 0)
+                                {
+                                    //EOF
+                                }
+                                else
+                                {
+                                    //Error char invalido
+                                }
+                            }
+                            else 
+                            {
+                                //Error char invalido
+                            }
+                        }
+                        num_columna++;
+                    }
+                    if(tmp_string.Length>0)
+                    {
+                        var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                        ImprimirToken(token);
+                        tmp_string = "";
+                    }
+                    num_linea++;
+                }
+            }
+        }
+        public static bool Posee_Match(string lexema)
+        {
+            
+           string tmp = "";
+            if (MetodosAux_AL.EsReservada(lexema) != false)
+            {
+                return true;
+            }
+            else if (MetodosAux_AL.EsConstante(lexema, ref tmp) != false)
+            {
+                return true;
+            }
+            else if (Operadores_Dobles.Contains(lexema))
+            {
+                return true;
+            }
+            else if (Operadores_Simples.Contains(lexema))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+                
+        }
+        public static string Trae_Match(string lexema)
+        {
+
+            string tmp = "";
+            if (MetodosAux_AL.EsReservada(lexema) != false)
+            {
+                return "T_es_Reservada";
+            }
+            else if (MetodosAux_AL.EsConstante(lexema, ref tmp) != false)
+            {
+                return tmp;
+            }
+            else if (Operadores_Dobles.Contains(lexema))
+            {
+                return "T_es_Operador";
+            }
+            else if (Operadores_Simples.Contains(lexema))
+            {
+                return "T_es_Operador";
+            }
+            else
+            {
+                return "";
+            }
+
+        }
+        public static void Analisis_Lexico(string URL) 
+            {
             var line = string.Empty;
             var num_linea = 1;
             var num_columna = 1;
