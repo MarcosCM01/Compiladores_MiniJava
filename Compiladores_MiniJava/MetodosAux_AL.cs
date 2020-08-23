@@ -18,8 +18,8 @@ namespace Compiladores_MiniJava
 
         public static List<String> Operadores_Dobles = new List<string>
         { "<=", ">=","==","!=","&&","||","[]","()","{}"};
-        public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() {{ @"^\b(true|false)\b$", "T_es_ConstBool"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, 
-        { @"^\b0(x|X)[a-fA-F0-9]+\b$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.([0-9]*|[0-9]*E(\+|-)?[0-9]+)?$","T_es_ConstDouble"}, { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"} };
+        public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() {{ @"^\b(true|false)\b$", "T_es_ConstBool"}, 
+        {@"^0(x|X)[a-fA-F0-9]*$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.(([0-9])*|([0-9]*E(\+|-)?[0-9]*))?$","T_es_ConstDouble"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"} };
 
         public const int bufferLenght = 10;
 
@@ -55,7 +55,42 @@ namespace Compiladores_MiniJava
                     num_columna = 1;
                     for (int posicion = 0; posicion < line.Length; posicion++)
                     {
-                        if (Posee_Match(tmp_string + line[posicion]) == true)
+                        if(line[posicion] == '"')
+                        {
+                            if(Bandera_String == true)
+                            {
+                                if(tmp_string.Length>1) 
+                                {
+                                    if(line[posicion] >= 0)
+                                    {
+                                        tmp_string += line[posicion];
+                                        Bandera_String = false;
+                                        var token = CrearToken(tmp_string, num_linea, num_columna+1, "T_es_String");
+                                        tmp_string = "";
+                                        ImprimirToken(token);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("CHAR INVALIDO ");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("STRING VACIO ");
+                                    tmp_string = "";
+                                }
+                            }
+                            else
+                            {
+                                tmp_string += line[posicion];
+                                Bandera_String = true;
+                            }
+                        }
+                        else if(Bandera_String == true)
+                        {
+                            tmp_string += line[posicion];
+                        }
+                        else if (Posee_Match(tmp_string + line[posicion]) == true)
                         {
                             tmp_string += line[posicion];
                         }
@@ -94,9 +129,20 @@ namespace Compiladores_MiniJava
                     }
                     if(tmp_string.Length>0)
                     {
-                        var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
-                        ImprimirToken(token);
-                        tmp_string = "";
+                        if (Bandera_String == true)
+                        {
+                            Bandera_String = false;
+                            tmp_string = "";
+                            Console.WriteLine("ERROR STRING SIN TERMINAR  :  line: "+ num_linea);
+                           
+                            //No venia la otra comilla
+                        }
+                        else
+                        {
+                            var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                            ImprimirToken(token);
+                            tmp_string = "";
+                        }
                     }
                     num_linea++;
                 }
