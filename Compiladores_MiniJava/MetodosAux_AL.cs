@@ -44,9 +44,12 @@ namespace Compiladores_MiniJava
         public static void Analisis_Lex(string URL)
         {
             var line = string.Empty;
+            var inicio_multilinea = 0;
             var num_linea = 1;
             var num_columna = 1;
-            bool Bandera_String = false;
+            var Bandera_String = false;
+            var bandera_comentario_simple = false;
+            var bandera_comentario_doble = false;
             var tmp_string = string.Empty;
             using (StreamReader reader = new StreamReader(URL))
             {
@@ -55,7 +58,34 @@ namespace Compiladores_MiniJava
                     num_columna = 1;
                     for (int posicion = 0; posicion < line.Length; posicion++)
                     {
-                        if(line[posicion] == '"')
+                        if (bandera_comentario_doble == true)
+                        {
+                            if (tmp_string.Length < 31)
+                            {
+                                if (line[posicion] > 0)
+                                {
+                                    tmp_string += line[posicion];
+                                }
+                                else
+                                {
+                                    Console.WriteLine("CHAR INVALIDO ");
+                                }
+                            }
+                            if (line[posicion] == '*')
+                            {
+                                if (posicion+1 < line.Length)
+                                {
+                                    if (line[posicion+1] == '/')
+                                    {
+                                        Console.WriteLine($"COMENTARIO MULTILINEA - inicio:{inicio_multilinea}, fin:{num_linea}");
+                                        tmp_string = string.Empty;
+                                        posicion++;
+                                        bandera_comentario_doble = false;
+                                    }
+                                }
+                            }
+                        }
+                        else if(line[posicion] == '"')
                         {
                             if(Bandera_String == true)
                             {
@@ -89,6 +119,72 @@ namespace Compiladores_MiniJava
                         else if(Bandera_String == true)
                         {
                             tmp_string += line[posicion];
+                        }
+                        else if (bandera_comentario_simple == true)
+                        {
+                            if (line[posicion] > 0)
+                            {
+                                tmp_string += line[posicion];
+                            }
+                            else
+                            {
+                                Console.WriteLine("ERROR CHAR INVALIDO : " + line[posicion]);
+                            }
+                        }
+                        else if (line[posicion] == '/')// PARA COMENTARIOS
+                        {
+                            tmp_string += line[posicion];
+                            if (posicion+1 < line.Length)
+                            {
+                                //COMENTARIO SIMPLE
+                                if (line[posicion+1] == '/')
+                                {
+                                    bandera_comentario_simple = true;
+                                    tmp_string += line[posicion+1];
+                                    posicion++;
+                                }
+                                //COMENTARIO DOBLE
+                                else if(line[posicion+1] == '*')
+                                {
+                                    bandera_comentario_doble = true;
+                                    tmp_string += line[posicion+1];
+                                    posicion++;
+                                    inicio_multilinea = num_linea;
+                                }
+                                else
+                                {
+                                    var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                                    tmp_string = string.Empty;
+                                }
+                            }
+                            //if (bandera_comentario_simple == true)
+                            //{
+                            //    if (tmp_string.Length > 1)
+                            //    {
+                            //        if (line[posicion] >= 0)
+                            //        {
+                            //            tmp_string += line[posicion];
+                            //            Bandera_String = false;
+                            //            var token = CrearToken(tmp_string, num_linea, num_columna + 1, "T_es_String");
+                            //            tmp_string = "";
+                            //            ImprimirToken(token);
+                            //        }
+                            //        else
+                            //        {
+                            //            Console.WriteLine("CHAR INVALIDO ");
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        Console.WriteLine("STRING VACIO ");
+                            //        tmp_string = "";
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    tmp_string += line[posicion];
+                            //    bandera_comentario_simple = true;
+                            //}
                         }
                         else if (Posee_Match(tmp_string + line[posicion]) == true)
                         {
@@ -127,15 +223,21 @@ namespace Compiladores_MiniJava
                         }
                         num_columna++;
                     }
-                    if(tmp_string.Length>0)
+                    if(tmp_string.Length>0 && bandera_comentario_doble == false)
                     {
                         if (Bandera_String == true)
                         {
                             Bandera_String = false;
                             tmp_string = "";
-                            Console.WriteLine("ERROR STRING SIN TERMINAR  :  line: "+ num_linea);
-                           
+                            Console.WriteLine($"ERROR STRING SIN TERMINAR  :  line:  {num_linea}");
+
                             //No venia la otra comilla
+                        }
+                        else if (bandera_comentario_simple == true)
+                        {
+                            bandera_comentario_simple = false;
+                            Console.WriteLine($"COMENTARIO DE LINEA - {num_linea}");
+                            tmp_string = string.Empty;
                         }
                         else
                         {
@@ -145,6 +247,10 @@ namespace Compiladores_MiniJava
                         }
                     }
                     num_linea++;
+                }
+                if (bandera_comentario_doble == true)
+                {
+                    Console.WriteLine($"ERROR COMENTARIO SIN CERRAR");
                 }
             }
         }
