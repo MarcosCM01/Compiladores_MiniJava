@@ -19,7 +19,7 @@ namespace Compiladores_MiniJava
         public static List<String> Operadores_Dobles = new List<string>
         { "<=", ">=","==","!=","&&","||","[]","()","{}"};
         public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() {{ @"^\b(true|false)\b$", "T_es_ConstBool"}, 
-        {@"^0(x|X)[a-fA-F0-9]*$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.(([0-9])*|([0-9]*E(\+|-)?[0-9]*))?$","T_es_ConstDouble"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"} };
+        {@"^0(x|X)[a-fA-F0-9]*$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.(([0-9])*|([0-9]*(E|e)(\+|-)?[0-9]*))?$","T_es_ConstDouble"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"} };
 
         public const int bufferLenght = 10;
 
@@ -43,6 +43,7 @@ namespace Compiladores_MiniJava
         }
         public static void Analisis_Lex(string URL)
         {
+            var bandera_ID_Capacidad = false;
             var Linea_a_Regresar = 0;
             var direccion = URL.Split('.');//ARG
             string Escritura = direccion[0] + ".out";
@@ -65,7 +66,7 @@ namespace Compiladores_MiniJava
                         {
                             if (bandera_comentario_doble == true)
                             {
-                                if (tmp_string.Length < 31)
+                                if (tmp_string.Length < 10)
                                 {
                                     if (line[posicion] > 0)
                                     {
@@ -83,8 +84,8 @@ namespace Compiladores_MiniJava
                                     {
                                         if (line[posicion + 1] == '/')
                                         {
-                                            Console.WriteLine($"COMENTARIO MULTILINEA - inicio:{inicio_multilinea}, fin:{num_linea}");
-                                            writer.WriteLine($"COMENTARIO MULTILINEA - inicio:{inicio_multilinea}, fin:{num_linea}");
+                                            //Console.WriteLine($"COMENTARIO MULTILINEA - inicio:{inicio_multilinea}, fin:{num_linea}");
+                                            //writer.WriteLine($"COMENTARIO MULTILINEA - inicio:{inicio_multilinea}, fin:{num_linea}");
                                             tmp_string = string.Empty;
                                             posicion++;
                                             bandera_comentario_doble = false;
@@ -138,6 +139,7 @@ namespace Compiladores_MiniJava
                             {
                                 if (line[posicion] > 0)
                                 {
+                                    if(tmp_string.Length<10)
                                     tmp_string += line[posicion];
                                 }
                                 else
@@ -179,44 +181,27 @@ namespace Compiladores_MiniJava
                                         //   
                                     }
                                 }
-                                //if (bandera_comentario_simple == true)
-                                //{
-                                //    if (tmp_string.Length > 1)
-                                //    {
-                                //        if (line[posicion] >= 0)
-                                //        {
-                                //            tmp_string += line[posicion];
-                                //            Bandera_String = false;
-                                //            var token = CrearToken(tmp_string, num_linea, num_columna + 1, "T_es_String");
-                                //            tmp_string = "";
-                                //            ImprimirToken(token);
-                                //        }
-                                //        else
-                                //        {
-                                //            Console.WriteLine("CHAR INVALIDO ");
-                                //        }
-                                //    }
-                                //    else
-                                //    {
-                                //        Console.WriteLine("STRING VACIO ");
-                                //        tmp_string = "";
-                                //    }
-                                //}
-                                //else
-                                //{
-                                //    tmp_string += line[posicion];
-                                //    bandera_comentario_simple = true;
-                                //}
+
                             }
                             else if (Posee_Match(tmp_string + line[posicion]) == true)
                             {
-                                tmp_string += line[posicion];
+                                if(tmp_string.Length<32)
+                                    tmp_string += line[posicion];
+                                else if(bandera_ID_Capacidad == false)
+                                {
+                                    bandera_ID_Capacidad = true;
+                                    Console.WriteLine("Error ID CON CAPACIDAD MAXIMA");
+                                    writer.WriteLine("Error ID CON CAPACIDAD MAXIMA");
+
+                                }
+
                             }
                             else
                             {
                                 if (tmp_string.Length > 0)
                                 {
                                     var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                                    bandera_ID_Capacidad = false;
                                     Console.WriteLine(ImprimirToken(token));
                                     writer.WriteLine(ImprimirToken(token));
                                     tmp_string = "";
@@ -225,20 +210,22 @@ namespace Compiladores_MiniJava
                                     {
                                         tmp_string += line[posicion];
                                     }
-                                    else if (line[posicion] == 32 || line[posicion] == 10 || line[posicion] == 9 || line[posicion] == 13)
-                                    {
-
-                                    }
+                                    //else if (line[posicion] == 32 || line[posicion] == 10 || line[posicion] == 9 || line[posicion] == 13)
+                                    //{
+                                    //    // Me sirve para limpiar chars invalidos
+                                    //    //Lo importante es que funciona :)
+                                    //}
                                     else if (line[posicion] < 0)
                                     {
-                                        //EOF
+                                        Console.WriteLine("ERROR EOF ANTES DEL FINAL DE ARCHIVO");
+                                        writer.WriteLine("ERROR EOF ANTES DEL FINAL DE ARCHIVO");
                                     }
-                                    else
+                                    else if (line[posicion] != 32 && line[posicion] != 10 && line[posicion] != 9 && line[posicion] != 13)
                                     {
                                         Console.WriteLine("ERROR CHAR INVALIDO : " + line[posicion]);
                                         writer.WriteLine("ERROR CHAR INVALIDO : " + line[posicion]);
                                     }
-                                }
+                            }
                                 else
                                 {
                                     if (line[posicion] != 32 && line[posicion] != 10 && line[posicion] != 9 && line[posicion] != 13)
@@ -264,13 +251,14 @@ namespace Compiladores_MiniJava
                             else if (bandera_comentario_simple == true)
                             {
                                 bandera_comentario_simple = false;
-                                Console.WriteLine($"COMENTARIO DE LINEA - {num_linea}");
-                                writer.WriteLine($"COMENTARIO DE LINEA - {num_linea}");
+                                //Console.WriteLine($"COMENTARIO DE LINEA - {num_linea}");
+                                //writer.WriteLine($"COMENTARIO DE LINEA - {num_linea}");
                                 tmp_string = string.Empty;
                             }
                             else
                             {
                                 var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                                bandera_ID_Capacidad = false;
                                 Console.WriteLine(ImprimirToken(token));
                                 writer.WriteLine(ImprimirToken(token));
                                 tmp_string = "";
@@ -341,110 +329,7 @@ namespace Compiladores_MiniJava
             }
 
         }
-        //public static void Analisis_Lexico(string URL) 
-        //    {
-        //    var line = string.Empty;
-        //    var num_linea = 1;
-        //    var num_columna = 1;
-        //    bool Bandera_String = false;
-        //    var tmp_string = string.Empty;
-        //    using (StreamReader reader = new StreamReader(URL))
-        //    {
-        //        while ((line = reader.ReadLine()+'\n') != null)
-        //        {
-        //            for (int posicion = 0; posicion < line.Length; posicion++)
-        //            {
-        //                var item = line[posicion];
-        //                if (Bandera_String == true)
-        //                {
-        //                    if (item == '"')
-        //                    {
-        //                        tmp_string += item;
-        //                        if (tmp_string.Length > 2)
-        //                        {
-        //                            //Escribir token
-        //                            var token = CrearToken(tmp_string, num_linea, num_columna, "T_es_Constante_String");
-        //                            //ImprimirToken(token);
-        //                        }
-        //                        else
-        //                        {
-        //                            //String vacio
-        //                        }
-
-        //                    }
-        //                    else if (item == 10 || item == 13)//Agregar caracter nulo y 
-        //                    {
-        //                        //Si es un salto de linea entonces mostrar error 
-        //                        Bandera_String = false;
-        //                    }
-        //                    else
-        //                    {
-        //                        //Concateno items hasta encontrar salto de linea o corchete
-        //                        tmp_string += item;
-        //                    }
-        //                }
-        //                else if (item == '"')
-        //                {
-        //                    Bandera_String = true;
-        //                    tmp_string += item;
-        //                    //Activo la bandera del string 
-        //                }
-        //                else if (item != 9 && item != 10 && item != 13 && item != 32)//tab, /n, CR, espacio
-        //                {
-        //                    tmp_string += item; //verificar que su longitud no sea mayor de 31
-        //                }
-        //                else //se analiza el tmp_string
-        //                {
-        //                    if (tmp_string.Length > 0)
-        //                    {
-        //                        if (MetodosAux_AL.EsReservada(tmp_string) != false)
-        //                        {//ES RESERVADA
-        //                            //tmp_PRUEBA.Add($"{tmp_string},T_es_Reservada");
-        //                            var token = CrearToken(tmp_string, num_linea, num_columna, "T_es_Reservada");
-        //                           // ImprimirToken(token);
-        //                        }
-        //                        //APLICAR EXPRESIONES REGULARES PARA DETERMINAR LO QUE ES
-        //                        else
-        //                        {//VERIFICAMOS QUE SEA CONSTANTE    
-
-        //                            var valor = string.Empty;
-        //                            if (MetodosAux_AL.EsConstante(tmp_string, ref valor) != false)//NO COINCIDIO CON ALGUN TIPO DE CONSTANTE
-        //                            {
-        //                                var token = CrearToken(tmp_string,num_linea, num_columna, valor);
-        //                                //ImprimirToken(token);
-        //                            }
-        //                            else if (Operadores_Dobles.Contains(tmp_string))
-        //                            {
-        //                                var token = CrearToken(tmp_string,  num_linea, num_columna, "T_es_Operador_Doble");
-        //                                //ImprimirToken(token);
-        //                            }
-        //                            else if (Operadores_Simples.Contains(tmp_string))
-        //                            {
-        //                                var token = CrearToken(tmp_string, num_linea, num_columna, "T_es_Operador_Simple");
-        //                                //ImprimirToken(token,);
-        //                            }
-        //                            else
-        //                            {
-        //                                //Analizar porque no entra a ninguno de los anteriores 
-        //                                //Ver string comentario
-        //                            }
-        //                        }
-        //                        tmp_string = string.Empty;
-        //                    }
-        //                    else if (tmp_string.Length > 0 && posicion + 1 == line.Length)//CUANDO SE LEA LO ULTIMO DEL ARCHIVO
-        //                    {
-
-        //                    }
-        //                }
-        //                num_columna++;
-        //            }
-        //            num_columna = 1;
-        //            num_linea++;
-        //        }
-        //        reader.Close();
-        //    }
-           
-        //} //Ya no utilizamos este metodo queda de referencia
+    
         public static bool EsReservada(string palabra) 
         {
             if (Reservadas.Contains(palabra))
@@ -472,6 +357,8 @@ namespace Compiladores_MiniJava
                     //tmp_PRUEBA.Add($"{palabra},{DiccionarioER_Valor[item]}");
                     valor = $"{DiccionarioER_Valor[item]} (value = {palabra})";
                     resultado = true;
+                    valor = DiccionarioER_Valor[item];
+                    
                     break;
                 }
             }

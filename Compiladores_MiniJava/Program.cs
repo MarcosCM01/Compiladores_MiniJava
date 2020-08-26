@@ -13,12 +13,12 @@ namespace Compiladores_MiniJava
         
         static void Main(string[] args)
         {
-            string URL = @"C:\Users\jalba\OneDrive\Escritorio\prueba3.txt";//Direccion archivo de prueba
-            foreach (var arg in args)
-            {
-                if (MetodosAux_AL.VerificarArchivoVacio(arg) != true) 
+            string URL = @"C:\Users\jalba\OneDrive\Escritorio\PRUEBA.txt";//Direccion archivo de prueba
+            //foreach (var arg in args)
+            //{
+                if (MetodosAux_AL.VerificarArchivoVacio(URL) != true)
                 {
-                    MetodosAux_AL.Analisis_Lex(arg);
+                    MetodosAux_AL.Analisis_Lex(URL);
                     //MetodosAux_AL.ImprimirResultado();
                 }
                 else
@@ -27,7 +27,7 @@ namespace Compiladores_MiniJava
                 }
                 
                 Console.ReadKey();
-            }
+            //}
         }
     }
 }
