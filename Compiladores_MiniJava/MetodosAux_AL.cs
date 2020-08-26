@@ -19,7 +19,7 @@ namespace Compiladores_MiniJava
         public static List<String> Operadores_Dobles = new List<string>
         { "<=", ">=","==","!=","&&","||","[]","()","{}"};
         public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() {{ @"^\b(true|false)\b$", "T_es_ConstBool"}, 
-        {@"^0(x|X)[a-fA-F0-9]*$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.(([0-9])*|([0-9]*(E|e)(\+|-)?[0-9]*))?$","T_es_ConstDouble"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"} };
+        {@"^0(x|X)[a-fA-F0-9]*$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.(([0-9])*|([0-9]*(E|e)(\+|-)?[0-9]+))?$","T_es_ConstDouble"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"} };
 
         public const int bufferLenght = 10;
 
@@ -84,8 +84,6 @@ namespace Compiladores_MiniJava
                                     {
                                         if (line[posicion + 1] == '/')
                                         {
-                                            //Console.WriteLine($"COMENTARIO MULTILINEA - inicio:{inicio_multilinea}, fin:{num_linea}");
-                                            //writer.WriteLine($"COMENTARIO MULTILINEA - inicio:{inicio_multilinea}, fin:{num_linea}");
                                             tmp_string = string.Empty;
                                             posicion++;
                                             bandera_comentario_doble = false;
@@ -105,7 +103,7 @@ namespace Compiladores_MiniJava
                                         {
                                             tmp_string += line[posicion];
                                             Bandera_String = false;
-                                            var token = CrearToken(tmp_string, num_linea, num_columna + 1, "T_es_String");
+                                            var token = CrearToken(tmp_string, num_linea, num_columna + 1, $"T_es_String (value = {tmp_string})");
                                             tmp_string = "";
 
                                             Console.WriteLine(ImprimirToken(token));
@@ -200,21 +198,47 @@ namespace Compiladores_MiniJava
                             {
                                 if (tmp_string.Length > 0)
                                 {
-                                    var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
-                                    bandera_ID_Capacidad = false;
-                                    Console.WriteLine(ImprimirToken(token));
-                                    writer.WriteLine(ImprimirToken(token));
+                                    //PARA CONSTANTES: VERIFICAR DE NUEVO
+                                    var tmp2 = tmp_string;
+                                    var bandera_espacio = false;
+                                    var pos_aux = posicion;
+                                    var num_col_aux = num_columna;
+                                    var impreso = false;
+                                    while (pos_aux <line.Length && bandera_espacio == false)
+                                    {
+                                        if (line[pos_aux] > 0 && line[pos_aux] != 32)
+                                        {
+                                            tmp2 += line[pos_aux];
+                                            pos_aux++;
+                                            num_col_aux++;
+                                            if (Posee_Match(tmp2))
+                                            {
+                                                var token_aux = CrearToken(tmp2, num_linea, num_col_aux, Trae_Match(tmp_string));
+                                                bandera_ID_Capacidad = false;
+                                                Console.WriteLine(ImprimirToken(token_aux));
+                                                num_columna = num_col_aux;
+                                                posicion = num_col_aux - 1;
+                                                impreso = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            bandera_espacio = true;
+                                        }
+                                    }
+                                    if(impreso == false)
+                                    {
+                                        var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                                        bandera_ID_Capacidad = false;
+                                        Console.WriteLine(ImprimirToken(token));
+                                        writer.WriteLine(ImprimirToken(token));
+                                    }
                                     tmp_string = "";
                                     var x = line[posicion];
                                     if (Posee_Match(tmp_string + line[posicion]) == true)
                                     {
                                         tmp_string += line[posicion];
                                     }
-                                    //else if (line[posicion] == 32 || line[posicion] == 10 || line[posicion] == 9 || line[posicion] == 13)
-                                    //{
-                                    //    // Me sirve para limpiar chars invalidos
-                                    //    //Lo importante es que funciona :)
-                                    //}
                                     else if (line[posicion] < 0)
                                     {
                                         Console.WriteLine("ERROR EOF ANTES DEL FINAL DE ARCHIVO");
@@ -245,14 +269,11 @@ namespace Compiladores_MiniJava
                                 tmp_string = "";
                                 Console.WriteLine($"ERROR STRING SIN TERMINAR  :  line:  {num_linea}");
                                 writer.WriteLine($"ERROR STRING SIN TERMINAR  :  line:  {num_linea}");
-
                                 //No venia la otra comilla
                             }
                             else if (bandera_comentario_simple == true)
                             {
                                 bandera_comentario_simple = false;
-                                //Console.WriteLine($"COMENTARIO DE LINEA - {num_linea}");
-                                //writer.WriteLine($"COMENTARIO DE LINEA - {num_linea}");
                                 tmp_string = string.Empty;
                             }
                             else
@@ -268,8 +289,8 @@ namespace Compiladores_MiniJava
                     }
                     if (bandera_comentario_doble == true)
                     {
-                        Console.WriteLine($"ERROR COMENTARIO SIN CERRAR");
-                        writer.WriteLine($"ERROR COMENTARIO SIN CERRAR");
+                        Console.WriteLine($"EOF EN COMENTARIO");
+                        writer.WriteLine($"EOF EN COMENTARIO");
                     }
                     reader.Close();
                 }
@@ -279,7 +300,6 @@ namespace Compiladores_MiniJava
         }
         public static bool Posee_Match(string lexema)
         {
-            
            string tmp = "";
             if (MetodosAux_AL.EsReservada(lexema) != false)
             {
@@ -354,11 +374,15 @@ namespace Compiladores_MiniJava
                 Regex rx = new Regex(item);
                 if (rx.IsMatch(palabra))
                 {//ES UNA CONSTANTE
-                    //tmp_PRUEBA.Add($"{palabra},{DiccionarioER_Valor[item]}");
-                    valor = $"{DiccionarioER_Valor[item]} (value = {palabra})";
-                    resultado = true;
-                    valor = DiccionarioER_Valor[item];
-                    
+                    if (DiccionarioER_Valor[item] != "T_es_Id")
+                    {
+                        valor = $"{DiccionarioER_Valor[item]} (value = {palabra})";
+                    }
+                    else
+                    {
+                        valor = DiccionarioER_Valor[item];
+                    }
+                    resultado = true;            
                     break;
                 }
             }
@@ -371,8 +395,6 @@ namespace Compiladores_MiniJava
         public static string ImprimirToken(Token token)
         {
             return ($"{token.palabra}  :  line:{token.linea}, inicio:{token.columna_i}, fin:{token.columna_f}; {token.valor}");
-       
-            
         }
         public static void Imprimir_En_Archivo(string comentario,string url)
         {
