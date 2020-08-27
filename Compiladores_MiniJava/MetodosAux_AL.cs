@@ -74,8 +74,8 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
-                                        Console.WriteLine("CHAR INVALIDO ");
-                                        writer.WriteLine("CHAR INVALIDO");
+                                        Console.WriteLine($"***ERROR LINEA {num_linea}.*** CHAR INVALIDO ");
+                                        writer.WriteLine($"***ERROR LINEA {num_linea}.*** CHAR INVALIDO");
                                     }
                                 }
                                 if (line[posicion] == '*')
@@ -91,6 +91,19 @@ namespace Compiladores_MiniJava
                                         }
                                     }
 
+                                }
+                            }
+                            else if (bandera_comentario_simple == true)
+                            {
+                                if (line[posicion] > 0)
+                                {
+                                    if (tmp_string.Length < 10)
+                                        tmp_string += line[posicion];
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO : {line[posicion]}");
+                                    writer.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO :  {line[posicion]}");
                                 }
                             }
                             else if (line[posicion] == '"')
@@ -111,16 +124,17 @@ namespace Compiladores_MiniJava
                                         }
                                         else
                                         {
-                                            Console.WriteLine("CHAR INVALIDO ");
-                                            writer.WriteLine("CHAR INVALIDO ");
+                                            Console.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO ");
+                                            writer.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO ");
 
                                         }
                                     }
                                     else
                                     {
-                                        Console.WriteLine("STRING VACIO ");
-                                        writer.WriteLine("STRING VACIO ");
+                                        Console.WriteLine($"*** ERROR LINEA {num_linea}. *** STRING VACIO ");
+                                        writer.WriteLine($"*** ERROR LINEA {num_linea}. *** STRING VACIO ");
                                         tmp_string = "";
+                                        Bandera_String = false;
                                     }
                                 }
                                 else
@@ -133,22 +147,8 @@ namespace Compiladores_MiniJava
                             {
                                 tmp_string += line[posicion];
                             }
-                            else if (bandera_comentario_simple == true)
-                            {
-                                if (line[posicion] > 0)
-                                {
-                                    if(tmp_string.Length<10)
-                                    tmp_string += line[posicion];
-                                }
-                                else
-                                {
-                                    Console.WriteLine("ERROR CHAR INVALIDO : " + line[posicion]);
-                                    writer.WriteLine("ERROR CHAR INVALIDO : " + line[posicion]);
-                                }
-                            }
                             else if (line[posicion] == '/')// PARA COMENTARIOS
                             {
-
                                 if (posicion + 1 < line.Length)
                                 {
                                     //COMENTARIO SIMPLE
@@ -162,24 +162,43 @@ namespace Compiladores_MiniJava
                                     //COMENTARIO DOBLE
                                     else if (line[posicion + 1] == '*')
                                     {
+                                        if (tmp_string.Length >0)
+                                        {
+                                             var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                                             tmp_string = string.Empty;
+                                             Console.WriteLine(ImprimirToken(token));
+                                             writer.WriteLine(ImprimirToken(token));
+                                        }
                                         tmp_string += line[posicion];
                                         bandera_comentario_doble = true;
                                         tmp_string += line[posicion + 1];
                                         posicion++;
                                         inicio_multilinea = num_linea;
                                     }
+                                    else if ((tmp_string + line[posicion]) == "*/")
+                                    {
+                                        Console.WriteLine($"*** ERROR linea {num_linea}. *** COMENTARIO SIN EMPAREJAR");
+                                        writer.WriteLine($"*** ERROR linea {num_linea}. *** COMENTARIO SIN EMPAREJAR");
+                                        tmp_string = string.Empty;
+                                    }
                                     else
                                     {// Esto funciona solo cuando viene una barra
-
-                                        var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
-                                        tmp_string = string.Empty;
-                                        Console.WriteLine(ImprimirToken(token));
-                                        writer.WriteLine(ImprimirToken(token));
+                                        if (tmp_string.Length >0)
+                                        {
+                                            var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                                            tmp_string = string.Empty;
+                                            Console.WriteLine(ImprimirToken(token));
+                                            writer.WriteLine(ImprimirToken(token));
+                                        }
                                         tmp_string += line[posicion];
-                                        //   
                                     }
                                 }
-
+                                if (($"{tmp_string}{line[posicion]}") == "*/")
+                                {
+                                    Console.WriteLine($"*** ERROR linea {num_linea}. *** COMENTARIO SIN EMPAREJAR");
+                                    writer.WriteLine($"*** ERROR linea {num_linea}. *** COMENTARIO SIN EMPAREJAR");
+                                    tmp_string = string.Empty;
+                                }
                             }
                             else if (Posee_Match(tmp_string + line[posicion]) == true)
                             {
@@ -188,9 +207,8 @@ namespace Compiladores_MiniJava
                                 else if(bandera_ID_Capacidad == false)
                                 {
                                     bandera_ID_Capacidad = true;
-                                    Console.WriteLine("Error ID CON CAPACIDAD MAXIMA");
-                                    writer.WriteLine("Error ID CON CAPACIDAD MAXIMA");
-
+                                    Console.WriteLine($"*** ERROR LINEA {num_linea}. *** ID CON CAPACIDAD MAXIMA");
+                                    writer.WriteLine($"*** ERROR LINEA {num_linea}. *** ID CON CAPACIDAD MAXIMA");
                                 }
 
                             }
@@ -213,7 +231,7 @@ namespace Compiladores_MiniJava
                                             num_col_aux++;
                                             if (Posee_Match(tmp2))
                                             {
-                                                var token_aux = CrearToken(tmp2, num_linea, num_col_aux, Trae_Match(tmp_string));
+                                                var token_aux = CrearToken(tmp2, num_linea, num_col_aux, Trae_Match(tmp2));
                                                 bandera_ID_Capacidad = false;
                                                 Console.WriteLine(ImprimirToken(token_aux));
                                                 num_columna = num_col_aux;
@@ -241,21 +259,21 @@ namespace Compiladores_MiniJava
                                     }
                                     else if (line[posicion] < 0)
                                     {
-                                        Console.WriteLine("ERROR EOF ANTES DEL FINAL DE ARCHIVO");
-                                        writer.WriteLine("ERROR EOF ANTES DEL FINAL DE ARCHIVO");
+                                        Console.WriteLine($"*** ERROR LINEA {num_linea}. *** EOF ANTES DEL FINAL DE ARCHIVO");
+                                        writer.WriteLine($"*** ERROR LINEA {num_linea}. *** EOF ANTES DEL FINAL DE ARCHIVO");
                                     }
                                     else if (line[posicion] != 32 && line[posicion] != 10 && line[posicion] != 9 && line[posicion] != 13)
                                     {
-                                        Console.WriteLine("ERROR CHAR INVALIDO : " + line[posicion]);
-                                        writer.WriteLine("ERROR CHAR INVALIDO : " + line[posicion]);
+                                        Console.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO : {line[posicion]}");
+                                        writer.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO : {line[posicion]}");
                                     }
                             }
                                 else
                                 {
                                     if (line[posicion] != 32 && line[posicion] != 10 && line[posicion] != 9 && line[posicion] != 13)
                                     {
-                                        Console.WriteLine("ERROR CHAR INVALIDO : " + line[posicion]);
-                                        writer.WriteLine("ERROR CHAR INVALIDO : " + line[posicion]);
+                                        Console.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO :  {line[posicion]}");
+                                        writer.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO :   {line[posicion]}");
                                     }
                                 }
                             }
@@ -267,8 +285,8 @@ namespace Compiladores_MiniJava
                             {
                                 Bandera_String = false;
                                 tmp_string = "";
-                                Console.WriteLine($"ERROR STRING SIN TERMINAR  :  line:  {num_linea}");
-                                writer.WriteLine($"ERROR STRING SIN TERMINAR  :  line:  {num_linea}");
+                                Console.WriteLine($"ERROR STRING SIN TERMINAR  :  LINEA:  {num_linea}");
+                                writer.WriteLine($"ERROR STRING SIN TERMINAR  :  LINEA:  {num_linea}");
                                 //No venia la otra comilla
                             }
                             else if (bandera_comentario_simple == true)
@@ -289,8 +307,8 @@ namespace Compiladores_MiniJava
                     }
                     if (bandera_comentario_doble == true)
                     {
-                        Console.WriteLine($"EOF EN COMENTARIO");
-                        writer.WriteLine($"EOF EN COMENTARIO");
+                        Console.WriteLine($"*** ERROR *** EOF EN COMENTARIO");
+                        writer.WriteLine($"*** ERROR *** EOF EN COMENTARIO");
                     }
                     reader.Close();
                 }
@@ -349,7 +367,6 @@ namespace Compiladores_MiniJava
             }
 
         }
-    
         public static bool EsReservada(string palabra) 
         {
             if (Reservadas.Contains(palabra))
@@ -404,7 +421,6 @@ namespace Compiladores_MiniJava
                 writer.Close();
             }
         }
-
         public static Token CrearToken(string palabra, int num_Linea, int num_columna, string valor) 
         {
   
