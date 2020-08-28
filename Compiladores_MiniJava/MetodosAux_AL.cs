@@ -162,7 +162,7 @@ namespace Compiladores_MiniJava
                                     writer.WriteLine($"*** ERROR linea {num_linea}. *** COMENTARIO SIN EMPAREJAR");
                                     tmp_string = string.Empty;
                                 }
-                                if (tmp_string.Length >0)
+                                else if (tmp_string.Length >0)
                                 {
                                     var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                     bandera_ID_Capacidad = false;
@@ -170,7 +170,7 @@ namespace Compiladores_MiniJava
                                     writer.WriteLine(ImprimirToken(token));
                                     tmp_string = string.Empty;
                                 }
-                                if (posicion + 1 < line.Length)
+                                else if (posicion + 1 < line.Length)
                                 {
                                     //COMENTARIO SIMPLE
                                     if (line[posicion + 1] == '/')
@@ -213,6 +213,15 @@ namespace Compiladores_MiniJava
                                         }
                                         tmp_string += line[posicion];
                                     }
+                                }
+                                else
+                                //Cuando la barra viene al final de linea
+                                {
+                                    tmp_string+= line[posicion];
+                                    var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                                    tmp_string = string.Empty;
+                                    Console.WriteLine(ImprimirToken(token));
+                                    writer.WriteLine(ImprimirToken(token));
                                 }
                             }
                             else if (Posee_Match(tmp_string + line[posicion]) == true)
