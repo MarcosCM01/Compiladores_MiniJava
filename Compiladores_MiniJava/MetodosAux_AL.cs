@@ -139,6 +139,13 @@ namespace Compiladores_MiniJava
                                 }
                                 else
                                 {
+                                    if (tmp_string.Length >0)
+                                    {
+                                        var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                                        Console.WriteLine(ImprimirToken(token));
+                                        writer.WriteLine(ImprimirToken(token));
+                                        tmp_string = string.Empty;
+                                    }
                                     tmp_string += line[posicion];
                                     Bandera_String = true;
                                 }
@@ -149,6 +156,20 @@ namespace Compiladores_MiniJava
                             }
                             else if (line[posicion] == '/')// PARA COMENTARIOS
                             {
+                                if (($"{tmp_string}{line[posicion]}") == "*/")
+                                {
+                                    Console.WriteLine($"*** ERROR linea {num_linea}. *** COMENTARIO SIN EMPAREJAR");
+                                    writer.WriteLine($"*** ERROR linea {num_linea}. *** COMENTARIO SIN EMPAREJAR");
+                                    tmp_string = string.Empty;
+                                }
+                                if (tmp_string.Length >0)
+                                {
+                                    var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
+                                    bandera_ID_Capacidad = false;
+                                    Console.WriteLine(ImprimirToken(token));
+                                    writer.WriteLine(ImprimirToken(token));
+                                    tmp_string = string.Empty;
+                                }
                                 if (posicion + 1 < line.Length)
                                 {
                                     //COMENTARIO SIMPLE
@@ -193,12 +214,6 @@ namespace Compiladores_MiniJava
                                         tmp_string += line[posicion];
                                     }
                                 }
-                                if (($"{tmp_string}{line[posicion]}") == "*/")
-                                {
-                                    Console.WriteLine($"*** ERROR linea {num_linea}. *** COMENTARIO SIN EMPAREJAR");
-                                    writer.WriteLine($"*** ERROR linea {num_linea}. *** COMENTARIO SIN EMPAREJAR");
-                                    tmp_string = string.Empty;
-                                }
                             }
                             else if (Posee_Match(tmp_string + line[posicion]) == true)
                             {
@@ -221,7 +236,9 @@ namespace Compiladores_MiniJava
                                     var bandera_espacio = false;
                                     var pos_aux = posicion;
                                     var num_col_aux = num_columna;
-                                    var impreso = false;
+
+                                    var tmp3 = string.Empty;
+                                    var col_aux2 = 0;
                                     while (pos_aux <line.Length && bandera_espacio == false)
                                     {
                                         if (line[pos_aux] > 0 && line[pos_aux] != 32)
@@ -231,12 +248,8 @@ namespace Compiladores_MiniJava
                                             num_col_aux++;
                                             if (Posee_Match(tmp2))
                                             {
-                                                var token_aux = CrearToken(tmp2, num_linea, num_col_aux, Trae_Match(tmp2));
-                                                bandera_ID_Capacidad = false;
-                                                Console.WriteLine(ImprimirToken(token_aux));
-                                                num_columna = num_col_aux;
-                                                posicion = num_col_aux - 1;
-                                                impreso = true;
+                                                tmp3 = tmp2;
+                                                col_aux2 = num_col_aux;
                                             }
                                         }
                                         else
@@ -244,7 +257,16 @@ namespace Compiladores_MiniJava
                                             bandera_espacio = true;
                                         }
                                     }
-                                    if(impreso == false)
+                                    if (Trae_Match(tmp3).Contains("T_es_ConstDouble"))//ESTE TMP3 SE CREA DEBIDO A QUE LAS CONSTANTES DOBLE REQUIEREN MAYOR ANALISIS
+                                    {
+                                        var token_aux = CrearToken(tmp3, num_linea, col_aux2, Trae_Match(tmp3));
+                                        bandera_ID_Capacidad = false;
+                                        Console.WriteLine(ImprimirToken(token_aux));
+                                        writer.WriteLine(ImprimirToken(token_aux));
+                                        num_columna = col_aux2;
+                                        posicion = col_aux2 - 1;
+                                    }
+                                    else
                                     {
                                         var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                         bandera_ID_Capacidad = false;
@@ -252,20 +274,23 @@ namespace Compiladores_MiniJava
                                         writer.WriteLine(ImprimirToken(token));
                                     }
                                     tmp_string = "";
-                                    var x = line[posicion];
-                                    if (Posee_Match(tmp_string + line[posicion]) == true)
+                                    if (posicion< line.Length)
                                     {
-                                        tmp_string += line[posicion];
-                                    }
-                                    else if (line[posicion] < 0)
-                                    {
-                                        Console.WriteLine($"*** ERROR LINEA {num_linea}. *** EOF ANTES DEL FINAL DE ARCHIVO");
-                                        writer.WriteLine($"*** ERROR LINEA {num_linea}. *** EOF ANTES DEL FINAL DE ARCHIVO");
-                                    }
-                                    else if (line[posicion] != 32 && line[posicion] != 10 && line[posicion] != 9 && line[posicion] != 13)
-                                    {
-                                        Console.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO : {line[posicion]}");
-                                        writer.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO : {line[posicion]}");
+                                        var x = line[posicion];
+                                        if (Posee_Match(tmp_string + line[posicion]) == true)
+                                        {
+                                            tmp_string += line[posicion];
+                                        }
+                                        else if (line[posicion] < 0)
+                                        {
+                                            Console.WriteLine($"*** ERROR LINEA {num_linea}. *** EOF ANTES DEL FINAL DE ARCHIVO");
+                                            writer.WriteLine($"*** ERROR LINEA {num_linea}. *** EOF ANTES DEL FINAL DE ARCHIVO");
+                                        }
+                                        else if (line[posicion] != 32 && line[posicion] != 10 && line[posicion] != 9 && line[posicion] != 13)
+                                        {
+                                            Console.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO : {line[posicion]}");
+                                            writer.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO : {line[posicion]}");
+                                        }
                                     }
                             }
                                 else
