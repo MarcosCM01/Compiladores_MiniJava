@@ -119,7 +119,7 @@ namespace Compiladores_MiniJava
                                             var token = CrearToken(tmp_string, num_linea, num_columna + 1, $"T_es_String (value = {tmp_string})");
                                             tmp_string = "";
 
-                                            Console.WriteLine(ImprimirToken(token));
+                                            //Console.WriteLine(ImprimirToken(token));
                                             writer.WriteLine(ImprimirToken(token));
                                         }
                                         else
@@ -142,7 +142,7 @@ namespace Compiladores_MiniJava
                                     if (tmp_string.Length >0)
                                     {
                                         var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
-                                        Console.WriteLine(ImprimirToken(token));
+                                        //Console.WriteLine(ImprimirToken(token));
                                         writer.WriteLine(ImprimirToken(token));
                                         tmp_string = string.Empty;
                                     }
@@ -166,7 +166,7 @@ namespace Compiladores_MiniJava
                                 {
                                     var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                     bandera_ID_Capacidad = false;
-                                    Console.WriteLine(ImprimirToken(token));
+                                    //Console.WriteLine(ImprimirToken(token));
                                     writer.WriteLine(ImprimirToken(token));
                                     tmp_string = string.Empty;
                                 }
@@ -187,7 +187,7 @@ namespace Compiladores_MiniJava
                                         {
                                              var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                              tmp_string = string.Empty;
-                                             Console.WriteLine(ImprimirToken(token));
+                                             //Console.WriteLine(ImprimirToken(token));
                                              writer.WriteLine(ImprimirToken(token));
                                         }
                                         tmp_string += line[posicion];
@@ -208,7 +208,7 @@ namespace Compiladores_MiniJava
                                         {
                                             var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                             tmp_string = string.Empty;
-                                            Console.WriteLine(ImprimirToken(token));
+                                            //Console.WriteLine(ImprimirToken(token));
                                             writer.WriteLine(ImprimirToken(token));
                                         }
                                         tmp_string += line[posicion];
@@ -220,7 +220,7 @@ namespace Compiladores_MiniJava
                                     tmp_string+= line[posicion];
                                     var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                     tmp_string = string.Empty;
-                                    Console.WriteLine(ImprimirToken(token));
+                                    //Console.WriteLine(ImprimirToken(token));
                                     writer.WriteLine(ImprimirToken(token));
                                 }
                             }
@@ -270,7 +270,7 @@ namespace Compiladores_MiniJava
                                     {
                                         var token_aux = CrearToken(tmp3, num_linea, col_aux2, Trae_Match(tmp3));
                                         bandera_ID_Capacidad = false;
-                                        Console.WriteLine(ImprimirToken(token_aux));
+                                        //Console.WriteLine(ImprimirToken(token_aux));
                                         writer.WriteLine(ImprimirToken(token_aux));
                                         num_columna = col_aux2;
                                         posicion = col_aux2 - 1;
@@ -279,7 +279,7 @@ namespace Compiladores_MiniJava
                                     {
                                         var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                         bandera_ID_Capacidad = false;
-                                        Console.WriteLine(ImprimirToken(token));
+                                        //Console.WriteLine(ImprimirToken(token));
                                         writer.WriteLine(ImprimirToken(token));
                                     }
                                     tmp_string = "";
@@ -332,7 +332,7 @@ namespace Compiladores_MiniJava
                             {
                                 var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                 bandera_ID_Capacidad = false;
-                                Console.WriteLine(ImprimirToken(token));
+                                //Console.WriteLine(ImprimirToken(token));
                                 writer.WriteLine(ImprimirToken(token));
                                 tmp_string = "";
                             }
@@ -445,6 +445,7 @@ namespace Compiladores_MiniJava
         }
         public static string ImprimirToken(Token token)
         {
+            Lab_ASDR.TokenList.Add(token.valor);
             return ($"{token.palabra}  :  line:{token.linea}, inicio:{token.columna_i}, fin:{token.columna_f}; {token.valor}");
         }
         public static void Imprimir_En_Archivo(string comentario,string url)
