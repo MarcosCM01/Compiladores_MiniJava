@@ -377,7 +377,6 @@ namespace Compiladores_MiniJava
         }
         public static string Trae_Match(string lexema)
         {
-
             string tmp = "";
             if (MetodosAux_AL.EsReservada(lexema) != false)
             {
@@ -443,9 +442,8 @@ namespace Compiladores_MiniJava
         {
             ArchivoDeSalida.Add($"*** ERROR {numero_linea}. ***     {def_Error}");
         }
-        public static string ImprimirToken(Token token)
-        {
-            Lab_ASDR.TokenList.Add(token.valor);
+        public static string ImprimirToken(Token token) 
+        { 
             return ($"{token.palabra}  :  line:{token.linea}, inicio:{token.columna_i}, fin:{token.columna_f}; {token.valor}");
         }
         public static void Imprimir_En_Archivo(string comentario,string url)
@@ -458,16 +456,37 @@ namespace Compiladores_MiniJava
         }
         public static Token CrearToken(string palabra, int num_Linea, int num_columna, string valor) 
         {
-  
             Token t = new Token();
             t.palabra = palabra;
             t.valor = valor;
             t.linea = num_Linea;
             t.columna_i = num_columna - palabra.Length;
             t.columna_f = num_columna-1;
+            if (t.valor.Contains("T_es_ConstBool"))
+            {
+               Lab_ASDR.TokenList.Add("T_es_ConstBool");
+            }
+            else if (t.valor.Contains("T_es_ConstHexadecimal"))
+            {
+                Lab_ASDR.TokenList.Add("T_es_ConstHexadecimal");
+            }
+            else if (t.valor.Contains("T_es_ConstDouble"))
+            {
+                Lab_ASDR.TokenList.Add("T_es_ConstDouble");
+            }
+            else if (t.valor.Contains("T_es_ConstDecimal"))
+            {
+                Lab_ASDR.TokenList.Add("T_es_ConstDecimal");
+            }
+            else if (t.valor == "T_es_Id")
+            {
+                Lab_ASDR.TokenList.Add("T_es_Id");
+            }
+            else //ESTE INCLUYE PARA: PALABRAS RESERVADAS, OP. DOBLES Y OP. SIMPLES
+            {
+                Lab_ASDR.TokenList.Add(t.palabra);
+            }
             return t;
-
-
         }
     }
 }

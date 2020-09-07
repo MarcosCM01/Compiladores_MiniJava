@@ -19,7 +19,7 @@ namespace Compiladores_MiniJava
                 if (MetodosAux_AL.VerificarArchivoVacio(URL) != true)
                 {
                     MetodosAux_AL.Analisis_Lex(URL);
-                    Lab_ASDR.X();
+                    Lab_ASDR.Sintactico_Recursivo();
                     //MetodosAux_AL.ImprimirResultado();
                 }
                 else
