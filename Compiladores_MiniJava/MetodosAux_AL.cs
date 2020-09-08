@@ -478,6 +478,10 @@ namespace Compiladores_MiniJava
             {
                 Lab_ASDR.TokenList.Add("T_es_ConstDecimal");
             }
+            else if (t.valor.Contains("T_es_String"))
+            {
+                Lab_ASDR.TokenList.Add("T_es_String");
+            }
             else if (t.valor == "T_es_Id")
             {
                 Lab_ASDR.TokenList.Add("T_es_Id");

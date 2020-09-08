@@ -13,10 +13,87 @@ namespace Compiladores_MiniJava
         public static void Sintactico_Recursivo() 
         {
             //EMPEZAMOS LA GRAMATICA
+            //1. PROGRAM
+            Parse_Program();
             //1. STMT
             //2. IF STMT
             
         }
+
+        public static void Parse_Program() {
+            Parse_Decl();
+            Parse_Decl_PRIMA();
+        }
+        public static void Parse_Decl() {
+            if (true)
+            {
+                Parse_VariableDecl();
+            }
+            else
+            {
+                Parse_FunctionDecl();
+            }
+        }
+        public static void Parse_Decl_PRIMA() {
+            if (true)
+            {
+                Parse_Decl();
+                Parse_Decl_PRIMA();
+            }
+            else
+            {
+                //EPSILON
+            }
+        }
+        public static void Parse_VariableDecl() {
+            Parse_Variable();
+            Match_Token(';');
+        }
+        public static void Parse_Variable() {
+            Parse_Type();
+            if (Token == "T_es_id")
+            {
+
+            }
+        }
+        public static void Parse_Type(){
+            if (Token == "T_es_ConstDecimal")
+            {
+                Parse_Type_PRIMA();
+            }
+            else if (Token == "T_es_ConstDouble")
+            {
+                Parse_Type_PRIMA();
+            }
+            else if (Token == "T_es_ConstBool")
+            {
+                Parse_Type_PRIMA();
+            }
+            else if (Token == "T_es_String")
+            {
+                Parse_Type_PRIMA();
+            }
+            else if (Token == "T_es_Id")
+            {
+                Parse_Type_PRIMA();
+            }
+        }
+        public static void Parse_Type_PRIMA(){
+            if (Match_Token(';'))
+            {
+                Parse_Type_PRIMA();
+            }
+            else
+            {
+                //EPSILON
+            }
+        }
+        public static void Parse_FunctionDecl(){
+            Parse_Type();
+        }
+
+
+
         public static void Parse_IF_stmt() 
         {
             //ifSTMT --> if ( EXPR ) STMT IF_STMT'
@@ -25,8 +102,6 @@ namespace Compiladores_MiniJava
             //Parse(EXPR)
             //MatchToken (')')
             //Parse()
-
-
         }
         public static void Parse_Stmt() 
         {
