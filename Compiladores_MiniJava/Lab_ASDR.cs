@@ -26,7 +26,7 @@ namespace Compiladores_MiniJava
                 {
                     hizo_match = false;
                     Console.WriteLine($"Error de sintaxis se esperaba: {esperado}, se encontro: {TokenList.ToArray()[P_lookahead]}.");
-                    P_lookahead++; //VER ESTO
+                    //P_lookahead++; //VER ESTO
                 }
                 else
                 {
