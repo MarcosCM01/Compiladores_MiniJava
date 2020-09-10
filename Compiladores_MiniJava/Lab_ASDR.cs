@@ -467,113 +467,89 @@ namespace Compiladores_MiniJava
                 //Aqui se parsea Constant 
                 var match_F = false;
                 var auxL = P_lookahead;
-                if (TokenList.ToArray()[auxL] == "this")
+                if (TokenList.ToArray()[auxL] == ".")
                 {
                     P_lookahead++;
-                    match_F = true;
-                }
-                else
-                {
-                    Parse_Constant(ref match_F);
-                    if (match_F == true)
-                    {
-                        //P_lookahead++;
-                        //aceptado
-                    }
-                }
-                if (TokenList.ToArray()[auxL] == "New")
-                {
-                    P_lookahead = auxL;
-                    P_lookahead++;
-                    MatchToken("(", ref match_F);
+                    //match_F = true;
                     MatchToken("T_es_Id", ref match_F);
-                    MatchToken(")", ref match_F);
+                    Parse_X_PRIMA(ref match_F);
                 }
-                else if (TokenList.ToArray()[auxL] == "(")
+                else if (TokenList.ToArray()[auxL] == "[")
                 {
                     P_lookahead = auxL;
                     P_lookahead++;
                     Parse_Expr(ref match_F);
-                    MatchToken(")", ref match_F);
+                    MatchToken("]", ref match_F);
+                    Parse_X_PRIMA(ref match_F);
                 }
-                else if (match_F == false)
-                {
-                    Parse_LValue(ref match_F);
-                    if (match_F == true)
-                    {
-                        //TENGO QUE PARSEAR F'
-                        Parse_F_PRIMA(ref match_F);
-                    }
-                } 
                 else
                 {
-                    //Console.WriteLine($"Error de sintaxis. no venia ningun terminal");
-                    // error de sintaxis
+                    Parse_G(ref match_F);
                 }
                 F = match_F;
             }
         }
-        public static void Parse_F_PRIMA(ref bool FP) 
-        {
-            if (TokenList.ToArray()[P_lookahead] == "=")
-            {
-                Parse_Expr(ref FP);
-            }
-            else
-            {
-                FP = true;
-                //epsilon
-            }
-        }
-        public static void Parse_LValue(ref bool LV)
-        {
-            var match_LV = false;
-            if (P_lookahead < TokenList.Count)
-            {
-                var auxL = P_lookahead;
-                Parse_Expr(ref match_LV);
-                if (match_LV == true)
-                {
-                    Parse_LValue_PRIMA();
-                }
-                else if (TokenList.ToArray()[auxL] == "T_es_Id")
-                {
-                    P_lookahead++;
-                    match_LV = true;
-                    //aceptado
-                }
-                //else if (TokenList.ToArray()[auxL] == "=")//Solo para que no de error
-                //{
-                //    //Expr Lvalue_Prima
-                //}
-                else
-                {
-                    Console.WriteLine($"Error de sintaxis. no venia identificador ni expresion");
-                }
-            }
-            LV = match_LV;
-        }
-        public static void Parse_LValue_PRIMA()
+        public static void Parse_G(ref bool G)
         {
             if (P_lookahead < TokenList.Count)
             {
-                var match_LP = false;
-                if (TokenList.ToArray()[P_lookahead] == ".")
+                var match_g = false;
+                var aux = P_lookahead;
+                Parse_Constant(ref match_g);
+                if (match_g == true)
                 {
-                    P_lookahead++;
-                    MatchToken("T_es_Id", ref match_LP);
-                    //aceptado
+                    
                 }
-                else if(TokenList.ToArray()[P_lookahead] == "[")
+                else if (TokenList.ToArray()[aux] == "New")
                 {
-                    Parse_Expr(ref match_LP);
-                    MatchToken("]", ref match_LP);
+                    P_lookahead = aux + 1;
+                    MatchToken("(", ref match_g);
+                    MatchToken("T_es_Id", ref match_g);
+                    MatchToken(")", ref match_g);
+                }
+                else if (TokenList.ToArray()[aux] == "(")
+                {
+                    P_lookahead = aux + 1;
+                    Parse_Expr(ref match_g);
+                    MatchToken(")", ref match_g);
+                }
+                else if(TokenList.ToArray()[aux] == "this")
+                {
+                    P_lookahead = aux + 1;
+                }
+                else if(TokenList.ToArray()[aux] == "T_es_Id")
+                {
+                    P_lookahead = aux + 1;
+                    Parse_X_PRIMA(ref match_g);
                 }
                 else
                 {
-                    Console.WriteLine($"Error de sintaxis");
+                    Console.WriteLine("Error ");
+             
                 }
+                match_g = G;
+            }
+            
+        }
+        public static void Parse_X_PRIMA(ref bool FP)
+        {
+            if (P_lookahead < TokenList.Count)
+            {
+                
+                if (TokenList.ToArray()[P_lookahead] == "=")
+                {
+                    P_lookahead++;
+                    Parse_Expr(ref FP);
+                }
+                else
+                {
+                    //Epsilon
+                    FP = true;
+                }
+               
+                  
             }
         }
+
     }
 }
