@@ -20,6 +20,7 @@ namespace Compiladores_MiniJava
                 {
                     MetodosAux_AL.Analisis_Lex(URL);
                     Lab_ASDR.Sintactico_Recursivo();
+                Console.WriteLine("No infinito");
                     //MetodosAux_AL.ImprimirResultado();
                 }
                 else

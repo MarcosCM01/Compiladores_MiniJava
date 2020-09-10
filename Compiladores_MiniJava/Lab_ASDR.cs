@@ -309,7 +309,7 @@ namespace Compiladores_MiniJava
             var match_RSP = false;
             var auxL = P_lookahead;
             Parse_Expr(ref match_RSP);
-            if (match_RSP == false)
+            if (match_RSP == false && P_lookahead < TokenList.Count)
             {
                 P_lookahead = auxL;
                 //epsilon
