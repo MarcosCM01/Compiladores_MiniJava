@@ -13,14 +13,14 @@ namespace Compiladores_MiniJava
         
         static void Main(string[] args)
         {
-            string URL = @"C:\Users\Marcos Andrés CM\Desktop\6 Sexto ciclo\Compiladores\Laboratorios\LAB A\void main_4.txt";//Direccion archivo de prueba
-            //foreach (var arg in args)
-            //{
-                if (MetodosAux_AL.VerificarArchivoVacio(URL) != true)
+            string URL = @"C:\Users\jalba\OneDrive\Escritorio\prueba.txt";//Direccion archivo de prueba
+            foreach (var arg in args)
+            {
+                if (MetodosAux_AL.VerificarArchivoVacio(arg) != true)
                 {
-                    MetodosAux_AL.Analisis_Lex(URL);
+                    MetodosAux_AL.Analisis_Lex(arg);
                     Lab_ASDR.Sintactico_Recursivo();
-                    Console.WriteLine("No infinito");
+                    Console.WriteLine("Fin de analisis sintactico");
                     //MetodosAux_AL.ImprimirResultado();
                 }
                 else
@@ -29,7 +29,7 @@ namespace Compiladores_MiniJava
                 }
                 
                 Console.ReadKey();
-            //}
+            }
         }
     }
 }

@@ -25,5 +25,15 @@ Consideramos que nuestro analizador léxico es consistente ya que sabe manejar d
 Nostros consideramos que al manejar este tipo de errores hemos realizado un analizador bastante robusto el cual al encontrar errores los 
 reporta y continua con el análsis 
 
+Analizador Sintactico Descendente Recursivo
+
+En este laboratorio aplicamos el metodo de parseo sintactico descendente recursivo, en ese aplicamos lo el analizador lexico de la primer fase, ahora 
+desde el analizador lexico enviamos los tokens para poder analizarlo por medio del analizador sintactico en el manejo de errores nosotros implementamos
+el metodo recursivo descendente pero a siempre tratamos de validar que el token para analizar la siguiente prodcción sea un simbolo terminal, con ello
+de cierta manera eliminamos el uso de recursividad inecesaria para ir a validar cada una de las producciones con una pequeña predicción, el siguiente
+manejo de errores se encentra en el metodo MatchToken que recibe como parametro el token esperado si no es el esperado muestra en pantalla el error 
+y el simbolo terminal que se esperaba
+
+
 	Eduardo Albarizaez 1106918
-	Marcos Calderon 1060918
+	Marcos Calderon 1060918 
