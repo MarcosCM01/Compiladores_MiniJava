@@ -354,9 +354,18 @@ namespace Compiladores_MiniJava
         public static void Parse_A(ref bool A)
         {
             var match_A = false;
+            var match_AP = false;
             Parse_B(ref match_A);
-            Parse_A_PRIMA(ref match_A);
-            A = match_A;
+            Parse_A_PRIMA(ref match_AP);
+            if (match_A == true && match_AP == true)
+            {
+                A = true;
+            }
+            else
+            {
+                A = false;
+            }
+            
         }
         public static void Parse_A_PRIMA(ref bool AP)
         {
@@ -379,8 +388,18 @@ namespace Compiladores_MiniJava
         }
         public static void Parse_B(ref bool B)
         {
-            Parse_C(ref B);
-            Parse_B_PRIMA(ref B);
+            var match_B = false;
+            var match_BP = false;
+            Parse_C(ref match_B);
+            Parse_B_PRIMA(ref match_BP);
+            if (match_B == true && match_BP == true)
+            {
+                B = true;
+            }
+            else
+            {
+                B = false;
+            }
         }
         public static void Parse_B_PRIMA(ref bool BP)
         {
@@ -401,8 +420,18 @@ namespace Compiladores_MiniJava
         }
         public static void Parse_C(ref bool C)
         {
-            Parse_D(ref C);
-            Parse_C_PRIMA(ref C);
+            var match_C = false;
+            var match_CP = false;
+            Parse_D(ref match_C);
+            Parse_C_PRIMA(ref match_CP);
+            if (match_C == true && match_CP == true)
+            {
+                C = true;
+            }
+            else
+            {
+                C = false;
+            }
         }
         public static void Parse_C_PRIMA(ref bool C)
         {
@@ -423,8 +452,18 @@ namespace Compiladores_MiniJava
         }
         public static void Parse_D(ref bool D)
         {
-            Parse_E(ref D);
-            Parse_D_PRIMA(ref D);
+            var match_D = false;
+            var match_DP = false;
+            Parse_E(ref match_D);
+            Parse_D_PRIMA(ref match_DP);
+            if (match_D == true && match_DP == true)
+            {
+                D = true;
+            }
+            else
+            {
+                D = false;
+            }
         }
         public static void Parse_D_PRIMA(ref bool DP)
         {
@@ -443,7 +482,22 @@ namespace Compiladores_MiniJava
                 }
             }
         }
-        public static void Parse_E(ref bool E)
+        public static void Parse_E(ref bool E) 
+        {
+            var match_E = false;
+            var match_EP = false;
+            Parse_F(ref match_E);
+            Parse_E_PRIMA(ref match_EP);
+            if (match_E == true && match_EP == true)
+            {
+                E = true;
+            }
+            else
+            {
+                E = false;
+            }
+        }
+        public static void Parse_E_PRIMA(ref bool E)
         {
             if (P_lookahead < TokenList.Count)
             {
@@ -451,6 +505,7 @@ namespace Compiladores_MiniJava
                 {
                     P_lookahead++;
                     Parse_F(ref E);
+                    Parse_E_PRIMA(ref E);
                 }
                 else
                 {
@@ -524,8 +579,7 @@ namespace Compiladores_MiniJava
                 }
                 else
                 {
-                    Console.WriteLine("Error ");
-             
+                    //Console.WriteLine("Error");
                 }
                 match_g = G;
             }

@@ -13,14 +13,14 @@ namespace Compiladores_MiniJava
         
         static void Main(string[] args)
         {
-            string URL = @"C:\Users\jalba\OneDrive\Escritorio\prueba.txt";//Direccion archivo de prueba
+            string URL = @"C:\Users\Marcos Andrés CM\Desktop\6 Sexto ciclo\Compiladores\Laboratorios\LAB A\void main_3.txt";//Direccion archivo de prueba
             //foreach (var arg in args)
             //{
                 if (MetodosAux_AL.VerificarArchivoVacio(URL) != true)
                 {
                     MetodosAux_AL.Analisis_Lex(URL);
                     Lab_ASDR.Sintactico_Recursivo();
-                Console.WriteLine("No infinito");
+                    Console.WriteLine("No infinito");
                     //MetodosAux_AL.ImprimirResultado();
                 }
                 else
