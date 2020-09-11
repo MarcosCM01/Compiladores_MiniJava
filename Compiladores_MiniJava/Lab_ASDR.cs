@@ -57,7 +57,7 @@ namespace Compiladores_MiniJava
             if (match_D == false && P_lookahead < TokenList.Count)
             {
                 P_lookahead = auxL;
-                Parse_FunctionDecl();
+                Parse_FunctionDecl(ref match_D);
             }
             D = match_D;
         }
@@ -136,7 +136,7 @@ namespace Compiladores_MiniJava
 
             }
         }
-        public static void Parse_FunctionDecl()
+        public static void Parse_FunctionDecl(ref bool FD)
         {
             //Correcto
             if (P_lookahead < TokenList.Count)
@@ -169,6 +169,7 @@ namespace Compiladores_MiniJava
                 {
                     Console.WriteLine($"Error sintactico. Se esperaba un tipo de dato o void");//ERROR DE SINTAXIS
                 }
+                FD = match_functionD;
 
             }
         }
@@ -497,19 +498,20 @@ namespace Compiladores_MiniJava
                 E = false;
             }
         }
-        public static void Parse_E_PRIMA(ref bool E)
+        public static void Parse_E_PRIMA(ref bool EP)
         {
             if (P_lookahead < TokenList.Count)
             {
                 if (TokenList.ToArray()[P_lookahead] == "-" || TokenList.ToArray()[P_lookahead] == "!")
                 {
                     P_lookahead++;
-                    Parse_F(ref E);
-                    Parse_E_PRIMA(ref E);
+                    Parse_F(ref EP);
+                    Parse_E_PRIMA(ref EP);
                 }
                 else
                 {
-                    Parse_F(ref E);
+                    EP = true;
+                    //epsilon
                 }
             }
         }
@@ -581,7 +583,7 @@ namespace Compiladores_MiniJava
                 {
                     //Console.WriteLine("Error");
                 }
-                match_g = G;
+                G = match_g;
             }
             
         }
