@@ -1,0 +1,32 @@
+Program → Decl Decl’
+Decl → VariableDecl	|	FunctionDecl        
+Decl’ → Decl Decl’	|	Epsilon	     
+VariableDecl → Variable ;
+Variable → Type ident
+Type → int Type’	|	double Type’	| bool Type’	| string Type’	| ident Type’ 
+Type’ → [] Type’ | Epsilon
+FunctionDecl → Type ident ( Formals ) FunctionDecl’  | void ident ( Formals )  FunctionDecl’ 
+FunctionDecl’ → Stmt FunctionDecl ’		|	Epsilon    
+Formals → Variable Variable’ , | Epsilon			     
+Variable’ → Variable Variable’  | Epsilon			     
+Stmt → IfStmt | ReturnStmt | Expr ;				    
+IfStmt → if ( Expr ) Stmt IfStmt’			
+IfStmt’ → else Stmt | Epsilon
+ReturnStmt → return ReturnStmt’ ;			
+ReturnStmt’ → Expr | Epsilon		
+Constant → intConstant | doubleConstant | boolConstant | stringConstant | null
+Expr → A Expr’
+Expr’ → || A Expr’	|	&& A Expr’	| Epsilon
+A → B A’
+A’ → == B A’		|	!= B A’		| Epsilon
+B → C B’
+B’ →  < C B’		|	<= C B’	| > C B’	| >= C B’	| Epsilon
+C → D C’
+C’ → + D C’ 		|	- D C’		| Epsilon
+D →  E D’		
+D’ → * ED’		|	/ E D’		| % E D’	| Epsilon
+E      → - F		| 	! F  			| F
+F → this | Constant | New (ident) |  ( Expr ) | LValue F’
+F → .ident X’ 		| 	[ Expr ] X’	 | G
+G →  Constant | New (ident) |  ( Expr ) | this | ident X’
+X’ → = Expr | Epsilon

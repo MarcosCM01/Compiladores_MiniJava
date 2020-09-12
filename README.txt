@@ -32,7 +32,7 @@ desde el analizador lexico enviamos los tokens para poder analizarlo por medio d
 el metodo recursivo descendente pero a siempre tratamos de validar que el token para analizar la siguiente prodcción sea un simbolo terminal, con ello
 de cierta manera eliminamos el uso de recursividad inecesaria para ir a validar cada una de las producciones con una pequeña predicción, el siguiente
 manejo de errores se encentra en el metodo MatchToken que recibe como parametro el token esperado si no es el esperado muestra en pantalla el error 
-y el simbolo terminal que se esperaba
+y el simbolo terminal que se esperaba pero no regresamos a la produccion inicial sino que desde la produccion en la que nos encontramos continuamos con el analisis
 
 
 	Eduardo Albarizaez 1106918

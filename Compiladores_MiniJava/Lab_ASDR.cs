@@ -105,7 +105,7 @@ namespace Compiladores_MiniJava
             var match_type = false;
             if (P_lookahead < TokenList.Count)
             {//                                                                                                     en java es boolean preguntar a ING
-                if (TokenList.ToArray()[P_lookahead] == "int" || TokenList.ToArray()[P_lookahead] == "double" || TokenList.ToArray()[P_lookahead] == "bool" || TokenList.ToArray()[P_lookahead] == "string" || TokenList.ToArray()[P_lookahead] == "T_es_Id")
+                if (TokenList.ToArray()[P_lookahead] == "int" || TokenList.ToArray()[P_lookahead] == "double" || TokenList.ToArray()[P_lookahead] == "boolean" || TokenList.ToArray()[P_lookahead] == "string" || TokenList.ToArray()[P_lookahead] == "T_es_Id")
                 {
                     P_lookahead++;
                     Parse_Type_PRIMA(ref match_type);
