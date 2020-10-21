@@ -11,7 +11,7 @@ namespace Compiladores_MiniJava
     public static class MetodosAux_AL
     {
         public static List<String> Reservadas = new List<string> 
-        {"void","int","double","boolean","string", "class", "const", "interface", "null", "this", "extends", "implements", "for", "while", "if", "else", "returns", "break", "New", "System", "out", "println" };
+        {"void","int","double","boolean","string", "class", "const", "interface", "null", "this", "extends", "implements", "for", "while", "if", "else", "return", "break", "New", "System", "out", "println" };
 
         public static List<String> Operadores_Simples = new List<string>
         {"+","-","*","/","%","<",">","=","!",";",",",".","[","]","(",")","{","}"};
@@ -119,7 +119,7 @@ namespace Compiladores_MiniJava
                                             var token = CrearToken(tmp_string, num_linea, num_columna + 1, $"T_es_String (value = {tmp_string})");
                                             tmp_string = "";
 
-                                            Console.WriteLine(ImprimirToken(token));
+                                            //Console.WriteLine(ImprimirToken(token));
                                             writer.WriteLine(ImprimirToken(token));
                                         }
                                         else
@@ -142,7 +142,7 @@ namespace Compiladores_MiniJava
                                     if (tmp_string.Length >0)
                                     {
                                         var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
-                                        Console.WriteLine(ImprimirToken(token));
+                                        //Console.WriteLine(ImprimirToken(token));
                                         writer.WriteLine(ImprimirToken(token));
                                         tmp_string = string.Empty;
                                     }
@@ -166,7 +166,7 @@ namespace Compiladores_MiniJava
                                 {
                                     var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                     bandera_ID_Capacidad = false;
-                                    Console.WriteLine(ImprimirToken(token));
+                                    //Console.WriteLine(ImprimirToken(token));
                                     writer.WriteLine(ImprimirToken(token));
                                     tmp_string = string.Empty;
                                 }
@@ -187,7 +187,7 @@ namespace Compiladores_MiniJava
                                         {
                                              var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                              tmp_string = string.Empty;
-                                             Console.WriteLine(ImprimirToken(token));
+                                             //Console.WriteLine(ImprimirToken(token));
                                              writer.WriteLine(ImprimirToken(token));
                                         }
                                         tmp_string += line[posicion];
@@ -208,7 +208,7 @@ namespace Compiladores_MiniJava
                                         {
                                             var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                             tmp_string = string.Empty;
-                                            Console.WriteLine(ImprimirToken(token));
+                                            //Console.WriteLine(ImprimirToken(token));
                                             writer.WriteLine(ImprimirToken(token));
                                         }
                                         tmp_string += line[posicion];
@@ -220,7 +220,7 @@ namespace Compiladores_MiniJava
                                     tmp_string+= line[posicion];
                                     var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                     tmp_string = string.Empty;
-                                    Console.WriteLine(ImprimirToken(token));
+                                    //Console.WriteLine(ImprimirToken(token));
                                     writer.WriteLine(ImprimirToken(token));
                                 }
                             }
@@ -270,7 +270,7 @@ namespace Compiladores_MiniJava
                                     {
                                         var token_aux = CrearToken(tmp3, num_linea, col_aux2, Trae_Match(tmp3));
                                         bandera_ID_Capacidad = false;
-                                        Console.WriteLine(ImprimirToken(token_aux));
+                                        //Console.WriteLine(ImprimirToken(token_aux));
                                         writer.WriteLine(ImprimirToken(token_aux));
                                         num_columna = col_aux2;
                                         posicion = col_aux2 - 1;
@@ -279,7 +279,7 @@ namespace Compiladores_MiniJava
                                     {
                                         var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                         bandera_ID_Capacidad = false;
-                                        Console.WriteLine(ImprimirToken(token));
+                                        //Console.WriteLine(ImprimirToken(token));
                                         writer.WriteLine(ImprimirToken(token));
                                     }
                                     tmp_string = "";
@@ -332,7 +332,7 @@ namespace Compiladores_MiniJava
                             {
                                 var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                 bandera_ID_Capacidad = false;
-                                Console.WriteLine(ImprimirToken(token));
+                                //Console.WriteLine(ImprimirToken(token));
                                 writer.WriteLine(ImprimirToken(token));
                                 tmp_string = "";
                             }
@@ -377,7 +377,6 @@ namespace Compiladores_MiniJava
         }
         public static string Trae_Match(string lexema)
         {
-
             string tmp = "";
             if (MetodosAux_AL.EsReservada(lexema) != false)
             {
@@ -443,8 +442,8 @@ namespace Compiladores_MiniJava
         {
             ArchivoDeSalida.Add($"*** ERROR {numero_linea}. ***     {def_Error}");
         }
-        public static string ImprimirToken(Token token)
-        {
+        public static string ImprimirToken(Token token) 
+        { 
             return ($"{token.palabra}  :  line:{token.linea}, inicio:{token.columna_i}, fin:{token.columna_f}; {token.valor}");
         }
         public static void Imprimir_En_Archivo(string comentario,string url)
@@ -457,16 +456,41 @@ namespace Compiladores_MiniJava
         }
         public static Token CrearToken(string palabra, int num_Linea, int num_columna, string valor) 
         {
-  
             Token t = new Token();
             t.palabra = palabra;
             t.valor = valor;
             t.linea = num_Linea;
             t.columna_i = num_columna - palabra.Length;
             t.columna_f = num_columna-1;
+            if (t.valor.Contains("T_es_ConstBool"))
+            {
+               Lab_ASDR.TokenList.Add("T_es_ConstBool");
+            }
+            else if (t.valor.Contains("T_es_ConstHexadecimal"))
+            {
+                Lab_ASDR.TokenList.Add("T_es_ConstHexadecimal");
+            }
+            else if (t.valor.Contains("T_es_ConstDouble"))
+            {
+                Lab_ASDR.TokenList.Add("T_es_ConstDouble");
+            }
+            else if (t.valor.Contains("T_es_ConstDecimal"))
+            {
+                Lab_ASDR.TokenList.Add("T_es_ConstDecimal");
+            }
+            else if (t.valor.Contains("T_es_String"))
+            {
+                Lab_ASDR.TokenList.Add("T_es_String");
+            }
+            else if (t.valor == "T_es_Id")
+            {
+                Lab_ASDR.TokenList.Add("T_es_Id");
+            }
+            else //ESTE INCLUYE PARA: PALABRAS RESERVADAS, OP. DOBLES Y OP. SIMPLES
+            {
+                Lab_ASDR.TokenList.Add(t.palabra);
+            }
             return t;
-
-
         }
     }
 }

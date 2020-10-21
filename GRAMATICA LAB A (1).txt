@@ -1,0 +1,32 @@
+Program → Decl Decl’
+Decl → VariableDecl	|	FunctionDecl        
+Decl’ → Decl Decl’	|	Epsilon	    							*Decl' funciona para que venga mas de 1 decl* 
+VariableDecl → Variable ;
+Variable → Type ident
+Type → int Type’	|	double Type’	| bool Type’	| string Type’	| ident Type’ 
+Type’ → [] Type’ | Epsilon 									*Recursividad por la izquierda*
+FunctionDecl → Type ident ( Formals ) FunctionDecl’  | void ident ( Formals )  FunctionDecl’ 
+FunctionDecl’ → Stmt FunctionDecl ’		|	Epsilon    				*FunctionDecl' funciona para que stmt pueda venir muchas veces o ninguna*
+Formals → Variable Variable’ , | Epsilon			     
+Variable’ → Variable Variable’  | Epsilon							*Variable' funciona para que venga mas de una variable*	     
+Stmt → IfStmt | ReturnStmt | Expr ;				    
+IfStmt → if ( Expr ) Stmt IfStmt’			
+IfStmt’ → else Stmt | Epsilon									*Creada ua que <else stmt> pueda o no venir*
+ReturnStmt → return ReturnStmt’ ;			
+ReturnStmt’ → Expr | Epsilon									*Creada ya que <Expr> es opcional*
+Constant → intConstant | doubleConstant | boolConstant | stringConstant | null
+Expr → A Expr’											*Se
+Expr’ → || A Expr’	|	&& A Expr’	| Epsilon					estableció
+A → B A’											precedencia 
+A’ → == B A’		|	!= B A’		| Epsilon					y
+B → C B’											se 
+B’ →  < C B’		|	<= C B’	| > C B’	| >= C B’	| Epsilon		factorizó
+C → D C’											la
+C’ → + D C’ 		|	- D C’		| Epsilon					recursividad
+D →  E D’											por
+D’ → * ED’		|	/ E D’		| % E D’	| Epsilon			la
+E      → - F		| 	! F  			| F					izquierda*
+F → this | Constant | New (ident) |  ( Expr ) | LValue F’
+F → .ident X’ 		| 	[ Expr ] X’	 | G
+G →  Constant | New (ident) |  ( Expr ) | this | ident X’
+X’ → = Expr | Epsilon										*Creada ya que se eliminó Lvalue y así, la recursividad entre Expr y LValue*
