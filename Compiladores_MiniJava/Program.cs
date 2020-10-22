@@ -13,7 +13,8 @@ namespace Compiladores_MiniJava
         
         static void Main(string[] args)
         {
-            string URL = @"‪C:\Users\Marcos Andrés CM\Desktop\6 Sexto ciclo\Compiladores\PROYECTO\Fase #1\ARCHIVOS DE PRUEBA\prueba3.txt";//Direccion archivo de prueba
+            string URL = @"C:\Users\Marcos Andrés CM\Desktop\6 Sexto ciclo\Compiladores\PROYECTO\Fase #1\ARCHIVOS DE PRUEBA\prueba3.txt";//Direccion archivo de prueba
+            
             //foreach (var arg in args)
             //{
                 if (MetodosAux_AL.VerificarArchivoVacio(URL) != true)
@@ -26,7 +27,7 @@ namespace Compiladores_MiniJava
 
                     //INICIO FASE 2: SINTACTICO
                     //1. TABLA DE ANALISIS
-                    SLR.TABLA_ANALISIS(); //Seria el automata
+                    //SLR.TABLA_ANALISIS(); //Seria el automata
                     var X = 0;
                     SLR.PARSER_PILA();
                     //2. PARSEO EN LA PILA

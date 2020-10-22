@@ -15,7 +15,7 @@ namespace Compiladores_MiniJava
             //EMPEZAMOS LA GRAMATICA
             //1. PROGRAM
             Parse_Program();
-            //var match_SR = false;
+            var match_SR = false;
             //Parse_Expr(ref match_SR);
         }
         public static void MatchToken(string esperado, ref bool hizo_match)
