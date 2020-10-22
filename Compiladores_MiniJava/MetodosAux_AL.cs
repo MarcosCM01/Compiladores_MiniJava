@@ -11,7 +11,7 @@ namespace Compiladores_MiniJava
     public static class MetodosAux_AL
     {
         public static List<String> Reservadas = new List<string> 
-        {"void","int","double","boolean","string", "class", "const", "interface", "null", "this", "extends", "implements", "for", "while", "if", "else", "return", "break", "New", "System", "out", "println" };
+        {"void","int","double","boolean","string", "class", "const", "interface", "null", "this", "extends", "implements", "for", "while", "if", "else", "return", "break", "New", "System", "out", "println","static" };
 
         public static List<String> Operadores_Simples = new List<string>
         {"+","-","*","/","%","<",">","=","!",";",",",".","[","]","(",")","{","}"};
