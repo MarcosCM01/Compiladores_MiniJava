@@ -11,17 +11,129 @@ namespace Compiladores_MiniJava
         public static Stack<int> PilaEstados = new Stack<int>(); //Se almacenaran los estados
         public static Stack<string> Simbolos = new Stack<string>(); //Se almacenaran los tokens consumidos
         public static bool BanderaReduccion = false; //Cuando haya que hacer reduccion, se activa para que se lea en Simbolo y no en Cadena
+        public static List<Reduccion> EstadosReduccion = new List<Reduccion>();
         //LAB_ASDR CONTIENE LA LISTA DE TOKENES, QUE VENDRIA SIENDO NUESTRA ENTRADA
         //DICCIONARIO INT, STRING PARA LAS REDUCCIONES
         public static void TABLA_ANALISIS() 
         {
             
         }
+        public static void LlenarEstadosReduccion() 
+        {
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 0, ProduccionAReducir = "Z", CantidadElementos = 1});
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 1, ProduccionAReducir = "Program", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 2, ProduccionAReducir = "Decl", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 3, ProduccionAReducir = "Decl", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 4, ProduccionAReducir = "Decl", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 5, ProduccionAReducir = "Decl", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 6, ProduccionAReducir = "Decl", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 7, ProduccionAReducir = "Decl", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 8, ProduccionAReducir = "Decl", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 9, ProduccionAReducir = "VariableDecl", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 10, ProduccionAReducir = "Variable", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 11, ProduccionAReducir = "ConstDecl", CantidadElementos = 4 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 12, ProduccionAReducir = "ConstType", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 13, ProduccionAReducir = "ConstType", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 14, ProduccionAReducir = "ConstType", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 15, ProduccionAReducir = "ConstType", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 16, ProduccionAReducir = "Type", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 17, ProduccionAReducir = "Type", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 18, ProduccionAReducir = "Type", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 19, ProduccionAReducir = "Type", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 20, ProduccionAReducir = "Type", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 21, ProduccionAReducir = "Type", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 22, ProduccionAReducir = "Type", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 23, ProduccionAReducir = "FunctionDecl", CantidadElementos = 6 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 24, ProduccionAReducir = "FunctionDecl", CantidadElementos = 6 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 25, ProduccionAReducir = "Formals", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 26, ProduccionAReducir = "Formals'", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 27, ProduccionAReducir = "Formals'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 28, ProduccionAReducir = "ClassDecl", CantidadElementos = 7 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 29, ProduccionAReducir = "EXTENDS", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 30, ProduccionAReducir = "EXTENDS", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 31, ProduccionAReducir = "IMPLEMENTS", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 32, ProduccionAReducir = "IMPLEMENTS", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 33, ProduccionAReducir = "IMPLEMENTS'", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 34, ProduccionAReducir = "IMPLEMENTS'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 35, ProduccionAReducir = "Field", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 36, ProduccionAReducir = "Field", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 37, ProduccionAReducir = "Field", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 38, ProduccionAReducir = "Field", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 39, ProduccionAReducir = "Field", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 40, ProduccionAReducir = "InterfaceDecl", CantidadElementos = 5 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 41, ProduccionAReducir = "InterfaceDecl", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 42, ProduccionAReducir = "InterfaceDecl", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 43, ProduccionAReducir = "Prototype", CantidadElementos = 6 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 44, ProduccionAReducir = "Prototype", CantidadElementos = 6 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 45, ProduccionAReducir = "StmtBlock", CantidadElementos = 5 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 46, ProduccionAReducir = "LlamarVar", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 47, ProduccionAReducir = "LlamarVar", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 48, ProduccionAReducir = "LlamarConst", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 49, ProduccionAReducir = "LlamarConst", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 50, ProduccionAReducir = "LlamarConst", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 51, ProduccionAReducir = "LlamarConst", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 52, ProduccionAReducir = "Stmt", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 53, ProduccionAReducir = "Stmt", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 54, ProduccionAReducir = "Stmt", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 55, ProduccionAReducir = "Stmt", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 56, ProduccionAReducir = "Stmt", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 57, ProduccionAReducir = "Stmt", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 58, ProduccionAReducir = "Stmt", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 59, ProduccionAReducir = "Stmt", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 60, ProduccionAReducir = "Stmt'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 61, ProduccionAReducir = "Stmt'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 62, ProduccionAReducir = "ifStmt", CantidadElementos = 6 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 63, ProduccionAReducir = "ifStmt'", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 64, ProduccionAReducir = "ifStmt'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 65, ProduccionAReducir = "WhileStmt", CantidadElementos = 5 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 66, ProduccionAReducir = "ForStmt", CantidadElementos = 9 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 67, ProduccionAReducir = "ReturnStmt", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 68, ProduccionAReducir = "BreakStmt", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 69, ProduccionAReducir = "PrintStmt", CantidadElementos = 10 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 70, ProduccionAReducir = "PrintStmt'", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 71, ProduccionAReducir = "PrintStmt'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 72, ProduccionAReducir = "Constant", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 73, ProduccionAReducir = "Constant", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 74, ProduccionAReducir = "Constant", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 75, ProduccionAReducir = "Constant", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 76, ProduccionAReducir = "Constant", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 77, ProduccionAReducir = "Expr", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 78, ProduccionAReducir = "Expr'", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 79, ProduccionAReducir = "Expr'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 80, ProduccionAReducir = "A", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 81, ProduccionAReducir = "A'", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 82, ProduccionAReducir = "A'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 83, ProduccionAReducir = "B", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 84, ProduccionAReducir = "B'", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 85, ProduccionAReducir = "B'", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 86, ProduccionAReducir = "B'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 87, ProduccionAReducir = "C", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 88, ProduccionAReducir = "C'", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 89, ProduccionAReducir = "C'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 90, ProduccionAReducir = "D", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 91, ProduccionAReducir = "D'", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 92, ProduccionAReducir = "D'", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 93, ProduccionAReducir = "D'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 94, ProduccionAReducir = "E", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 95, ProduccionAReducir = "E'", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 96, ProduccionAReducir = "E'", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 97, ProduccionAReducir = "E'", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 98, ProduccionAReducir = "F", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 99, ProduccionAReducir = "G", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 100, ProduccionAReducir = "G", CantidadElementos = 3 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 101, ProduccionAReducir = "G", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 102, ProduccionAReducir = "G", CantidadElementos = 4 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 103, ProduccionAReducir = "G", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 104, ProduccionAReducir = "G", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 105, ProduccionAReducir = "X'", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 106, ProduccionAReducir = "X'", CantidadElementos = 1 });
+        }
 
         public static void PARSER_PILA() 
         {
             PilaEstados.Push(0); //La pila siempre inicia en estado 0
             Lab_ASDR.TokenList.Add("$"); //Se agrega a la lista de tokens el $ para indicar fin
+            LlenarEstadosReduccion();
             //var estado_Actual = PilaEstados.Peek();
             var simbolo_actual = Lab_ASDR.TokenList[0];
             for (int i = 0; i < Lab_ASDR.TokenList.Count; i++)
