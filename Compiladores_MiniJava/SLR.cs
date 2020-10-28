@@ -140,6 +140,14 @@ namespace Compiladores_MiniJava
             Simbolos.Push(produccion.ProduccionAReducir);
             BanderaReduccion = true;
         }
+        public static void ManejoError(int index)
+        {
+            Console.WriteLine("Error al tratar de analizar el token: " + Lab_ASDR.TokenList[index]);
+            Lab_ASDR.TokenList.RemoveAt(index);
+            Simbolos.Clear();
+            PilaEstados.Clear();
+            PilaEstados.Push(0);
+        }
         public static void PARSER_PILA() 
         {
             PilaEstados.Push(0); //La pila siempre inicia en estado 0
@@ -266,6 +274,11 @@ namespace Compiladores_MiniJava
                             }
 
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         //Revisar los no terminales para Ir_A
                         //
                         //
@@ -274,6 +287,11 @@ namespace Compiladores_MiniJava
                         if (Lab_ASDR.TokenList[i] == "$")
                         {
                             //aceeptar
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 2:
@@ -399,6 +417,11 @@ namespace Compiladores_MiniJava
                             }
 
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 3:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -464,6 +487,11 @@ namespace Compiladores_MiniJava
                             //revisar
                             //
                             ///
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 4:
@@ -532,6 +560,11 @@ namespace Compiladores_MiniJava
                             //
                             ///
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 5:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -598,6 +631,11 @@ namespace Compiladores_MiniJava
                             //
                             ///
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 6:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -662,6 +700,11 @@ namespace Compiladores_MiniJava
                             i--;
                             //revisar
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 7:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -724,6 +767,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(6);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 8:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -731,6 +779,11 @@ namespace Compiladores_MiniJava
                             //s21
                             PilaEstados.Push(21);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 9:
@@ -740,6 +793,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(22);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 10:
                         if (Lab_ASDR.TokenList[i] == "T_es_id")
@@ -747,6 +805,11 @@ namespace Compiladores_MiniJava
                             //s23
                             PilaEstados.Push(23);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 11:
@@ -786,13 +849,23 @@ namespace Compiladores_MiniJava
                             }
 
                         }
-                            break;
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
+                        break;
                     case 12:
                         if (Lab_ASDR.TokenList[i] == "T_es_id")
                         {
                             //s29
                             PilaEstados.Push(29);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 13:
@@ -801,6 +874,11 @@ namespace Compiladores_MiniJava
                             //s30
                             PilaEstados.Push(30);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 14:
@@ -827,6 +905,11 @@ namespace Compiladores_MiniJava
                                 //Analizar otro switch
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 15:
                         if (Lab_ASDR.TokenList[i] == "T_es_id")
@@ -851,6 +934,11 @@ namespace Compiladores_MiniJava
                                 //Preguntar al inicio del for si la bandera esta activa 
                                 //Analizar otro switch
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 16:
@@ -877,6 +965,11 @@ namespace Compiladores_MiniJava
                                 //Analizar otro switch
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 17:
                         if (Lab_ASDR.TokenList[i] == "T_es_id")
@@ -901,6 +994,11 @@ namespace Compiladores_MiniJava
                                 //Preguntar al inicio del for si la bandera esta activa 
                                 //Analizar otro switch
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 18:
@@ -927,6 +1025,11 @@ namespace Compiladores_MiniJava
                                 //Analizar otro switch
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 19:
                         if (Lab_ASDR.TokenList[i] == "$")
@@ -934,6 +1037,11 @@ namespace Compiladores_MiniJava
                             //r1
                             AccionReduccion(1);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 20:
@@ -1057,7 +1165,12 @@ namespace Compiladores_MiniJava
 
                             }
                         }
-                            break;
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
+                        break;
                     case 21:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
@@ -1234,6 +1347,11 @@ namespace Compiladores_MiniJava
                             i--;
                             //revisar
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 22:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -1260,6 +1378,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(10);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 23:
                         if (Lab_ASDR.TokenList[i] == "(")
@@ -1268,6 +1391,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(39);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 24:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1275,6 +1403,11 @@ namespace Compiladores_MiniJava
                             //s40
                             PilaEstados.Push(40);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 25:
@@ -1285,6 +1418,11 @@ namespace Compiladores_MiniJava
                             i--;
 
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 26:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1292,6 +1430,11 @@ namespace Compiladores_MiniJava
                             //r13
                             AccionReduccion(13);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 27:
@@ -1301,6 +1444,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(14);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 28:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1308,6 +1456,11 @@ namespace Compiladores_MiniJava
                             //r15
                             AccionReduccion(15);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 29:
@@ -1403,6 +1556,11 @@ namespace Compiladores_MiniJava
                                 //Analizar otro switch
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 30:
 
@@ -1411,6 +1569,11 @@ namespace Compiladores_MiniJava
                             //s43
                             PilaEstados.Push(43);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 31:
@@ -1431,6 +1594,11 @@ namespace Compiladores_MiniJava
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
 
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 33:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1438,6 +1606,11 @@ namespace Compiladores_MiniJava
                             //r17
                             AccionReduccion(17);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 34:
@@ -1447,6 +1620,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(18);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 35:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1454,6 +1632,11 @@ namespace Compiladores_MiniJava
                             //r19
                             AccionReduccion(19);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 36:
@@ -1463,6 +1646,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(20);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 37:
                         if (Lab_ASDR.TokenList[i] == "$")
@@ -1470,6 +1658,11 @@ namespace Compiladores_MiniJava
                             //r7
                             AccionReduccion(7);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 38:
@@ -1527,6 +1720,11 @@ namespace Compiladores_MiniJava
                             }
                             
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 39:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1579,6 +1777,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 40:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -1587,7 +1790,12 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(49);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                            break;
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
+                        break;
                     case 41:
                         if (Lab_ASDR.TokenList[i] == "implements")
                         {
@@ -1611,6 +1819,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 42:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1618,6 +1831,11 @@ namespace Compiladores_MiniJava
                             //s52
                             PilaEstados.Push(52);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 43:
@@ -1681,6 +1899,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 44:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1706,13 +1929,23 @@ namespace Compiladores_MiniJava
 
                             }
                         }
-                            break;
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
+                        break;
                     case 45:
                         if (Lab_ASDR.TokenList[i] == ")")
                         {
                             //s58
                             PilaEstados.Push(58);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 46:
@@ -1722,6 +1955,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(27);
                             i--;
                         }
+
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
                             //s60
@@ -1738,6 +1972,12 @@ namespace Compiladores_MiniJava
                                 i--;
 
                             }
+
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 47:
@@ -1747,6 +1987,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(61);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 48:
                         if (Lab_ASDR.TokenList[i] == ")")
@@ -1754,6 +1999,11 @@ namespace Compiladores_MiniJava
                             //s62
                             PilaEstados.Push(62);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 49:
@@ -1933,6 +2183,11 @@ namespace Compiladores_MiniJava
                             i--;
                             //revisar
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 50:
                         if (Lab_ASDR.TokenList[i] == "{")
@@ -1941,6 +2196,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(63);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 51:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1948,6 +2208,11 @@ namespace Compiladores_MiniJava
                             //s64
                             PilaEstados.Push(64);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 52:
@@ -2025,6 +2290,11 @@ namespace Compiladores_MiniJava
                             i--;
                             //revisar
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 53:
                         if (Lab_ASDR.TokenList[i] == "}")
@@ -2032,6 +2302,12 @@ namespace Compiladores_MiniJava
                             //s32
                             PilaEstados.Push(32);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 54:
@@ -2097,6 +2373,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 55:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -2104,6 +2385,11 @@ namespace Compiladores_MiniJava
                             //s67
                             PilaEstados.Push(67);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 56:
@@ -2113,6 +2399,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(68);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 57:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -2120,6 +2411,11 @@ namespace Compiladores_MiniJava
                             //r21
                             AccionReduccion(21);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 58:
@@ -2139,6 +2435,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 59:
                         if (Lab_ASDR.TokenList[i] == ")")
@@ -2146,6 +2447,11 @@ namespace Compiladores_MiniJava
                             //r25
                             AccionReduccion(25);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 60:
@@ -2199,6 +2505,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 61:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -2219,6 +2530,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(10);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 62:
                         if (Lab_ASDR.TokenList[i] == "{")
@@ -2236,6 +2552,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(72);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 63:
@@ -2327,6 +2648,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 64:
                         if (Lab_ASDR.TokenList[i] == ",")
@@ -2350,6 +2676,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(78);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 65:
@@ -2414,6 +2745,11 @@ namespace Compiladores_MiniJava
                             i--;
                             //revisar
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 66:
                         if (Lab_ASDR.TokenList[i] == "}")
@@ -2423,6 +2759,11 @@ namespace Compiladores_MiniJava
                             i--;
                             //revisar
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 67:
                         if (Lab_ASDR.TokenList[i] == "(")
@@ -2431,6 +2772,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(80);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 68:
                         if (Lab_ASDR.TokenList[i] == "(")
@@ -2438,6 +2784,11 @@ namespace Compiladores_MiniJava
                             //s81
                             PilaEstados.Push(81);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 69:
@@ -2507,6 +2858,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(23);
                             i--;
                             //revisar
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 70:
@@ -2735,6 +3091,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 71:
                         if (Lab_ASDR.TokenList[i] == ")")
@@ -2742,6 +3103,11 @@ namespace Compiladores_MiniJava
                             //r26
                             AccionReduccion(26);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 72:
@@ -2812,6 +3178,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(24);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 73:
                         if (Lab_ASDR.TokenList[i] == "}")
@@ -2819,6 +3190,11 @@ namespace Compiladores_MiniJava
                             //s84
                             PilaEstados.Push(84);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 74:
@@ -2910,6 +3286,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 75:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -2959,6 +3340,11 @@ namespace Compiladores_MiniJava
                             //r35
                             AccionReduccion(35);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 76:
@@ -3010,6 +3396,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(36);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 77:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -3060,6 +3451,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(37);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 78:
                         if (Lab_ASDR.TokenList[i] == "{")
@@ -3068,6 +3464,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(31);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 79:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -3075,6 +3476,11 @@ namespace Compiladores_MiniJava
                             //s86
                             PilaEstados.Push(86);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 80:
@@ -3128,6 +3534,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 81:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -3179,6 +3590,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(88);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 82:
@@ -3375,6 +3791,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(89);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 83:
@@ -3596,6 +4017,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 84:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -3660,6 +4086,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(28);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 85:
                         if (Lab_ASDR.TokenList[i] == "}")
@@ -3667,6 +4098,11 @@ namespace Compiladores_MiniJava
                             //r38
                             AccionReduccion(38);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 86:
@@ -3692,6 +4128,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 87:
                         if (Lab_ASDR.TokenList[i] == ",")
@@ -3700,6 +4141,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(93);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 88:
                         if (Lab_ASDR.TokenList[i] == ",")
@@ -3707,6 +4153,11 @@ namespace Compiladores_MiniJava
                             //s94
                             PilaEstados.Push(94);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 89:
@@ -3930,6 +4381,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 90:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -4112,6 +4568,11 @@ namespace Compiladores_MiniJava
                             i--;
                             //revisar
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 91:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -4289,6 +4750,11 @@ namespace Compiladores_MiniJava
                             i--;
                             //revisar
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 92:
                         if (Lab_ASDR.TokenList[i] == "}")
@@ -4296,6 +4762,11 @@ namespace Compiladores_MiniJava
                             //r33
                             AccionReduccion(33);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 93:
@@ -4305,6 +4776,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(131);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 94:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -4313,6 +4789,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(132);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 95:
                         if (Lab_ASDR.TokenList[i] == "}")
@@ -4320,6 +4801,11 @@ namespace Compiladores_MiniJava
                             //s133
                             PilaEstados.Push(133);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 96:
@@ -4537,7 +5023,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 97:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -4545,6 +5035,11 @@ namespace Compiladores_MiniJava
                             //s135
                             PilaEstados.Push(135);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 98:
@@ -4668,6 +5163,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(53);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 99:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -4789,6 +5289,11 @@ namespace Compiladores_MiniJava
                             //r54
                             AccionReduccion(54);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 100:
@@ -4912,6 +5417,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(55);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 101:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -5033,6 +5543,11 @@ namespace Compiladores_MiniJava
                             //r56
                             AccionReduccion(56);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 102:
@@ -5156,6 +5671,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(57);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 103:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -5277,6 +5797,11 @@ namespace Compiladores_MiniJava
                             //r58
                             AccionReduccion(58);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 104:
@@ -5400,6 +5925,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(59);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 105:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -5407,6 +5937,11 @@ namespace Compiladores_MiniJava
                             //r60
                             AccionReduccion(60);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 106:
@@ -5416,7 +5951,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(136);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 107:
                         if (Lab_ASDR.TokenList[i] == "(")
@@ -5424,6 +5963,11 @@ namespace Compiladores_MiniJava
                             //s137
                             PilaEstados.Push(137);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 108:
@@ -5433,6 +5977,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(138);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 109:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -5440,6 +5989,11 @@ namespace Compiladores_MiniJava
                             //s139
                             PilaEstados.Push(139);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 110:
@@ -5553,6 +6107,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 111:
                         if (Lab_ASDR.TokenList[i] == ".")
@@ -5560,6 +6119,11 @@ namespace Compiladores_MiniJava
                             //s141
                             PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 112:
@@ -5753,6 +6317,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(142);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 113:
@@ -5953,6 +6522,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 114:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -6149,6 +6723,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(146);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 115:
@@ -6348,6 +6927,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(149);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 116:
@@ -6551,6 +7135,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
 
                     case 117:
@@ -6751,6 +7340,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 118:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -6759,7 +7353,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(157);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 119:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -6937,7 +7535,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(99);
                             i--;
                         }
-
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 120:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -7049,6 +7651,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(119);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 121:
@@ -7227,6 +7834,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(101);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 122:
                         if (Lab_ASDR.TokenList[i] == "(")
@@ -7234,6 +7846,11 @@ namespace Compiladores_MiniJava
                             //s159
                             PilaEstados.Push(159);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 123:
@@ -7411,6 +8028,11 @@ namespace Compiladores_MiniJava
                             //r103
                             AccionReduccion(103);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 124:
@@ -7605,6 +8227,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 125:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -7782,6 +8409,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(72);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 126:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -7957,6 +8589,11 @@ namespace Compiladores_MiniJava
                             //r73
                             AccionReduccion(73);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 127:
@@ -8134,6 +8771,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(74);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 128:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -8309,6 +8951,11 @@ namespace Compiladores_MiniJava
                             //r75
                             AccionReduccion(75);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 129:
@@ -8487,6 +9134,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(76);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 130:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -8663,6 +9315,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(48);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 131:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -8707,6 +9364,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(43);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 132:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -8750,6 +9412,11 @@ namespace Compiladores_MiniJava
                             //r44
                             AccionReduccion(44);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 133:
@@ -8927,6 +9594,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(45);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 134:
                         if (Lab_ASDR.TokenList[i] == "}")
@@ -8934,6 +9606,11 @@ namespace Compiladores_MiniJava
                             //r50
                             AccionReduccion(50);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 135:
@@ -9056,6 +9733,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(52);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 136:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -9169,6 +9851,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 137:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -9281,6 +9968,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 138:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -9392,6 +10084,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(119);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 139:
@@ -9515,6 +10212,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(68);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 140:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -9523,6 +10225,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(165);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 141:
                         if (Lab_ASDR.TokenList[i] == "out")
@@ -9530,6 +10237,11 @@ namespace Compiladores_MiniJava
                             //s166
                             PilaEstados.Push(166);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 142:
@@ -9713,6 +10425,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(77);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 143:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -9819,6 +10536,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(119);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 144:
@@ -10003,6 +10725,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(80);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 145:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -10109,6 +10836,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(119);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 146:
@@ -10292,6 +11024,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(83);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 147:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -10389,6 +11126,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 148:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -10485,6 +11227,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(119);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 149:
@@ -10669,6 +11416,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(87);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 150:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -10760,6 +11512,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(119);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 151:
@@ -10944,6 +11701,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(90);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 152:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -11031,6 +11793,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 153:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -11117,6 +11884,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(119);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 154:
@@ -11300,6 +12072,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(94);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 155:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -11382,6 +12159,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 156:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -11463,6 +12245,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(119);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 157:
@@ -11663,6 +12450,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 158:
                         if (Lab_ASDR.TokenList[i] == ")")
@@ -11671,6 +12463,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(177);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 159:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -11678,6 +12475,11 @@ namespace Compiladores_MiniJava
                             //s178
                             PilaEstados.Push(178);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 160:
@@ -11861,6 +12663,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(104);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 161:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -11973,6 +12780,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 162:
                         if (Lab_ASDR.TokenList[i] == ")")
@@ -11980,6 +12792,11 @@ namespace Compiladores_MiniJava
                             //s180
                             PilaEstados.Push(180);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 163:
@@ -11989,6 +12806,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(181);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 164:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -11996,6 +12818,11 @@ namespace Compiladores_MiniJava
                             //s182
                             PilaEstados.Push(182);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 165:
@@ -12125,6 +12952,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(67);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 166:
                         if (Lab_ASDR.TokenList[i] == ".")
@@ -12132,6 +12964,11 @@ namespace Compiladores_MiniJava
                             //s183
                             PilaEstados.Push(183);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 167:
@@ -12331,6 +13168,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 168:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -12528,6 +13370,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(185);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 169:
@@ -12731,6 +13578,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(186);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 170:
@@ -12936,6 +13788,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 171:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -13132,6 +13989,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(188);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 172:
@@ -13336,6 +14198,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 173:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -13537,6 +14404,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(190);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 174:
@@ -13741,6 +14613,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 175:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -13943,6 +14820,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 176:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -14126,6 +15008,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(98);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 177:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -14308,6 +15195,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(100);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 178:
                         if (Lab_ASDR.TokenList[i] == ")")
@@ -14316,6 +15208,11 @@ namespace Compiladores_MiniJava
                             //s193
                             PilaEstados.Push(193);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 179:
@@ -14499,6 +15396,11 @@ namespace Compiladores_MiniJava
                             //r105
                             AccionReduccion(105);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 180:
@@ -14705,6 +15607,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 181:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -14910,6 +15817,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 182:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -15022,6 +15934,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 183:
                         if (Lab_ASDR.TokenList[i] == "println")
@@ -15029,6 +15946,11 @@ namespace Compiladores_MiniJava
                             //s197
                             PilaEstados.Push(197);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 184:
@@ -15213,6 +16135,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(78);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 185:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -15394,6 +16321,11 @@ namespace Compiladores_MiniJava
                             //r81
                             AccionReduccion(81);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 186:
@@ -15579,6 +16511,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(86);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 187:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -15761,6 +16698,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(85);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 188:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -15942,6 +16884,11 @@ namespace Compiladores_MiniJava
                             //r88
                             AccionReduccion(88);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 189:
@@ -16126,6 +17073,11 @@ namespace Compiladores_MiniJava
                             i--;
                             //r91
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 190:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -16307,6 +17259,11 @@ namespace Compiladores_MiniJava
                             //r92
                             AccionReduccion(92);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 191:
@@ -16491,6 +17448,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(95);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 192:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -16672,6 +17634,11 @@ namespace Compiladores_MiniJava
                             //r96
                             AccionReduccion(96);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 193:
@@ -16855,6 +17822,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(102);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 194:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -16992,6 +17964,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 195:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -17114,6 +18091,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(65);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 196:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -17122,6 +18104,11 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(200);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 197:
                         if (Lab_ASDR.TokenList[i] == "(")
@@ -17129,6 +18116,11 @@ namespace Compiladores_MiniJava
                             //s201
                             PilaEstados.Push(201);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 198:
@@ -17251,6 +18243,11 @@ namespace Compiladores_MiniJava
                             //r62
                             AccionReduccion(62);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 199:
@@ -17457,6 +18454,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 200:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -17569,6 +18571,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 201:
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -17680,6 +18687,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(119);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 202:
@@ -17803,6 +18815,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(63);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 203:
                         if (Lab_ASDR.TokenList[i] == ")")
@@ -17810,6 +18827,11 @@ namespace Compiladores_MiniJava
                             //s205
                             PilaEstados.Push(205);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 204:
@@ -17832,6 +18854,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(206);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 205:
@@ -18038,6 +19065,11 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 206:
                         if (Lab_ASDR.TokenList[i] == ")")
@@ -18045,6 +19077,11 @@ namespace Compiladores_MiniJava
                             //s209
                             PilaEstados.Push(209);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 207:
@@ -18157,6 +19194,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(119);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 208:
@@ -18280,6 +19322,11 @@ namespace Compiladores_MiniJava
                             i--;
                             //r66
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 209:
                         if (Lab_ASDR.TokenList[i] == ";")
@@ -18287,6 +19334,11 @@ namespace Compiladores_MiniJava
                             //s211
                             PilaEstados.Push(211);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 210:
@@ -18311,6 +19363,11 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(212);
                                 i--;
                             }
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
                     case 211:
@@ -18434,6 +19491,11 @@ namespace Compiladores_MiniJava
                             i--;
                             //r69
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 212:
                         if (Lab_ASDR.TokenList[i] == ")")
@@ -18441,6 +19503,11 @@ namespace Compiladores_MiniJava
                             //r70
                             AccionReduccion(70);
                             i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
                         }
                         break;
 
