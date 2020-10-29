@@ -1570,6 +1570,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(16);
                             i--;
                         }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
                         break;
                     case 32:
 

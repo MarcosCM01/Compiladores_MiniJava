@@ -13,7 +13,7 @@ namespace Compiladores_MiniJava
         
         static void Main(string[] args)
         {
-            string URL = @"C:\Users\Marcos Andrés CM\Desktop\6 Sexto ciclo\Compiladores\PROYECTO\Fase #1\ARCHIVOS DE PRUEBA\prueba3.txt";//Direccion archivo de prueba
+            string URL = @"C:\Users\jalba\OneDrive\Escritorio\GoodKitty.txt";//Direccion archivo de prueba
             
             //foreach (var arg in args)
             //{
