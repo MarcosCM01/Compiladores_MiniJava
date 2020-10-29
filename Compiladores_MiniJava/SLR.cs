@@ -55,11 +55,11 @@ namespace Compiladores_MiniJava
             EstadosReduccion.Add(new Reduccion() { NumEstado = 35, ProduccionAReducir = "Field", CantidadElementos = 1 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 36, ProduccionAReducir = "Field", CantidadElementos = 1 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 37, ProduccionAReducir = "Field", CantidadElementos = 1 });
-            EstadosReduccion.Add(new Reduccion() { NumEstado = 38, ProduccionAReducir = "Field", CantidadElementos = 2 });
-            EstadosReduccion.Add(new Reduccion() { NumEstado = 39, ProduccionAReducir = "Field", CantidadElementos = 0 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 38, ProduccionAReducir = "Field'", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 39, ProduccionAReducir = "Field'", CantidadElementos = 0 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 40, ProduccionAReducir = "InterfaceDecl", CantidadElementos = 5 });
-            EstadosReduccion.Add(new Reduccion() { NumEstado = 41, ProduccionAReducir = "InterfaceDecl", CantidadElementos = 2 });
-            EstadosReduccion.Add(new Reduccion() { NumEstado = 42, ProduccionAReducir = "InterfaceDecl", CantidadElementos = 0 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 41, ProduccionAReducir = "InterfaceDecl'", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 42, ProduccionAReducir = "InterfaceDecl'", CantidadElementos = 0 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 43, ProduccionAReducir = "Prototype", CantidadElementos = 6 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 44, ProduccionAReducir = "Prototype", CantidadElementos = 0 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 45, ProduccionAReducir = "StmtBlock", CantidadElementos = 5 });
@@ -116,7 +116,7 @@ namespace Compiladores_MiniJava
             EstadosReduccion.Add(new Reduccion() { NumEstado = 96, ProduccionAReducir = "E'", CantidadElementos = 3 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 97, ProduccionAReducir = "E'", CantidadElementos = 0 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 98, ProduccionAReducir = "F", CantidadElementos = 2 });
-            EstadosReduccion.Add(new Reduccion() { NumEstado = 99, ProduccionAReducir = "G", CantidadElementos = 1 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 99, ProduccionAReducir = "F", CantidadElementos = 1 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 100, ProduccionAReducir = "G", CantidadElementos = 3 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 101, ProduccionAReducir = "G", CantidadElementos = 1 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 102, ProduccionAReducir = "G", CantidadElementos = 4 });
