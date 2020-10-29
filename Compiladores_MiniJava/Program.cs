@@ -23,12 +23,9 @@ namespace Compiladores_MiniJava
                     MetodosAux_AL.Analisis_Lex(URL);
 
                     //LAB A
-                    Lab_ASDR.Sintactico_Recursivo();
+                    //Lab_ASDR.Sintactico_Recursivo();
 
-                    //INICIO FASE 2: SINTACTICO
-                    //1. TABLA DE ANALISIS
-                    //SLR.TABLA_ANALISIS(); //Seria el automata
-                    var X = 0;
+                            //INICIO FASE 2: SINTACTICO
                     SLR.PARSER_PILA();
                     //2. PARSEO EN LA PILA
                     //- CALCULAR FIRST Y FOLLOW
