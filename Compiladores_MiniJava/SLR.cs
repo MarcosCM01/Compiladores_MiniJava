@@ -13,6 +13,8 @@ namespace Compiladores_MiniJava
         public static bool BanderaReduccion = false; //Cuando haya que hacer reduccion, se activa para que se lea en Simbolo y no en Cadena
         public static List<Reduccion> EstadosReduccion = new List<Reduccion>();
         public static int contador_Errores = 0;
+        public static Dictionary<string, int> PrecedenciaProducciones = new Dictionary<string, int>();
+        public static Dictionary<string, int> PrecedenciaTerminales = new Dictionary<string, int>();
         //LAB_ASDR CONTIENE LA LISTA DE TOKENES, QUE VENDRIA SIENDO NUESTRA ENTRADA
 
         public static void LlenarEstadosReduccion() 
@@ -38,7 +40,7 @@ namespace Compiladores_MiniJava
             EstadosReduccion.Add(new Reduccion() { NumEstado = 18, ProduccionAReducir = "Type", CantidadElementos = 2 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 19, ProduccionAReducir = "Type", CantidadElementos = 2 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 20, ProduccionAReducir = "Type", CantidadElementos = 2 });
-            EstadosReduccion.Add(new Reduccion() { NumEstado = 21, ProduccionAReducir = "Type'", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 21, ProduccionAReducir = "Type'", CantidadElementos = 3 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 22, ProduccionAReducir = "Type'", CantidadElementos = 0 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 23, ProduccionAReducir = "FunctionDecl", CantidadElementos = 6 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 24, ProduccionAReducir = "FunctionDecl", CantidadElementos = 6 });
@@ -61,7 +63,7 @@ namespace Compiladores_MiniJava
             EstadosReduccion.Add(new Reduccion() { NumEstado = 41, ProduccionAReducir = "InterfaceDecl'", CantidadElementos = 2 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 42, ProduccionAReducir = "InterfaceDecl'", CantidadElementos = 0 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 43, ProduccionAReducir = "Prototype", CantidadElementos = 6 });
-            EstadosReduccion.Add(new Reduccion() { NumEstado = 44, ProduccionAReducir = "Prototype", CantidadElementos = 0 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 44, ProduccionAReducir = "Prototype", CantidadElementos = 6 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 45, ProduccionAReducir = "StmtBlock", CantidadElementos = 5 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 46, ProduccionAReducir = "LlamarVar", CantidadElementos = 2 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 47, ProduccionAReducir = "LlamarVar", CantidadElementos = 0 });
@@ -71,7 +73,7 @@ namespace Compiladores_MiniJava
             EstadosReduccion.Add(new Reduccion() { NumEstado = 51, ProduccionAReducir = "LlamarStmt", CantidadElementos = 0 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 52, ProduccionAReducir = "Stmt", CantidadElementos = 2 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 53, ProduccionAReducir = "Stmt", CantidadElementos = 1 });
-            EstadosReduccion.Add(new Reduccion() { NumEstado = 54, ProduccionAReducir = "Stmt", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 54, ProduccionAReducir = "Stmt", CantidadElementos = 1 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 55, ProduccionAReducir = "Stmt", CantidadElementos = 1 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 56, ProduccionAReducir = "Stmt", CantidadElementos = 1 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 57, ProduccionAReducir = "Stmt", CantidadElementos = 1 });
@@ -115,7 +117,7 @@ namespace Compiladores_MiniJava
             EstadosReduccion.Add(new Reduccion() { NumEstado = 95, ProduccionAReducir = "E'", CantidadElementos = 3 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 96, ProduccionAReducir = "E'", CantidadElementos = 3 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 97, ProduccionAReducir = "E'", CantidadElementos = 0 });
-            EstadosReduccion.Add(new Reduccion() { NumEstado = 98, ProduccionAReducir = "F", CantidadElementos = 2 });
+            EstadosReduccion.Add(new Reduccion() { NumEstado = 98, ProduccionAReducir = "F", CantidadElementos = 3 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 99, ProduccionAReducir = "F", CantidadElementos = 1 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 100, ProduccionAReducir = "G", CantidadElementos = 3 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 101, ProduccionAReducir = "G", CantidadElementos = 1 });
@@ -125,7 +127,105 @@ namespace Compiladores_MiniJava
             EstadosReduccion.Add(new Reduccion() { NumEstado = 105, ProduccionAReducir = "X'", CantidadElementos = 2 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 106, ProduccionAReducir = "X'", CantidadElementos = 0 });
         }
-
+        public static void LlenarPrecedenciaProducciones() 
+        {
+            PrecedenciaProducciones.Add("Program",50);
+            PrecedenciaProducciones.Add("Decl",49);
+            PrecedenciaProducciones.Add("Decl'",48);
+            PrecedenciaProducciones.Add("VariableDecl",47);
+            PrecedenciaProducciones.Add("Variable",46);
+            PrecedenciaProducciones.Add("ConstDecl",45);
+            PrecedenciaProducciones.Add("ConstType",44);
+            PrecedenciaProducciones.Add("Type",43);
+            PrecedenciaProducciones.Add("Type'",42);
+            PrecedenciaProducciones.Add("FunctionDecl",41);
+            PrecedenciaProducciones.Add("Formals",40);
+            PrecedenciaProducciones.Add("Formals'", 39);
+            PrecedenciaProducciones.Add("ClassDecl",38);
+            PrecedenciaProducciones.Add("EXTENDS", 37);
+            PrecedenciaProducciones.Add("IMPLEMENTS", 36);
+            PrecedenciaProducciones.Add("IMPLEMENTS'", 35);
+            PrecedenciaProducciones.Add("Field",34);
+            PrecedenciaProducciones.Add("Field'", 33);
+            PrecedenciaProducciones.Add("InterfaceDecl",32);
+            PrecedenciaProducciones.Add("InterfaceDecl'", 31);
+            PrecedenciaProducciones.Add("Prototype", 30);
+            PrecedenciaProducciones.Add("StmtBlock", 29);
+            PrecedenciaProducciones.Add("LlamarVar", 28);
+            PrecedenciaProducciones.Add("LlamarConst", 27);
+            PrecedenciaProducciones.Add("LlamarStmt", 26);
+            PrecedenciaProducciones.Add("Stmt", 25);
+            PrecedenciaProducciones.Add("Stmt'", 24);
+            PrecedenciaProducciones.Add("ifStmt", 23);
+            PrecedenciaProducciones.Add("ifStmt'",22);
+            PrecedenciaProducciones.Add("WhileStmt", 21);
+            PrecedenciaProducciones.Add("ForStmt", 20);
+            PrecedenciaProducciones.Add("ReturnStmt", 19);
+            PrecedenciaProducciones.Add("BreakStmt", 18);
+            PrecedenciaProducciones.Add("PrintStmt", 17);
+            PrecedenciaProducciones.Add("PrintStmt'", 16);
+            PrecedenciaProducciones.Add("Constant", 15);
+            PrecedenciaProducciones.Add("Expr", 14);
+            PrecedenciaProducciones.Add("Expr'", 13);
+            PrecedenciaProducciones.Add("A",12);
+            PrecedenciaProducciones.Add("A'",11);
+            PrecedenciaProducciones.Add("B",10);
+            PrecedenciaProducciones.Add("C",9);
+            PrecedenciaProducciones.Add("C'", 8);
+            PrecedenciaProducciones.Add("D",7);
+            PrecedenciaProducciones.Add("D'", 6);
+            PrecedenciaProducciones.Add("E", 5);
+            PrecedenciaProducciones.Add("E'", 4);
+            PrecedenciaProducciones.Add("F",3);
+            PrecedenciaProducciones.Add("G", 2);
+            PrecedenciaProducciones.Add("X'",1);
+        }
+        public static void LlenarPrecedenciaTerminales() 
+        {
+            PrecedenciaTerminales.Add(";", 47);
+            PrecedenciaTerminales.Add("T_es_Id", 46);
+            PrecedenciaTerminales.Add("static", 45);
+            PrecedenciaTerminales.Add("int", 44);
+            PrecedenciaTerminales.Add("double", 44);
+            PrecedenciaTerminales.Add("boolean", 44);
+            PrecedenciaTerminales.Add("string", 44);
+            PrecedenciaTerminales.Add("[", 42);
+            PrecedenciaTerminales.Add("]", 42);
+            PrecedenciaTerminales.Add("(", 41);
+            PrecedenciaTerminales.Add(")", 41);
+            PrecedenciaTerminales.Add("void", 41);
+            PrecedenciaTerminales.Add("class", 38);
+            PrecedenciaTerminales.Add("{", 38);
+            PrecedenciaTerminales.Add("}", 38);
+            PrecedenciaTerminales.Add("extends", 37);
+            PrecedenciaTerminales.Add("implements", 36);
+            PrecedenciaTerminales.Add(",", 35);
+            PrecedenciaTerminales.Add("if", 23);
+            PrecedenciaTerminales.Add("else", 22);
+            PrecedenciaTerminales.Add("while", 21);
+            PrecedenciaTerminales.Add("for", 20);
+            PrecedenciaTerminales.Add("return", 19);
+            PrecedenciaTerminales.Add("break", 18);
+            PrecedenciaTerminales.Add("System", 17);
+            PrecedenciaTerminales.Add(".", 17);
+            PrecedenciaTerminales.Add("out", 17);
+            PrecedenciaTerminales.Add("println", 17);
+            PrecedenciaTerminales.Add("T_es_ConstDecimal", 15);
+            PrecedenciaTerminales.Add("T_es_ConstDouble", 15);
+            PrecedenciaTerminales.Add("T_es_ConstBool", 15);
+            PrecedenciaTerminales.Add("T_es_String", 15);
+            PrecedenciaTerminales.Add("null", 15);
+            PrecedenciaTerminales.Add("||", 13);
+            PrecedenciaTerminales.Add("!=", 11);
+            PrecedenciaTerminales.Add(">", 9);
+            PrecedenciaTerminales.Add(">=", 9);
+            PrecedenciaTerminales.Add("-", 7);
+            PrecedenciaTerminales.Add("/", 5);
+            PrecedenciaTerminales.Add("%", 5);
+            PrecedenciaTerminales.Add("!", 3);
+            PrecedenciaTerminales.Add("this", 1);
+            PrecedenciaTerminales.Add("=", 0);
+        }
         public static void AccionReduccion(int estado)
         {
             var produccion = EstadosReduccion.Find(x => x.NumEstado == estado);
@@ -151,6 +251,8 @@ namespace Compiladores_MiniJava
             PilaEstados.Push(0); //La pila siempre inicia en estado 0
             Lab_ASDR.TokenList.Add("$"); //Se agrega a la lista de tokens el $ para indicar fin
             LlenarEstadosReduccion();
+            LlenarPrecedenciaProducciones();
+            LlenarPrecedenciaTerminales();
             //var estado_Actual = PilaEstados.Peek();
             var simbolo_actual = Lab_ASDR.TokenList[0];
             for (int i = 0; i < Lab_ASDR.TokenList.Count; i++)
@@ -165,8 +267,6 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(1);
                                 i--;
-                                //Preguntar al inicio del for si la bandera esta activa 
-                                //Analizar otro switch
                             }
                             else if (Simbolos.Peek() == "Decl")
                             {
@@ -268,9 +368,6 @@ namespace Compiladores_MiniJava
                             ManejoError(i);
                             i = -1;
                         }
-                        //Revisar los no terminales para Ir_A
-                        //
-                        //
                             break;
                     case 1:
                         if (Lab_ASDR.TokenList[i] == "$")
@@ -292,50 +389,41 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(19);
                                 i--;
-                                //Preguntar al inicio del for si la bandera esta activa 
-                                //Analizar otro switch
                             }
                             else if (Simbolos.Peek() == "Decl")
                             {
                                 PilaEstados.Push(20);
                                 i--;
-
                             }
                             else if (Simbolos.Peek() == "VariableDecl")
                             {
                                 PilaEstados.Push(3);
                                 i--;
-
                             }
                             else if (Simbolos.Peek() == "Variable")
                             {
                                 PilaEstados.Push(8);
                                 i--;
-
                             }
                             else if (Simbolos.Peek() == "ConstDecl")
                             {
                                 PilaEstados.Push(5);
                                 i--;
-
                             }
                             else if (Simbolos.Peek() == "Type")
                             {
                                 PilaEstados.Push(9);
                                 i--;
-
                             }
                             else if (Simbolos.Peek() == "FunctionDecl")
                             {
                                 PilaEstados.Push(4);
                                 i--;
-
                             }
                             else if (Simbolos.Peek() == "ClassDecl")
                             {
                                 PilaEstados.Push(6);
                                 i--;
-
                             }
                             else if (Simbolos.Peek() == "InterfaceDecl")
                             {
@@ -402,8 +490,6 @@ namespace Compiladores_MiniJava
                             //r8
                             AccionReduccion(8);
                             i--;
-                            //
-                            ///
                         }
                         else
                         {
@@ -541,9 +627,6 @@ namespace Compiladores_MiniJava
                             //r3
                             AccionReduccion(3);
                             i--;
-                            //revisar
-                            //
-                            ///
                         }
                         else
                         {
@@ -612,9 +695,6 @@ namespace Compiladores_MiniJava
                             //r4
                             AccionReduccion(4);
                             i--;
-                            //revisar
-                            //
-                            ///
                         }
                         else
                         {
@@ -683,7 +763,6 @@ namespace Compiladores_MiniJava
                             //r5
                             AccionReduccion(5);
                             i--;
-                            //revisar
                         }
                         else
                         {
@@ -805,10 +884,7 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(24);
                                 i--;
-                                //Preguntar al inicio del for si la bandera esta activa 
-                                //Analizar otro switch
                             }
-
                         }
                         else if (Lab_ASDR.TokenList[i] == "int")
                         {
@@ -874,8 +950,6 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(31);
                                 i--;
-                                //Preguntar al inicio del for si la bandera esta activa 
-                                //Analizar otro switch
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "[")
@@ -904,8 +978,6 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(33);
                                 i--;
-                                //Preguntar al inicio del for si la bandera esta activa 
-                                //Analizar otro switch
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -934,8 +1006,6 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(34);
                                 i--;
-                                //Preguntar al inicio del for si la bandera esta activa 
-                                //Analizar otro switch
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -965,8 +1035,6 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(35);
                                 i--;
-                                //Preguntar al inicio del for si la bandera esta activa 
-                                //Analizar otro switch
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -995,8 +1063,6 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(36);
                                 i--;
-                                //Preguntar al inicio del for si la bandera esta activa 
-                                //Analizar otro switch
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1038,8 +1104,6 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(37);
                                 i--;
-                                //Preguntar al inicio del for si la bandera esta activa 
-                                //Analizar otro switch
                             }
                             else if (Simbolos.Peek() == "Decl")
                             {
@@ -1149,7 +1213,6 @@ namespace Compiladores_MiniJava
                             //r8
                             AccionReduccion(8);
                             i--;
-
                         }
                         else
                         {
@@ -1322,8 +1385,8 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r11
-                            AccionReduccion(11);
+                            //r9
+                            AccionReduccion(9);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "$")
@@ -1457,8 +1520,6 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(41);
                                 i--;
-                                //Preguntar al inicio del for si la bandera esta activa 
-                                //Analizar otro switch
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1536,11 +1597,8 @@ namespace Compiladores_MiniJava
                         else if (Lab_ASDR.TokenList[i] == "$")
                         {
                             //r30
-                            //revisar
                             AccionReduccion(30);
                             i--;
-                            //
-                            ///
                         }
                         else
                         {
@@ -1549,7 +1607,6 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 30:
-
                         if (Lab_ASDR.TokenList[i] == "{")
                         {
                             //s43
@@ -1563,7 +1620,6 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 31:
-
                         if (Lab_ASDR.TokenList[i] == "T_es_Id")
                         {
                             //r16
@@ -1577,13 +1633,11 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 32:
-
                         if (Lab_ASDR.TokenList[i] == "]")
                         {
                             //s44
                             PilaEstados.Push(44);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
-
                         }
                         else
                         {
@@ -1665,19 +1719,16 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(46);
                                 i--;
-
                             }
                             else if (Simbolos.Peek() == "Type")
                             {
                                 PilaEstados.Push(47);
                                 i--;
-
                             }
                             else if (Simbolos.Peek() == "Formals")
                             {
                                 PilaEstados.Push(45);
                                 i--;
-
                             }
 
                         }
@@ -1889,6 +1940,8 @@ namespace Compiladores_MiniJava
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
                             //r39
+                            AccionReduccion(39);
+                            i--;
                         }
                         else
                         {
@@ -1905,7 +1958,6 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(57);
                                 i--;
-
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "T_es_Id")
@@ -1948,7 +2000,6 @@ namespace Compiladores_MiniJava
                             {
                                 PilaEstados.Push(59);
                                 i--;
-
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
@@ -1958,7 +2009,7 @@ namespace Compiladores_MiniJava
                             i--;
                         }
 
-                        else if (Lab_ASDR.TokenList[i] == ")")
+                        else if (Lab_ASDR.TokenList[i] == ",")
                         {
                             //s60
                             PilaEstados.Push(60);
@@ -2171,7 +2222,6 @@ namespace Compiladores_MiniJava
                             //r11
                             AccionReduccion(11);
                             i--;
-                            //revisar
                         }
                         else
                         {
@@ -2245,20 +2295,20 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "void")
                         {
-                            //r11
-                            AccionReduccion(11);
+                            //r29
+                            AccionReduccion(29);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "class")
                         {
-                            //r11
-                            AccionReduccion(11);
+                            //r29
+                            AccionReduccion(29);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r11
-                            AccionReduccion(11);
+                            //r29
+                            AccionReduccion(29);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "implements")
@@ -2289,10 +2339,9 @@ namespace Compiladores_MiniJava
                     case 53:
                         if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //s32
-                            PilaEstados.Push(32);
+                            //s65
+                            PilaEstados.Push(65);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
-
                         }
                         else
                         {
@@ -2315,7 +2364,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(66);
                                 i--;
                             }
-                            else if (Simbolos.Peek() == "Prototype'")
+                            else if (Simbolos.Peek() == "Prototype")
                             {
                                 PilaEstados.Push(54);
                                 i--;
@@ -2589,8 +2638,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(73);
                                 i--;
                             }
-                        }
-
+                        }                        
                         else if (Lab_ASDR.TokenList[i] == "T_es_Id")
                         {
                             //s18
@@ -2734,7 +2782,6 @@ namespace Compiladores_MiniJava
                             //r40
                             AccionReduccion(40);
                             i--;
-                            //revisar
                         }
                         else
                         {
@@ -2748,7 +2795,6 @@ namespace Compiladores_MiniJava
                             //r41
                             AccionReduccion(41);
                             i--;
-                            //revisar
                         }
                         else
                         {
@@ -2848,7 +2894,6 @@ namespace Compiladores_MiniJava
                             //r23
                             AccionReduccion(23);
                             i--;
-                            //revisar
                         }
                         else
                         {
@@ -2888,67 +2933,112 @@ namespace Compiladores_MiniJava
                             AccionReduccion(47);
                             i--;
                         }
-                        //CONFLICTO #1
+                        //CONFLICTO #1 
+                        //GOODKITTY.TXT
                         else if (Lab_ASDR.TokenList[i] == "T_es_Id")
                         {
-                            //s18
-                            PilaEstados.Push(18);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 26;
+                            if (proPrec > terPrec)
+                            {
+                                //r47
+                                AccionReduccion(47);
+                                i--;
+                            }
+                            else
+                            {
+                                PilaEstados.Push(18);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "T_es_Id")
-                        {
-                            //r47
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "static")
                         {
                             //r47
                             AccionReduccion(47);
                             i--;
                         }
-                        //CONFLICTO #2
+                        //CONFLICTO #2 ******PARCIALMENTE BUENO****
                         else if (Lab_ASDR.TokenList[i] == "int")
                         {
-                            //s14
-                            PilaEstados.Push(14);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 26;
+                            if (proPrec > terPrec)
+                            {
+                                //r47
+                                AccionReduccion(47);
+                                i--;
+                            }
+                            else
+                            {
+                                //s14
+                                PilaEstados.Push(14);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "int")
-                        {
-                            //r47
-                        }*/
                         //CONFLICTO #3
                         else if (Lab_ASDR.TokenList[i] == "double")
                         {
-                            //s15
-                            PilaEstados.Push(15);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 26;
+                            if (proPrec > terPrec)
+                            {
+                                //r47
+                                AccionReduccion(47);
+                                i--;
+                            }
+                            else
+                            {
+                                //s15
+                                PilaEstados.Push(15);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "double")
-                        {
-                            //r47
-                        }*/
                         //CONFLICTO #4
                         else if (Lab_ASDR.TokenList[i] == "boolean")
                         {
-                            //s16
-                            PilaEstados.Push(16);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 26;
+                            if (proPrec > terPrec)
+                            {
+                                //r47
+                                AccionReduccion(47);
+                                i--;
+                            }
+                            else
+                            {
+                                //s16
+                                PilaEstados.Push(16);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "boolean")
-                        {
-                            //r47
-                        }*/
                         //CONFLICTO #5
                         else if (Lab_ASDR.TokenList[i] == "string")
                         {
-                            //s17
-                            PilaEstados.Push(17);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 26;
+                            if (proPrec > terPrec)
+                            {
+                                //r47
+                                AccionReduccion(47);
+                                i--;
+                            }
+                            else
+                            {
+                                //s17
+                                PilaEstados.Push(17);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "string")
-                        {
-                            //r47
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
                             //r47
@@ -3080,7 +3170,6 @@ namespace Compiladores_MiniJava
                             //r47
                             AccionReduccion(47);
                             i--;
-                            //revisar
                         }
                         else
                         {
@@ -3479,7 +3568,7 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "Variables")
+                            if (Simbolos.Peek() == "Variable")
                             {
                                 PilaEstados.Push(46);
                                 i--;
@@ -3536,7 +3625,7 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "Variables")
+                            if (Simbolos.Peek() == "Variable")
                             {
                                 PilaEstados.Push(46);
                                 i--;
@@ -3616,17 +3705,26 @@ namespace Compiladores_MiniJava
                             AccionReduccion(49);
                             i--;
                         }
-                        //CONFLICTO
-                        else if (Lab_ASDR.TokenList[i] == "stacic")
+                        //CONFLICTO 6
+                        else if (Lab_ASDR.TokenList[i] == "static")
                         {
-                            //s11
-                            PilaEstados.Push(11);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 25;
+                            if (proPrec > terPrec)
+                            {
+                                //r49
+                                AccionReduccion(49);
+                                i--;
+                            }
+                            else
+                            {
+                                //s11
+                                PilaEstados.Push(11);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "T_es_Id")
-                        {
-                            //r49
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "int")
                         {
                             //r49
@@ -3821,61 +3919,112 @@ namespace Compiladores_MiniJava
                             AccionReduccion(47);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 7
                         else if (Lab_ASDR.TokenList[i] == "T_es_Id")
                         {
-                            //s18
-                            PilaEstados.Push(18);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 26;
+                            if (proPrec > terPrec)
+                            {
+                                //r47
+                                AccionReduccion(47);
+                                i--;
+                            }
+                            else
+                            {
+                                //s18
+                                PilaEstados.Push(18);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "static")
                         {
                             //r47
-                        }*/
-                        //CONFLICTO
+                            AccionReduccion(47);
+                            i--;
+                        }
+                        //CONFLICTO 8
                         else if (Lab_ASDR.TokenList[i] == "int")
                         {
-                            //s14
-                            PilaEstados.Push(14);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 26;
+                            if (proPrec > terPrec)
+                            {
+                                //r47
+                                AccionReduccion(47);
+                                i--;
+                            }
+                            else
+                            {
+                                //s14
+                                PilaEstados.Push(14);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "int")
-                        {
-                            //r47
-                        }*/
-                        //CONFLICTO
+                        //CONFLICTO 9
                         else if (Lab_ASDR.TokenList[i] == "double")
                         {
-                            //s15
-                            PilaEstados.Push(15);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 26;
+                            if (proPrec > terPrec)
+                            {
+                                //r47
+                                AccionReduccion(47);
+                                i--;
+                            }
+                            else
+                            {
+                                //s15
+                                PilaEstados.Push(15);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "double")
-                        {
-                            //r47
-                        }*/
-                        //CONFLICTO
+                        //CONFLICTO 10
                         else if (Lab_ASDR.TokenList[i] == "boolean")
                         {
-                            //s16
-                            PilaEstados.Push(16);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 26;
+                            if (proPrec > terPrec)
+                            {
+                                //r47
+                                AccionReduccion(47);
+                                i--;
+                            }
+                            else
+                            {
+                                //s16
+                                PilaEstados.Push(16);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "boolean")
-                        {
-                            //r47
-                        }*/
-                        //CONFLICTO
+                        //CONFLICTO 11
                         else if (Lab_ASDR.TokenList[i] == "string")
                         {
-                            //s17
-                            PilaEstados.Push(47);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 26;
+                            if (proPrec > terPrec)
+                            {
+                                //r47
+                                AccionReduccion(47);
+                                i--;
+                            }
+                            else
+                            {
+                                //s17
+                                PilaEstados.Push(17);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "string")
-                        {
-                            //r47
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
                             //r47
@@ -4126,7 +4275,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 87:
-                        if (Lab_ASDR.TokenList[i] == ",")
+                        if (Lab_ASDR.TokenList[i] == ")")
                         {
                             //s93
                             PilaEstados.Push(93);
@@ -4139,7 +4288,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 88:
-                        if (Lab_ASDR.TokenList[i] == ",")
+                        if (Lab_ASDR.TokenList[i] == ")")
                         {
                             //s94
                             PilaEstados.Push(94);
@@ -4330,12 +4479,6 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
-                        {
-                            //s125
-                            PilaEstados.Push(125);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
-                        }
                         else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
                         {
                             //s126
@@ -4379,6 +4522,16 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 90:
+                        if (BanderaReduccion == true)
+                        {
+                            BanderaReduccion = false;
+
+                            if (Simbolos.Peek() == "LlamarConst")
+                            {
+                                PilaEstados.Push(130);
+                                i--;
+                            }
+                        }
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
                             //r49
@@ -4391,17 +4544,26 @@ namespace Compiladores_MiniJava
                             AccionReduccion(49);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 12
                         else if (Lab_ASDR.TokenList[i] == "static")
                         {
-                            //s11
-                            PilaEstados.Push(11);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 25;
+                            if (proPrec > terPrec)
+                            {
+                                //r49
+                                AccionReduccion(49);
+                                i--;
+                            }
+                            else
+                            {
+                                //s11
+                                PilaEstados.Push(11);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "static")
-                        {
-                            //r49
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "int")
                         {
                             //r49
@@ -4557,7 +4719,6 @@ namespace Compiladores_MiniJava
                             //r49
                             AccionReduccion(49);
                             i--;
-                            //revisar
                         }
                         else
                         {
@@ -4748,7 +4909,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 92:
-                        if (Lab_ASDR.TokenList[i] == "}")
+                        if (Lab_ASDR.TokenList[i] == "{")
                         {
                             //r33
                             AccionReduccion(33);
@@ -6247,17 +6408,32 @@ namespace Compiladores_MiniJava
                             AccionReduccion(79);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 13
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //s143
-                            PilaEstados.Push(143);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 11;
+                            if (proPrec > terPrec)
+                            {
+                                //r79
+                                AccionReduccion(79);
+                                i--;
+                            }
+                            else
+                            {
+                                //s143
+                                PilaEstados.Push(143);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "||")
+                        else if (Lab_ASDR.TokenList[i] == "!=")
                         {
                             //r79
-                        }*/
+                            AccionReduccion(79);
+                            i--;
+                        }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
                             //r79
@@ -6276,7 +6452,6 @@ namespace Compiladores_MiniJava
                             AccionReduccion(79);
                             i--;
                         }
-
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //r79
@@ -6295,13 +6470,11 @@ namespace Compiladores_MiniJava
                             AccionReduccion(79);
                             i--;
                         }
-
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
                             //r79
                             AccionReduccion(79);
                             i--;
-
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
@@ -6453,17 +6626,26 @@ namespace Compiladores_MiniJava
                             AccionReduccion(82);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 14
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //s145
-                            PilaEstados.Push(145);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 9;
+                            if (proPrec > terPrec)
+                            {
+                                //r82
+                                AccionReduccion(82);
+                                i--;
+                            }
+                            else
+                            {
+                                //s145
+                                PilaEstados.Push(145);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r82
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
                             //r82
@@ -6662,28 +6844,52 @@ namespace Compiladores_MiniJava
                             AccionReduccion(86);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 15
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //s147
-                            PilaEstados.Push(147);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 7;
+                            if (proPrec > terPrec)
+                            {
+                                //r86
+                                AccionReduccion(86);
+                                i--;
+                            }
+                            else
+                            {
+                                //s147
+                                PilaEstados.Push(147);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r86
-                        }*/
-                        //CONFLICTO
+                        //CONFLICTO 16
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //s148
-                            PilaEstados.Push(148);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 7;
+                            if (proPrec > terPrec)
+                            {
+                                //r86
+                                AccionReduccion(86);
+                                i--;
+                            }
+                            else
+                            {
+                                //s148
+                                PilaEstados.Push(148);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == ">=")
+                        else if (Lab_ASDR.TokenList[i] == "-")
                         {
                             //r86
-                        }*/
+                            AccionReduccion(86);
+                            i--;
+                        }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //r86
@@ -6877,17 +7083,26 @@ namespace Compiladores_MiniJava
                             AccionReduccion(89);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 17
                          else if (Lab_ASDR.TokenList[i] == "-")
                          {
-                             //s150
-                             PilaEstados.Push(150);
-                             Simbolos.Push(Lab_ASDR.TokenList[i]);
-                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            // r89
-                        }*/
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 5;
+                            if (proPrec > terPrec)
+                            {
+                                //r89
+                                AccionReduccion(89);
+                                i--;
+                            }
+                            else
+                            {
+                                //s150
+                                PilaEstados.Push(150);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
+                        }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //r89
@@ -7086,28 +7301,46 @@ namespace Compiladores_MiniJava
                             AccionReduccion(93);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 18
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //s152
-                            PilaEstados.Push(152);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 3;
+                            if (proPrec > terPrec)
+                            {
+                                //r93
+                                AccionReduccion(93);
+                                i--;
+                            }
+                            else
+                            {
+                                //s152
+                                PilaEstados.Push(152);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r93
-                        }*/
-                        //CONFLICTO
+                        //CONFLICTO 19
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //s153
-                            PilaEstados.Push(153);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 3;
+                            if (proPrec > terPrec)
+                            {
+                                //r93
+                                AccionReduccion(93);
+                                i--;
+                            }
+                            else
+                            {
+                                //s153
+                                PilaEstados.Push(153);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r93
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
                             //r93
@@ -7284,28 +7517,46 @@ namespace Compiladores_MiniJava
                             AccionReduccion(97);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 20
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //s155
-                            PilaEstados.Push(155);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 1;
+                            if (proPrec > terPrec)
+                            {
+                                //r97
+                                AccionReduccion(97);
+                                i--;
+                            }
+                            else
+                            {
+                                //s155
+                                PilaEstados.Push(155);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r97
-                        }*/
-                        //CONFLICTO
+                        //CONFLICTO 21
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //s156
-                            PilaEstados.Push(156);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 1;
+                            if (proPrec > terPrec)
+                            {
+                                //r97
+                                AccionReduccion(97);
+                                i--;
+                            }
+                            else
+                            {
+                                //s156
+                                PilaEstados.Push(156);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r97
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //r97
@@ -7490,6 +7741,12 @@ namespace Compiladores_MiniJava
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
                         {
                             //r99
                             AccionReduccion(99);
@@ -7794,6 +8051,12 @@ namespace Compiladores_MiniJava
                             AccionReduccion(101);
                             i--;
                         }
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //r101
+                            AccionReduccion(101);
+                            i--;
+                        }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //r101
@@ -7984,6 +8247,12 @@ namespace Compiladores_MiniJava
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r103
+                            AccionReduccion(103);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
                         {
                             //r103
                             AccionReduccion(103);
@@ -8181,6 +8450,12 @@ namespace Compiladores_MiniJava
                             AccionReduccion(106);
                             i--;
                         }
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //r106
@@ -8369,6 +8644,12 @@ namespace Compiladores_MiniJava
                             AccionReduccion(72);
                             i--;
                         }
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //r72
+                            AccionReduccion(72);
+                            i--;
+                        }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //r72
@@ -8546,6 +8827,12 @@ namespace Compiladores_MiniJava
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r73
+                            AccionReduccion(73);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
                         {
                             //r73
                             AccionReduccion(73);
@@ -8732,6 +9019,12 @@ namespace Compiladores_MiniJava
                             AccionReduccion(74);
                             i--;
                         }
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //r74
+                            AccionReduccion(74);
+                            i--;
+                        }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //r74
@@ -8908,6 +9201,12 @@ namespace Compiladores_MiniJava
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r75
+                            AccionReduccion(75);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
                         {
                             //r75
                             AccionReduccion(75);
@@ -9090,6 +9389,12 @@ namespace Compiladores_MiniJava
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r76
+                            AccionReduccion(76);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
                         {
                             //r76
                             AccionReduccion(76);
@@ -9650,7 +9955,8 @@ namespace Compiladores_MiniJava
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
                             //r52
-
+                            AccionReduccion(52);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
@@ -9737,7 +10043,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "Expr")
@@ -9855,7 +10161,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "Expr")
@@ -9972,7 +10278,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "Expr")
@@ -10429,7 +10735,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "A")
@@ -10729,17 +11035,12 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "A")
-                            {
-                                PilaEstados.Push(167);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "B")
                             {
-                                PilaEstados.Push(113);
+                                PilaEstados.Push(168);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "C")
@@ -11028,7 +11329,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "C")
@@ -11130,7 +11431,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "C")
@@ -11420,7 +11721,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "D")
@@ -11705,7 +12006,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
@@ -11797,7 +12098,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
@@ -12076,7 +12377,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
@@ -12163,7 +12464,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
@@ -12437,7 +12738,6 @@ namespace Compiladores_MiniJava
                         else if (Lab_ASDR.TokenList[i] == "=")
                         {
                             //s161
-
                             PilaEstados.Push(161);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
@@ -12667,7 +12967,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(21);
+                                PilaEstados.Push(121);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "Expr")
@@ -12925,12 +13225,6 @@ namespace Compiladores_MiniJava
                             AccionReduccion(67);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            AccionReduccion(67);
-                            i--;
-                            //r67
-                        }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
                             //r67
@@ -12966,7 +13260,6 @@ namespace Compiladores_MiniJava
                         if (BanderaReduccion == true)
                         {
                             BanderaReduccion = false;
-
 
                             if (Simbolos.Peek() == "Expr'")
                             {
@@ -13094,17 +13387,26 @@ namespace Compiladores_MiniJava
                             AccionReduccion(79);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 22
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //s143
-                            PilaEstados.Push(143);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 11;
+                            if (proPrec > terPrec)
+                            {
+                                //r79
+                                AccionReduccion(79);
+                                i--;
+                            }
+                            else
+                            {
+                                //s143
+                                PilaEstados.Push(143);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r79
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
                             //r79
@@ -13169,7 +13471,6 @@ namespace Compiladores_MiniJava
                         if (BanderaReduccion == true)
                         {
                             BanderaReduccion = false;
-
 
                             if (Simbolos.Peek() == "A'")
                             {
@@ -13303,17 +13604,26 @@ namespace Compiladores_MiniJava
                             AccionReduccion(67);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 23
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //s145
-                            PilaEstados.Push(145);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 9;
+                            if (proPrec > terPrec)
+                            {
+                                //r82
+                                AccionReduccion(82);
+                                i--;
+                            }
+                            else
+                            {
+                                //s145
+                                PilaEstados.Push(145);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r82
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
                             //r82
@@ -13372,7 +13682,6 @@ namespace Compiladores_MiniJava
                         if (BanderaReduccion == true)
                         {
                             BanderaReduccion = false;
-
 
                             if (Simbolos.Peek() == "B'")
                             {
@@ -13512,28 +13821,46 @@ namespace Compiladores_MiniJava
                             AccionReduccion(86);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 24
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //s147
-                            PilaEstados.Push(147);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 7;
+                            if (proPrec > terPrec)
+                            {
+                                //r86
+                                AccionReduccion(86);
+                                i--;
+                            }
+                            else
+                            {
+                                //s147
+                                PilaEstados.Push(147);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r86
-                        }*/
-                        //CONFLICTO
+                        //CONFLICTO 25
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //s148
-                            PilaEstados.Push(148);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 7;
+                            if (proPrec > terPrec)
+                            {
+                                //r86
+                                AccionReduccion(86);
+                                i--;
+                            }
+                            else
+                            {
+                                //s148
+                                PilaEstados.Push(148);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r86
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
                             //r86
@@ -13580,7 +13907,6 @@ namespace Compiladores_MiniJava
                         if (BanderaReduccion == true)
                         {
                             BanderaReduccion = false;
-
 
                             if (Simbolos.Peek() == "B'")
                             {
@@ -13721,28 +14047,46 @@ namespace Compiladores_MiniJava
                             AccionReduccion(86);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 26
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //s147
-                            PilaEstados.Push(147);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 7;
+                            if (proPrec > terPrec)
+                            {
+                                //r86
+                                AccionReduccion(86);
+                                i--;
+                            }
+                            else
+                            {
+                                //s147
+                                PilaEstados.Push(147);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r86
-                        }*/
-                        //CONFLICTO
+                        //CONFLICTO 27
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //s148
-                            PilaEstados.Push(148);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 7;
+                            if (proPrec > terPrec)
+                            {
+                                //r86
+                                AccionReduccion(86);
+                                i--;
+                            }
+                            else
+                            {
+                                //s148
+                                PilaEstados.Push(148);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r86
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
                             //r86
@@ -13940,17 +14284,26 @@ namespace Compiladores_MiniJava
                             AccionReduccion(89);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 28
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //s150
-                            PilaEstados.Push(150);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 5;
+                            if (proPrec > terPrec)
+                            {
+                                //r89
+                                AccionReduccion(89);
+                                i--;
+                            }
+                            else
+                            {
+                                //s150
+                                PilaEstados.Push(150);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r89
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //r89
@@ -13991,7 +14344,6 @@ namespace Compiladores_MiniJava
                         if (BanderaReduccion == true)
                         {
                             BanderaReduccion = false;
-
 
                             if (Simbolos.Peek() == "D'")
                             {
@@ -14149,28 +14501,46 @@ namespace Compiladores_MiniJava
                             AccionReduccion(93);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 29
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //s152
-                            PilaEstados.Push(152);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 3;
+                            if (proPrec > terPrec)
+                            {
+                                //r93
+                                AccionReduccion(93);
+                                i--;
+                            }
+                            else
+                            {
+                                //s152
+                                PilaEstados.Push(152);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r93
-                        }*/
-                        //CONFLICTO
+                        //CONFLICTO 30
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //s153
-                            PilaEstados.Push(153);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 3;
+                            if (proPrec > terPrec)
+                            {
+                                //r93
+                                AccionReduccion(93);
+                                i--;
+                            }
+                            else
+                            {
+                                //s153
+                                PilaEstados.Push(153);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r93
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
                             //r93
@@ -14356,28 +14726,46 @@ namespace Compiladores_MiniJava
                             AccionReduccion(93);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 31
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //s152
-                            PilaEstados.Push(152);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 3;
+                            if (proPrec > terPrec)
+                            {
+                                //r93
+                                AccionReduccion(93);
+                                i--;
+                            }
+                            else
+                            {
+                                //s152
+                                PilaEstados.Push(152);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "/")
+                        //CONFLICTO 32
+                        else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r93
-                        }*/
-                        //CONFLICTO
-                         else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //s153
-                            PilaEstados.Push(153);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 3;
+                            if (proPrec > terPrec)
+                            {
+                                //r93
+                                AccionReduccion(93);
+                                i--;
+                            }
+                            else
+                            {
+                                //s153
+                                PilaEstados.Push(153);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r93
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
                             //r93
@@ -14558,28 +14946,46 @@ namespace Compiladores_MiniJava
                             AccionReduccion(97);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 33
                          else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //s155
-                            PilaEstados.Push(155);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 1;
+                            if (proPrec > terPrec)
+                            {
+                                //r97
+                                AccionReduccion(97);
+                                i--;
+                            }
+                            else
+                            {
+                                //s155
+                                PilaEstados.Push(155);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r97
-                        }*/
-                        //CONFLICTO
+                        //CONFLICTO 34
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //s156
-                            PilaEstados.Push(156);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 1;
+                            if (proPrec > terPrec)
+                            {
+                                //r97
+                                AccionReduccion(97);
+                                i--;
+                            }
+                            else
+                            {
+                                //s156
+                                PilaEstados.Push(156);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r97
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //r97
@@ -14777,28 +15183,46 @@ namespace Compiladores_MiniJava
                             AccionReduccion(97);
                             i--;
                         }
-                        //CONFLICTO
+                        //CONFLICTO 35
                          else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //s155
-                            PilaEstados.Push(155);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 1;
+                            if (proPrec > terPrec)
+                            {
+                                //r97
+                                AccionReduccion(97);
+                                i--;
+                            }
+                            else
+                            {
+                                //s155
+                                PilaEstados.Push(155);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r97
-                        }*/
-                        //CONFLICTO
+                        //CONFLICTO 36
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //s156
-                            PilaEstados.Push(156);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 1;
+                            if (proPrec > terPrec)
+                            {
+                                //r97
+                                AccionReduccion(97);
+                                i--;
+                            }
+                            else
+                            {
+                                //s156
+                                PilaEstados.Push(156);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
-                        /*else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r97
-                        }*/
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
                             //r97
@@ -16323,24 +16747,24 @@ namespace Compiladores_MiniJava
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "T_es_Id")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                             //r84
                         }
@@ -16348,158 +16772,158 @@ namespace Compiladores_MiniJava
 
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
 
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                             //r84
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                             //r84
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "T_es_String")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                             //r84
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
                             //r84
-                            AccionReduccion(86);
+                            AccionReduccion(84);
                             i--;
                         }
                         else
@@ -17824,7 +18248,6 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-
                             if (Simbolos.Peek() == "ifStmt'")
                             {
                                 PilaEstados.Push(198);
@@ -17867,16 +18290,26 @@ namespace Compiladores_MiniJava
                             AccionReduccion(64);
                             i--;
                         }
-                        /*if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //s199
-                            PilaEstados.Push(199);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
-                        }
+                        //CONFLICTO 37
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r64
-                        }*/
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 19;
+                            if (proPrec > terPrec)
+                            {
+                                //r64
+                                AccionReduccion(64);
+                                i--;
+                            }
+                            else
+                            {
+                                //s199
+                                PilaEstados.Push(199);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
+                        }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
                             //r64
@@ -18424,7 +18857,7 @@ namespace Compiladores_MiniJava
                         else if (Lab_ASDR.TokenList[i] == "T_es_String")
                         {
                             //s128
-                            PilaEstados.Push(70);
+                            PilaEstados.Push(128);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
@@ -18541,7 +18974,7 @@ namespace Compiladores_MiniJava
                         else if (Lab_ASDR.TokenList[i] == "T_es_String")
                         {
                             //s128
-                            PilaEstados.Push(70);
+                            PilaEstados.Push(128);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
@@ -18839,6 +19272,8 @@ namespace Compiladores_MiniJava
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
                             //r71
+                            AccionReduccion(71);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
@@ -19035,7 +19470,7 @@ namespace Compiladores_MiniJava
                         else if (Lab_ASDR.TokenList[i] == "T_es_String")
                         {
                             //s128
-                            PilaEstados.Push(70);
+                            PilaEstados.Push(128);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
@@ -19165,7 +19600,7 @@ namespace Compiladores_MiniJava
                         else if (Lab_ASDR.TokenList[i] == "T_es_String")
                         {
                             //s128
-                            PilaEstados.Push(70);
+                            PilaEstados.Push(128);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
@@ -19501,7 +19936,6 @@ namespace Compiladores_MiniJava
                             i = -1;
                         }
                         break;
-
                 }
             }            
         }
