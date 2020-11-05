@@ -15,6 +15,7 @@ namespace Compiladores_MiniJava
         public static int contador_Errores = 0;
         public static Dictionary<string, int> PrecedenciaProducciones = new Dictionary<string, int>();
         public static Dictionary<string, int> PrecedenciaTerminales = new Dictionary<string, int>();
+        public static List<Token> ErroresExplicitos = new List<Token>();
         //LAB_ASDR CONTIENE LA LISTA DE TOKENES, QUE VENDRIA SIENDO NUESTRA ENTRADA
 
         public static void LlenarEstadosReduccion() 
@@ -127,63 +128,63 @@ namespace Compiladores_MiniJava
             EstadosReduccion.Add(new Reduccion() { NumEstado = 105, ProduccionAReducir = "X'", CantidadElementos = 2 });
             EstadosReduccion.Add(new Reduccion() { NumEstado = 106, ProduccionAReducir = "X'", CantidadElementos = 0 });
         }
-        public static void LlenarPrecedenciaProducciones() 
-        {
-            PrecedenciaProducciones.Add("Program",50);
-            PrecedenciaProducciones.Add("Decl",49);
-            PrecedenciaProducciones.Add("Decl'",48);
-            PrecedenciaProducciones.Add("VariableDecl",47);
-            PrecedenciaProducciones.Add("Variable",46);
-            PrecedenciaProducciones.Add("ConstDecl",45);
-            PrecedenciaProducciones.Add("ConstType",44);
-            PrecedenciaProducciones.Add("Type",43);
-            PrecedenciaProducciones.Add("Type'",42);
-            PrecedenciaProducciones.Add("FunctionDecl",41);
-            PrecedenciaProducciones.Add("Formals",40);
-            PrecedenciaProducciones.Add("Formals'", 39);
-            PrecedenciaProducciones.Add("ClassDecl",38);
-            PrecedenciaProducciones.Add("EXTENDS", 37);
-            PrecedenciaProducciones.Add("IMPLEMENTS", 36);
-            PrecedenciaProducciones.Add("IMPLEMENTS'", 35);
-            PrecedenciaProducciones.Add("Field",34);
-            PrecedenciaProducciones.Add("Field'", 33);
-            PrecedenciaProducciones.Add("InterfaceDecl",32);
-            PrecedenciaProducciones.Add("InterfaceDecl'", 31);
-            PrecedenciaProducciones.Add("Prototype", 30);
-            PrecedenciaProducciones.Add("StmtBlock", 29);
-            PrecedenciaProducciones.Add("LlamarVar", 28);
-            PrecedenciaProducciones.Add("LlamarConst", 27);
-            PrecedenciaProducciones.Add("LlamarStmt", 26);
-            PrecedenciaProducciones.Add("Stmt", 25);
-            PrecedenciaProducciones.Add("Stmt'", 24);
-            PrecedenciaProducciones.Add("ifStmt", 23);
-            PrecedenciaProducciones.Add("ifStmt'",22);
-            PrecedenciaProducciones.Add("WhileStmt", 21);
-            PrecedenciaProducciones.Add("ForStmt", 20);
-            PrecedenciaProducciones.Add("ReturnStmt", 19);
-            PrecedenciaProducciones.Add("BreakStmt", 18);
-            PrecedenciaProducciones.Add("PrintStmt", 17);
-            PrecedenciaProducciones.Add("PrintStmt'", 16);
-            PrecedenciaProducciones.Add("Constant", 15);
-            PrecedenciaProducciones.Add("Expr", 14);
-            PrecedenciaProducciones.Add("Expr'", 13);
-            PrecedenciaProducciones.Add("A",12);
-            PrecedenciaProducciones.Add("A'",11);
-            PrecedenciaProducciones.Add("B",10);
-            PrecedenciaProducciones.Add("C",9);
-            PrecedenciaProducciones.Add("C'", 8);
-            PrecedenciaProducciones.Add("D",7);
-            PrecedenciaProducciones.Add("D'", 6);
-            PrecedenciaProducciones.Add("E", 5);
-            PrecedenciaProducciones.Add("E'", 4);
-            PrecedenciaProducciones.Add("F",3);
-            PrecedenciaProducciones.Add("G", 2);
-            PrecedenciaProducciones.Add("X'",1);
-        }
+        //public static void LlenarPrecedenciaProducciones() 
+        //{
+        //    PrecedenciaProducciones.Add("Program",50);
+        //    PrecedenciaProducciones.Add("Decl",49);
+        //    PrecedenciaProducciones.Add("Decl'",48);
+        //    PrecedenciaProducciones.Add("VariableDecl",47);
+        //    PrecedenciaProducciones.Add("Variable",46);
+        //    PrecedenciaProducciones.Add("ConstDecl",45);
+        //    PrecedenciaProducciones.Add("ConstType",44);
+        //    PrecedenciaProducciones.Add("Type",43);
+        //    PrecedenciaProducciones.Add("Type'",42);
+        //    PrecedenciaProducciones.Add("FunctionDecl",41);
+        //    PrecedenciaProducciones.Add("Formals",40);
+        //    PrecedenciaProducciones.Add("Formals'", 39);
+        //    PrecedenciaProducciones.Add("ClassDecl",38);
+        //    PrecedenciaProducciones.Add("EXTENDS", 37);
+        //    PrecedenciaProducciones.Add("IMPLEMENTS", 36);
+        //    PrecedenciaProducciones.Add("IMPLEMENTS'", 35);
+        //    PrecedenciaProducciones.Add("Field",34);
+        //    PrecedenciaProducciones.Add("Field'", 33);
+        //    PrecedenciaProducciones.Add("InterfaceDecl",32);
+        //    PrecedenciaProducciones.Add("InterfaceDecl'", 31);
+        //    PrecedenciaProducciones.Add("Prototype", 30);
+        //    PrecedenciaProducciones.Add("StmtBlock", 29);
+        //    PrecedenciaProducciones.Add("LlamarVar", 28);
+        //    PrecedenciaProducciones.Add("LlamarConst", 27);
+        //    PrecedenciaProducciones.Add("LlamarStmt", 26);
+        //    PrecedenciaProducciones.Add("Stmt", 25);
+        //    PrecedenciaProducciones.Add("Stmt'", 24);
+        //    PrecedenciaProducciones.Add("ifStmt", 23);
+        //    PrecedenciaProducciones.Add("ifStmt'",22);
+        //    PrecedenciaProducciones.Add("WhileStmt", 21);
+        //    PrecedenciaProducciones.Add("ForStmt", 20);
+        //    PrecedenciaProducciones.Add("ReturnStmt", 19);
+        //    PrecedenciaProducciones.Add("BreakStmt", 18);
+        //    PrecedenciaProducciones.Add("PrintStmt", 17);
+        //    PrecedenciaProducciones.Add("PrintStmt'", 16);
+        //    PrecedenciaProducciones.Add("Constant", 15);
+        //    PrecedenciaProducciones.Add("Expr", 14);
+        //    PrecedenciaProducciones.Add("Expr'", 13);
+        //    PrecedenciaProducciones.Add("A",12);
+        //    PrecedenciaProducciones.Add("A'",11);
+        //    PrecedenciaProducciones.Add("B",10);
+        //    PrecedenciaProducciones.Add("C",9);
+        //    PrecedenciaProducciones.Add("C'", 8);
+        //    PrecedenciaProducciones.Add("D",7);
+        //    PrecedenciaProducciones.Add("D'", 6);
+        //    PrecedenciaProducciones.Add("E", 5);
+        //    PrecedenciaProducciones.Add("E'", 4);
+        //    PrecedenciaProducciones.Add("F",3);
+        //    PrecedenciaProducciones.Add("G", 2);
+        //    PrecedenciaProducciones.Add("X'",1);
+        //}
         public static void LlenarPrecedenciaTerminales() 
         {
             PrecedenciaTerminales.Add(";", 47);
-            PrecedenciaTerminales.Add("T_es_Id", 46);
+            PrecedenciaTerminales.Add("ident", 46);
             PrecedenciaTerminales.Add("static", 45);
             PrecedenciaTerminales.Add("int", 44);
             PrecedenciaTerminales.Add("double", 44);
@@ -210,10 +211,10 @@ namespace Compiladores_MiniJava
             PrecedenciaTerminales.Add(".", 17);
             PrecedenciaTerminales.Add("out", 17);
             PrecedenciaTerminales.Add("println", 17);
-            PrecedenciaTerminales.Add("T_es_ConstDecimal", 15);
-            PrecedenciaTerminales.Add("T_es_ConstDouble", 15);
-            PrecedenciaTerminales.Add("T_es_ConstBool", 15);
-            PrecedenciaTerminales.Add("T_es_String", 15);
+            PrecedenciaTerminales.Add("intConstant", 15);
+            PrecedenciaTerminales.Add("doubleConstant", 15);
+            PrecedenciaTerminales.Add("boolConstant", 15);
+            PrecedenciaTerminales.Add("stringConstant", 15);
             PrecedenciaTerminales.Add("null", 15);
             PrecedenciaTerminales.Add("||", 13);
             PrecedenciaTerminales.Add("!=", 11);
@@ -239,19 +240,19 @@ namespace Compiladores_MiniJava
         }
         public static void ManejoError(int index)
         {
-            Console.WriteLine("Error al tratar de analizar el token: " + Lab_ASDR.TokenList[index]);
+            contador_Errores++;
+            Console.WriteLine($"Error sintactico #{contador_Errores}: {ErroresExplicitos[index].valor} (value = {ErroresExplicitos[index].palabra}) Linea: {ErroresExplicitos[index].linea} ColumnaI: {ErroresExplicitos[index].columna_i} ColumnaF: {ErroresExplicitos[index].columna_f}");
             Lab_ASDR.TokenList.RemoveAt(index);
             Simbolos.Clear();
             PilaEstados.Clear();
             PilaEstados.Push(0);
-            contador_Errores++;
         }
         public static void PARSER_PILA() 
         {
             PilaEstados.Push(0); //La pila siempre inicia en estado 0
             Lab_ASDR.TokenList.Add("$"); //Se agrega a la lista de tokens el $ para indicar fin
             LlenarEstadosReduccion();
-            LlenarPrecedenciaProducciones();
+            //LlenarPrecedenciaProducciones();
             LlenarPrecedenciaTerminales();
             //var estado_Actual = PilaEstados.Peek();
             var simbolo_actual = Lab_ASDR.TokenList[0];
@@ -309,7 +310,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -431,7 +432,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -498,7 +499,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 3:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r2
                             AccionReduccion(2);
@@ -566,7 +567,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 4:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r3
                             AccionReduccion(3);
@@ -635,7 +636,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 5:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r4
                             AccionReduccion(4);
@@ -703,7 +704,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 6:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r5
                             AccionReduccion(5);
@@ -771,7 +772,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 7:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r6
                             AccionReduccion(6);
@@ -851,7 +852,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 9:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s22
                             PilaEstados.Push(22);
@@ -864,7 +865,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 10:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s23
                             PilaEstados.Push(23);
@@ -917,7 +918,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 12:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s29
                             PilaEstados.Push(29);
@@ -930,7 +931,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 13:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s30
                             PilaEstados.Push(30);
@@ -958,7 +959,7 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(32);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r22
                             AccionReduccion(22);
@@ -980,7 +981,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r22
                             AccionReduccion(22);
@@ -1008,7 +1009,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r22
                             AccionReduccion(22);
@@ -1037,7 +1038,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r22
                             AccionReduccion(22);
@@ -1065,7 +1066,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r22
                             AccionReduccion(22);
@@ -1154,7 +1155,7 @@ namespace Compiladores_MiniJava
 
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -1227,7 +1228,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(9);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r9
                             AccionReduccion(9);
@@ -1347,25 +1348,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(9);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r9
                             AccionReduccion(9);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r9
                             AccionReduccion(9);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r9
                             AccionReduccion(9);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r9
                             AccionReduccion(9);
@@ -1447,7 +1448,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 24:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s40
                             PilaEstados.Push(40);
@@ -1460,7 +1461,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 25:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r12
                             AccionReduccion(12);
@@ -1474,7 +1475,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 26:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r13
                             AccionReduccion(13);
@@ -1487,7 +1488,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 27:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r14
                             AccionReduccion(14);
@@ -1500,7 +1501,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 28:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r15
                             AccionReduccion(15);
@@ -1522,7 +1523,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r30
                             AccionReduccion(30);
@@ -1620,7 +1621,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 31:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r16
                             AccionReduccion(16);
@@ -1646,7 +1647,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 33:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r17
                             AccionReduccion(17);
@@ -1659,7 +1660,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 34:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r18
                             AccionReduccion(18);
@@ -1672,7 +1673,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 35:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r19
                             AccionReduccion(19);
@@ -1685,7 +1686,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 36:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r20
                             AccionReduccion(20);
@@ -1732,7 +1733,7 @@ namespace Compiladores_MiniJava
                             }
 
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -1789,7 +1790,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -1868,7 +1869,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 42:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s52
                             PilaEstados.Push(52);
@@ -1901,7 +1902,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -1960,7 +1961,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r22
                             AccionReduccion(22);
@@ -2022,7 +2023,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 47:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s61
                             PilaEstados.Push(61);
@@ -2054,7 +2055,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(11);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r11
                             AccionReduccion(11);
@@ -2175,25 +2176,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(11);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r11
                             AccionReduccion(11);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r11
                             AccionReduccion(11);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r11
                             AccionReduccion(11);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r11
                             AccionReduccion(11);
@@ -2243,7 +2244,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 51:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s64
                             PilaEstados.Push(64);
@@ -2256,7 +2257,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 52:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r29
                             AccionReduccion(29);
@@ -2370,7 +2371,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -2419,7 +2420,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 55:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s67
                             PilaEstados.Push(67);
@@ -2432,7 +2433,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 56:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s68
                             PilaEstados.Push(68);
@@ -2445,7 +2446,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 57:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r21
                             AccionReduccion(21);
@@ -2514,7 +2515,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -2639,7 +2640,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }                        
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -2723,7 +2724,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 65:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r40
                             AccionReduccion(40);
@@ -2829,7 +2830,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 69:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r23
                             AccionReduccion(23);
@@ -2935,7 +2936,7 @@ namespace Compiladores_MiniJava
                         }
                         //CONFLICTO #1 
                         //GOODKITTY.TXT
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //PRECEDENCIA DEL TERMINAL
                             var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
@@ -2949,6 +2950,7 @@ namespace Compiladores_MiniJava
                             }
                             else
                             {
+                                //s18
                                 PilaEstados.Push(18);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
@@ -3123,25 +3125,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(47);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r47
                             AccionReduccion(47);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r47
                             AccionReduccion(47);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r47
                             AccionReduccion(47);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r47
                             AccionReduccion(47);
@@ -3191,7 +3193,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 72:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r24
                             AccionReduccion(24);
@@ -3318,7 +3320,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -3373,7 +3375,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 75:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r35
                             AccionReduccion(35);
@@ -3428,7 +3430,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 76:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r36
                             AccionReduccion(36);
@@ -3483,7 +3485,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 77:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r37
                             AccionReduccion(37);
@@ -3551,7 +3553,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 79:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s86
                             PilaEstados.Push(86);
@@ -3584,7 +3586,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -3641,7 +3643,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s18
                             PilaEstados.Push(18);
@@ -3699,7 +3701,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(49);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r49
                             AccionReduccion(49);
@@ -3833,25 +3835,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(49);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r49
                             AccionReduccion(49);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r49
                             AccionReduccion(49);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r49
                             AccionReduccion(49);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r49
                             AccionReduccion(49);
@@ -3920,7 +3922,7 @@ namespace Compiladores_MiniJava
                             i--;
                         }
                         //CONFLICTO 7
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //PRECEDENCIA DEL TERMINAL
                             var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
@@ -4109,25 +4111,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(47);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r47
                             AccionReduccion(47);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r47
                             AccionReduccion(47);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r47
                             AccionReduccion(47);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r47
                             AccionReduccion(47);
@@ -4164,7 +4166,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 84:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r28
                             AccionReduccion(28);
@@ -4407,7 +4409,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(61);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -4473,25 +4475,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -4538,7 +4540,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(49);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r49
                             AccionReduccion(49);
@@ -4672,25 +4674,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(49);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r49
                             AccionReduccion(49);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r49
                             AccionReduccion(49);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r49
                             AccionReduccion(49);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r49
                             AccionReduccion(49);
@@ -4733,7 +4735,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(46);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r46
                             AccionReduccion(46);
@@ -4853,25 +4855,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(46);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r46
                             AccionReduccion(46);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r46
                             AccionReduccion(46);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r46
                             AccionReduccion(46);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r46
                             AccionReduccion(46);
@@ -5067,7 +5069,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(61);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -5133,25 +5135,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -5201,7 +5203,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(53);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r53
                             AccionReduccion(53);
@@ -5273,25 +5275,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(53);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r53
                             AccionReduccion(53);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r53
                             AccionReduccion(53);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r53
                             AccionReduccion(53);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r53
                             AccionReduccion(53);
@@ -5328,7 +5330,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(54);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r54
                             AccionReduccion(54);
@@ -5400,25 +5402,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(54);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r54
                             AccionReduccion(54);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r54
                             AccionReduccion(54);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r54
                             AccionReduccion(54);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r54
                             AccionReduccion(54);
@@ -5455,7 +5457,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(55);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r55
                             AccionReduccion(55);
@@ -5527,25 +5529,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(55);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r55
                             AccionReduccion(55);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r55
                             AccionReduccion(55);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r55
                             AccionReduccion(55);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r55
                             AccionReduccion(55);
@@ -5582,7 +5584,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(56);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r56
                             AccionReduccion(56);
@@ -5654,25 +5656,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(56);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r56
                             AccionReduccion(56);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r56
                             AccionReduccion(56);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r56
                             AccionReduccion(56);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r56
                             AccionReduccion(56);
@@ -5709,7 +5711,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(57);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r57
                             AccionReduccion(57);
@@ -5781,25 +5783,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(57);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r57
                             AccionReduccion(57);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r57
                             AccionReduccion(57);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r57
                             AccionReduccion(57);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r57
                             AccionReduccion(57);
@@ -5836,7 +5838,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(58);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r58
                             AccionReduccion(58);
@@ -5908,25 +5910,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(58);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r58
                             AccionReduccion(58);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r58
                             AccionReduccion(58);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r58
                             AccionReduccion(58);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r58
                             AccionReduccion(58);
@@ -5963,7 +5965,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(59);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r59
                             AccionReduccion(59);
@@ -6035,25 +6037,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(59);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r59
                             AccionReduccion(59);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r59
                             AccionReduccion(59);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r59
                             AccionReduccion(59);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r59
                             AccionReduccion(59);
@@ -6199,7 +6201,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -6217,25 +6219,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -6295,7 +6297,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(79);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r79
                             AccionReduccion(79);
@@ -6379,24 +6381,24 @@ namespace Compiladores_MiniJava
                             AccionReduccion(79);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r79
                             AccionReduccion(79);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r79
                             AccionReduccion(79);
                             i--;                     }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r79
                             AccionReduccion(79);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r79
                             AccionReduccion(79);
@@ -6505,7 +6507,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(82);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r82
                             AccionReduccion(82);
@@ -6590,25 +6592,25 @@ namespace Compiladores_MiniJava
                             i--;
 
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r82
                             AccionReduccion(82);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r82
                             AccionReduccion(82);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r82
                             AccionReduccion(82);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r82
                             AccionReduccion(82);
@@ -6718,7 +6720,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r86
                             AccionReduccion(86);
@@ -6802,25 +6804,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r86
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r86
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r86
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r86
                             AccionReduccion(86);
@@ -6944,7 +6946,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(89);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r89
                             AccionReduccion(89);
@@ -7029,25 +7031,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(89);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r89
                             AccionReduccion(89);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r89
                             AccionReduccion(89);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r89
                             AccionReduccion(89);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r89
                             AccionReduccion(89);
@@ -7157,7 +7159,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r93
                             AccionReduccion(93);
@@ -7241,25 +7243,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r93
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r93
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r93
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r93
                             AccionReduccion(93);
@@ -7383,7 +7385,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r97
                             AccionReduccion(97);
@@ -7468,25 +7470,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r97
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r97
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r97
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r97
                             AccionReduccion(97);
@@ -7589,7 +7591,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 118:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s157
                             PilaEstados.Push(157);
@@ -7608,7 +7610,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(99);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r99
                             AccionReduccion(99);
@@ -7692,25 +7694,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(99);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r99
                             AccionReduccion(99);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r99
                             AccionReduccion(99);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r99
                             AccionReduccion(99);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r99
                             AccionReduccion(99);
@@ -7840,7 +7842,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -7858,25 +7860,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
@@ -7913,7 +7915,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(101);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r101
                             AccionReduccion(101);
@@ -7997,25 +7999,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(101);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r101
                             AccionReduccion(101);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r101
                             AccionReduccion(101);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r101
                             AccionReduccion(101);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r101
                             AccionReduccion(101);
@@ -8114,7 +8116,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(103);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r103
                             AccionReduccion(103);
@@ -8198,25 +8200,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(103);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r103
                             AccionReduccion(103);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r103
                             AccionReduccion(103);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r103
                             AccionReduccion(103);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r103
                             AccionReduccion(103);
@@ -8312,7 +8314,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(106);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r106
                             AccionReduccion(106);
@@ -8396,25 +8398,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(106);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r106
                             AccionReduccion(106);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r106
                             AccionReduccion(106);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r106
                             AccionReduccion(106);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r106
                             AccionReduccion(106);
@@ -8506,7 +8508,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(72);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r72
                             AccionReduccion(72);
@@ -8590,25 +8592,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(72);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r72
                             AccionReduccion(72);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r72
                             AccionReduccion(72);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r72
                             AccionReduccion(72);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r72
                             AccionReduccion(72);
@@ -8694,7 +8696,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(73);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r73
                             AccionReduccion(73);
@@ -8778,25 +8780,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(73);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r73
                             AccionReduccion(73);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r73
                             AccionReduccion(73);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r73
                             AccionReduccion(73);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r73
                             AccionReduccion(73);
@@ -8881,7 +8883,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(74);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r74
                             AccionReduccion(74);
@@ -8965,25 +8967,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(74);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r74
                             AccionReduccion(74);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r74
                             AccionReduccion(74);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r74
                             AccionReduccion(74);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r74
                             AccionReduccion(74);
@@ -9068,7 +9070,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(75);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r75
                             AccionReduccion(75);
@@ -9152,25 +9154,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(75);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r75
                             AccionReduccion(75);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r75
                             AccionReduccion(75);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r75
                             AccionReduccion(75);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r75
                             AccionReduccion(75);
@@ -9255,7 +9257,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(76);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r76
                             AccionReduccion(76);
@@ -9339,25 +9341,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(76);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r76
                             AccionReduccion(76);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r76
                             AccionReduccion(76);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r76
                             AccionReduccion(76);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r76
                             AccionReduccion(76);
@@ -9443,7 +9445,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(48);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r48
                             AccionReduccion(48);
@@ -9563,25 +9565,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(48);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r48
                             AccionReduccion(48);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r48
                             AccionReduccion(48);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r48
                             AccionReduccion(48);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r48
                             AccionReduccion(48);
@@ -9618,7 +9620,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 131:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r43
                             AccionReduccion(43);
@@ -9667,7 +9669,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 132:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r44
                             AccionReduccion(44);
@@ -9722,7 +9724,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(45);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r45
                             AccionReduccion(45);
@@ -9842,25 +9844,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(45);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r45
                             AccionReduccion(45);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r45
                             AccionReduccion(45);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r45
                             AccionReduccion(45);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r45
                             AccionReduccion(45);
@@ -9916,7 +9918,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(52);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r52
                             AccionReduccion(52);
@@ -9988,25 +9990,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(52);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r52
                             AccionReduccion(52);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r52
                             AccionReduccion(52);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r52
                             AccionReduccion(52);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r52
                             AccionReduccion(52);
@@ -10087,7 +10089,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
 
@@ -10106,25 +10108,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -10205,7 +10207,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -10223,25 +10225,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -10322,7 +10324,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -10340,25 +10342,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -10395,7 +10397,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(68);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r68
                             AccionReduccion(68);
@@ -10467,25 +10469,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(68);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r68
                             AccionReduccion(68);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r68
                             AccionReduccion(68);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r68
                             AccionReduccion(68);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r68
                             AccionReduccion(68);
@@ -10548,7 +10550,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(77);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r77
                             AccionReduccion(77);
@@ -10632,25 +10634,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(77);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r77
                             AccionReduccion(77);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r77
                             AccionReduccion(77);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r77
                             AccionReduccion(77);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r77
                             AccionReduccion(77);
@@ -10774,7 +10776,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -10792,25 +10794,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -10847,7 +10849,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(80);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r80
                             AccionReduccion(80);
@@ -10931,25 +10933,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(80);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r80
                             AccionReduccion(80);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r80
                             AccionReduccion(80);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r80
                             AccionReduccion(80);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r80
                             AccionReduccion(80);
@@ -11069,7 +11071,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -11087,25 +11089,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -11142,7 +11144,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(83);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             AccionReduccion(83);
                             i--;
@@ -11226,25 +11228,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(83);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r83
                             AccionReduccion(83);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r83
                             AccionReduccion(83);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r83
                             AccionReduccion(83);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r83
                             AccionReduccion(83);
@@ -11358,7 +11360,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -11376,25 +11378,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -11460,7 +11462,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -11478,25 +11480,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -11533,7 +11535,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(87);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r87
                             AccionReduccion(87);
@@ -11618,25 +11620,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(87);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r87
                             AccionReduccion(87);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r87
                             AccionReduccion(87);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r87
                             AccionReduccion(87);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r87
                             AccionReduccion(87);
@@ -11745,7 +11747,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -11763,25 +11765,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -11818,7 +11820,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(90);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r90
                             AccionReduccion(90);
@@ -11902,25 +11904,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(90);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r90
                             AccionReduccion(90);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r90
                             AccionReduccion(90);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r90
                             AccionReduccion(90);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
 
                             //r90
@@ -12025,7 +12027,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -12043,25 +12045,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -12117,7 +12119,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -12135,25 +12137,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -12190,7 +12192,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(94);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r94
                             AccionReduccion(94);
@@ -12274,25 +12276,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(94);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r94
                             AccionReduccion(94);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r94
                             AccionReduccion(94);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r94
                             AccionReduccion(94);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r94
                             AccionReduccion(94);
@@ -12391,7 +12393,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -12409,25 +12411,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -12478,7 +12480,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -12496,25 +12498,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -12561,7 +12563,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(106);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r106
                             AccionReduccion(106);
@@ -12645,25 +12647,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(106);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r106
                             AccionReduccion(106);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r106
                             AccionReduccion(106);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r106
                             AccionReduccion(106);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r106
                             AccionReduccion(106);
@@ -12761,7 +12763,7 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 159:
-                        if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s178
                             PilaEstados.Push(178);
@@ -12780,7 +12782,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(104);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r104
                             AccionReduccion(104);
@@ -12864,25 +12866,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(104);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r104
                             AccionReduccion(104);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r104
                             AccionReduccion(104);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r104
                             AccionReduccion(104);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             AccionReduccion(104);
                             i--;
@@ -13011,7 +13013,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -13029,25 +13031,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -13123,7 +13125,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(67);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r67
                             AccionReduccion(67);
@@ -13195,25 +13197,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(67);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r67
                             AccionReduccion(67);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r67
                             AccionReduccion(67);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r67
                             AccionReduccion(67);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r67
                             AccionReduccion(67);
@@ -13273,7 +13275,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(79);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r79
                             AccionReduccion(79);
@@ -13357,25 +13359,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(79);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r79
                             AccionReduccion(79);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             AccionReduccion(79);
                             i--;
                             //r79
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r79
                             AccionReduccion(79);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r79
                             AccionReduccion(79);
@@ -13484,7 +13486,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(82);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r82
                             AccionReduccion(82);
@@ -13568,25 +13570,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(82);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r82
                             AccionReduccion(82);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r82
                             AccionReduccion(82);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r82
                             AccionReduccion(82);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r82
                             AccionReduccion(82);
@@ -13695,7 +13697,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r86
                             AccionReduccion(86);
@@ -13779,25 +13781,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r86
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r86
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r86
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r86
                             AccionReduccion(86);
@@ -13920,7 +13922,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r86
                             AccionReduccion(86);
@@ -14005,25 +14007,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r86
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r86
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r86
                             AccionReduccion(86);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r86
                             AccionReduccion(86);
@@ -14146,7 +14148,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(89);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r89
                             AccionReduccion(89);
@@ -14230,25 +14232,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(89);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r89
                             AccionReduccion(89);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r89
                             AccionReduccion(89);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r89
                             AccionReduccion(89);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r89
                             AccionReduccion(89);
@@ -14357,7 +14359,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r93
                             AccionReduccion(93);
@@ -14441,25 +14443,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r93
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r93
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r93
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r93
                             AccionReduccion(93);
@@ -14582,7 +14584,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r93
                             AccionReduccion(93);
@@ -14666,25 +14668,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r93
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r93
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r93
                             AccionReduccion(93);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r93
                             AccionReduccion(93);
@@ -14807,7 +14809,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r97
                             AccionReduccion(97);
@@ -14892,25 +14894,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r97
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r97
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r97
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r97
                             AccionReduccion(97);
@@ -15033,7 +15035,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r97
                             AccionReduccion(97);
@@ -15117,25 +15119,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r97
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             AccionReduccion(97);
                             i--;
                             //r97
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r97
                             AccionReduccion(97);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r97
                             AccionReduccion(97);
@@ -15248,7 +15250,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(98);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r98
                             AccionReduccion(98);
@@ -15333,25 +15335,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(98);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r98
                             AccionReduccion(98);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r98
                             AccionReduccion(98);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r98
                             AccionReduccion(98);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r98
                             AccionReduccion(98);
@@ -15436,7 +15438,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(100);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r100
                             AccionReduccion(100);
@@ -15520,25 +15522,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(100);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             AccionReduccion(100);
                             i--;
                             //r100
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r100
                             AccionReduccion(100);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r100
                             AccionReduccion(100);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r100
                             AccionReduccion(100);
@@ -15637,7 +15639,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(105);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r105
                             AccionReduccion(105);
@@ -15721,25 +15723,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(105);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r105
                             AccionReduccion(105);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r105
                             AccionReduccion(105);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r105
                             AccionReduccion(105);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r105
                             AccionReduccion(105);
@@ -15920,7 +15922,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(61);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -15980,25 +15982,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -16130,7 +16132,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(61);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -16190,25 +16192,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -16289,7 +16291,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -16307,25 +16309,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -16375,7 +16377,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(78);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r78
                             AccionReduccion(78);
@@ -16459,25 +16461,25 @@ namespace Compiladores_MiniJava
                             i--;
                             //r78
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r78
                             AccionReduccion(78);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r78
                             AccionReduccion(78);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r78
                             AccionReduccion(78);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r78
                             AccionReduccion(78);
@@ -16563,7 +16565,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(81);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r81
                             AccionReduccion(81);
@@ -16647,25 +16649,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(81);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r81
                             AccionReduccion(81);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r81
                             AccionReduccion(81);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r81
                             AccionReduccion(81);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r81
                             AccionReduccion(81);
@@ -16750,7 +16752,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(84);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r84
                             AccionReduccion(84);
@@ -16836,25 +16838,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(84);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r84
                             AccionReduccion(84);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r84
                             AccionReduccion(84);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r84
                             AccionReduccion(84);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r84
                             AccionReduccion(84);
@@ -16939,7 +16941,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(85);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r85
                             AccionReduccion(85);
@@ -17023,25 +17025,25 @@ namespace Compiladores_MiniJava
                             i--;
                             //r85
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r85
                             AccionReduccion(85);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r85
                             AccionReduccion(85);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r85
                             AccionReduccion(85);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             AccionReduccion(85);
                             i--;
@@ -17126,7 +17128,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(88);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r88
                             AccionReduccion(88);
@@ -17210,25 +17212,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(88);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r88
                             AccionReduccion(88);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r88
                             AccionReduccion(88);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r88
                             AccionReduccion(88);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             AccionReduccion(88);
                             i--;
@@ -17313,7 +17315,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(91);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r91
                             AccionReduccion(91);
@@ -17397,25 +17399,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(91);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r91
                             AccionReduccion(91);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r91
                             AccionReduccion(91);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r91
                             AccionReduccion(91);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r91
                             AccionReduccion(91);
@@ -17501,7 +17503,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(92);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r92
                             AccionReduccion(92);
@@ -17585,25 +17587,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(92);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r92
                             AccionReduccion(92);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             AccionReduccion(92);
                             i--;
                             //r92
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r92
                             AccionReduccion(92);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r92
                             AccionReduccion(92);
@@ -17688,7 +17690,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(95);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r95
                             AccionReduccion(95);
@@ -17772,25 +17774,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(95);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r95
                             AccionReduccion(95);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r95
                             AccionReduccion(95);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r95
                             AccionReduccion(95);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r95
                             AccionReduccion(95);
@@ -17876,7 +17878,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(96);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r96
                             AccionReduccion(96);
@@ -17960,25 +17962,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(96);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r96
                             AccionReduccion(96);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r96
                             AccionReduccion(96);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r96
                             AccionReduccion(96);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r96
                             AccionReduccion(96);
@@ -18063,7 +18065,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(102);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r102
                             AccionReduccion(102);
@@ -18147,25 +18149,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(102);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r102
                             AccionReduccion(102);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r102
                             AccionReduccion(102);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r102
                             AccionReduccion(102);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             AccionReduccion(102);
                             i--;
@@ -18260,7 +18262,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(64);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r64
                             AccionReduccion(64);
@@ -18346,25 +18348,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(64);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r64
                             AccionReduccion(64);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r64
                             AccionReduccion(64);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r64
                             AccionReduccion(64);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r64
                             AccionReduccion(64);
@@ -18401,7 +18403,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(65);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r65
                             AccionReduccion(65);
@@ -18473,25 +18475,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(65);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r65
                             AccionReduccion(65);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r65
                             AccionReduccion(65);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r65
                             AccionReduccion(65);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r65
                             AccionReduccion(65);
@@ -18554,7 +18556,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(62);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r62
                             AccionReduccion(62);
@@ -18626,25 +18628,25 @@ namespace Compiladores_MiniJava
                             i--;
                             //r62
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r62
                             AccionReduccion(62);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r62
                             AccionReduccion(62);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r62
                             AccionReduccion(62);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r62
                             AccionReduccion(62);
@@ -18776,7 +18778,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(61);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -18836,25 +18838,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -18935,7 +18937,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -18953,25 +18955,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -19052,7 +19054,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -19070,25 +19072,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(70);
@@ -19125,7 +19127,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(63);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r63
                             AccionReduccion(63);
@@ -19197,25 +19199,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(63);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r63
                             AccionReduccion(63);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r63
                             AccionReduccion(63);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r63
                             AccionReduccion(63);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r63
                             AccionReduccion(63);
@@ -19389,7 +19391,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(61);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -19449,25 +19451,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -19561,7 +19563,7 @@ namespace Compiladores_MiniJava
                                 i--;
                             }
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //s124
                             PilaEstados.Push(124);
@@ -19579,25 +19581,25 @@ namespace Compiladores_MiniJava
                             PilaEstados.Push(118);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //s125
                             PilaEstados.Push(125);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //s126
                             PilaEstados.Push(126);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //s127
                             PilaEstados.Push(127);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //s128
                             PilaEstados.Push(128);
@@ -19634,7 +19636,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(66);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r66
                             AccionReduccion(66);
@@ -19706,25 +19708,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(66);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r66
                             AccionReduccion(66);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r66
                             AccionReduccion(66);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r66
                             AccionReduccion(66);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r66
                             AccionReduccion(66);
@@ -19803,7 +19805,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(69);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_Id")
+                        else if (Lab_ASDR.TokenList[i] == "ident")
                         {
                             //r69
                             AccionReduccion(69);
@@ -19875,25 +19877,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(69);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDecimal")
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
                             //r69
                             AccionReduccion(69);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstDouble")
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
                             //r69
                             AccionReduccion(69);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_ConstBool")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r69
                             AccionReduccion(69);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "T_es_String")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r69
                             AccionReduccion(69);

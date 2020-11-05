@@ -13,14 +13,14 @@ namespace Compiladores_MiniJava
         
         static void Main(string[] args)
         {
-            //string URL = @"C:\Users\Marcos Andrés CM\Desktop\6 Sexto ciclo\Compiladores\PROYECTO\Fase #1\ARCHIVOS DE PRUEBA\GoodKitty3.txt";//Direccion archivo de prueba
+            string URL = @"C:\Users\Marcos Andrés CM\Desktop\6 Sexto ciclo\Compiladores\PROYECTO\ARCHIVOS DE PRUEBA\while.txt";//Direccion archivo de prueba
             
-            foreach (var arg in args)
-            {
-                if (MetodosAux_AL.VerificarArchivoVacio(arg) != true)
+            //foreach (var arg in args)
+            //{
+                if (MetodosAux_AL.VerificarArchivoVacio(URL) != true)
                 {
                         //INICIO FASE 1: LEXICO
-                    MetodosAux_AL.Analisis_Lex(arg);
+                    MetodosAux_AL.Analisis_Lex(URL);
 
                     //LAB A
                     //Lab_ASDR.Sintactico_Recursivo();
@@ -39,7 +39,7 @@ namespace Compiladores_MiniJava
                 }
                 
                 Console.ReadKey();
-            }
+            //}
         }
     }
 }
