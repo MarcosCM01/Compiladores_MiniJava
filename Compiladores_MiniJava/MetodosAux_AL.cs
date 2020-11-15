@@ -230,11 +230,16 @@ namespace Compiladores_MiniJava
                                 }
                                 else if (tmp_string.Length >0)
                                 {
+                                    //Revisar Bien
                                     var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                     bandera_ID_Capacidad = false;
                                     //Console.WriteLine(ImprimirToken(token));
                                     writer.WriteLine(ImprimirToken(token));
                                     tmp_string = string.Empty;
+                                    token = CrearToken(line[posicion].ToString(), num_linea, num_columna, Trae_Match(tmp_string));
+                                    tmp_string = string.Empty;
+                                    //Console.WriteLine(ImprimirToken(token));
+                                    writer.WriteLine(ImprimirToken(token));
                                 }
                                 else if (posicion + 1 < line.Length)
                                 {
@@ -279,6 +284,7 @@ namespace Compiladores_MiniJava
                                         }
                                         tmp_string += line[posicion];
                                     }
+                                    
                                 }
                                 else
                                 //Cuando la barra viene al final de linea

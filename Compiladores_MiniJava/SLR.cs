@@ -6113,6 +6113,19 @@ namespace Compiladores_MiniJava
                             i = -1;
                         }
                         break;
+                    case 106:
+                        if (Lab_ASDR.TokenList[i] == "(")
+                        {
+                            //s136
+                            PilaEstados.Push(136);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
+                        break;
                     case 107:
                         if (Lab_ASDR.TokenList[i] == "(")
                         {
@@ -6159,7 +6172,7 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(122);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "Expr")
@@ -6169,56 +6182,56 @@ namespace Compiladores_MiniJava
                             }
                             else if (Simbolos.Peek() == "A")
                             {
-                                PilaEstados.Push(112);
+                                PilaEstados.Push(113);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "B")
                             {
-                                PilaEstados.Push(113);
+                                PilaEstados.Push(114);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "C")
                             {
-                                PilaEstados.Push(114);
+                                PilaEstados.Push(115);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "D")
                             {
-                                PilaEstados.Push(115);
+                                PilaEstados.Push(116);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(116);
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s141
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -6253,14 +6266,14 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
+                            //s124
+                            PilaEstados.Push(124);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -6272,8 +6285,8 @@ namespace Compiladores_MiniJava
                     case 111:
                         if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s141
-                            PilaEstados.Push(141);
+                            //s142
+                            PilaEstados.Push(142);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -6287,133 +6300,25 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "Expr'")
+                            if (Simbolos.Peek() == "X'")
                             {
-                                PilaEstados.Push(142);
+                                PilaEstados.Push(145);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r79
-                            AccionReduccion(79);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r79
-                            AccionReduccion(79);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;                     }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        //CONFLICTO 13
-                        else if (Lab_ASDR.TokenList[i] == "||")
                         {
                             //PRECEDENCIA DEL TERMINAL
                             var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
@@ -6421,8 +6326,8 @@ namespace Compiladores_MiniJava
                             var proPrec = 11;
                             if (proPrec > terPrec)
                             {
-                                //r79
-                                AccionReduccion(79);
+                                //r111
+                                AccionReduccion(111);
                                 i--;
                             }
                             else
@@ -6432,59 +6337,188 @@ namespace Compiladores_MiniJava
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
                         }
+                        else if (Lab_ASDR.TokenList[i] == ")")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ",")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "{")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "}")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "if")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "else")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "while")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "for")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "return")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "break")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "System")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ".")
+                        {
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 11;
+                            if (proPrec > terPrec)
+                            {
+                                //r111
+                                AccionReduccion(111);
+                                i--;
+                            }
+                            else
+                            {
+                                //s144
+                                PilaEstados.Push(144);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;                     }
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "null")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        //CONFLICTO 13
+                        else if (Lab_ASDR.TokenList[i] == "||")
+                        {
+
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+
+                        }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r79
-                            AccionReduccion(79);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r79
-                            AccionReduccion(79);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r79
-                            AccionReduccion(79);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r79
-                            AccionReduccion(79);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r79
-                            AccionReduccion(79);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r79
-                            AccionReduccion(79);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r79
-                            AccionReduccion(79);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r79
-                            AccionReduccion(79);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r79
-                            AccionReduccion(79);
+                            //r111
+                            AccionReduccion(111);
                             i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "=")
+                        {
+                            //s146
+                            PilaEstados.Push(146);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
                         {
@@ -6497,141 +6531,135 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "A'")
+                            if (Simbolos.Peek() == "Expr'")
                             {
-                                PilaEstados.Push(144);
+                                PilaEstados.Push(147);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
 
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r82
-                            AccionReduccion(82);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         //CONFLICTO 14
-                        else if (Lab_ASDR.TokenList[i] == "!=")
+                        else if (Lab_ASDR.TokenList[i] == "||")
                         {
                             //PRECEDENCIA DEL TERMINAL
                             var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
@@ -6639,64 +6667,70 @@ namespace Compiladores_MiniJava
                             var proPrec = 9;
                             if (proPrec > terPrec)
                             {
-                                //r82
-                                AccionReduccion(82);
+                                //r84
+                                AccionReduccion(84);
                                 i--;
                             }
                             else
                             {
-                                //s145
-                                PilaEstados.Push(145);
+                                //s148
+                                PilaEstados.Push(148);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
                         }
+                        else if (Lab_ASDR.TokenList[i] == "!=")
+                        {
+                            //r84
+                            AccionReduccion(84);
+                            i--;
+                        }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
 
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else
@@ -6710,219 +6744,209 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "B'")
+                            if (Simbolos.Peek() == "A'")
                             {
-                                PilaEstados.Push(146);
+                                PilaEstados.Push(149);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 7;
+                            if (proPrec > terPrec)
+                            {
+                                //r87
+                                AccionReduccion(87);
+                                i--;
+                            }
+                            else
+                            {
+                                //s150
+                                PilaEstados.Push(150);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
                         //CONFLICTO 15
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 7;
-                            if (proPrec > terPrec)
-                            {
-                                //r86
-                                AccionReduccion(86);
-                                i--;
-                            }
-                            else
-                            {
-                                //s147
-                                PilaEstados.Push(147);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
+                            
+                             //r87
+                            AccionReduccion(87);
+                            i--;
                         }
                         //CONFLICTO 16
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 7;
-                            if (proPrec > terPrec)
-                            {
-                                //r86
-                                AccionReduccion(86);
+         
+                                //r87
+                                AccionReduccion(87);
                                 i--;
-                            }
-                            else
-                            {
-                                //s148
-                                PilaEstados.Push(148);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
+           
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
 
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r86
-                            AccionReduccion(86);
+                            //r87
+                            AccionReduccion(87);
                             i--;
                         }
                         else
@@ -6936,206 +6960,221 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "C'")
+                            if (Simbolos.Peek() == "B'")
                             {
-                                PilaEstados.Push(149);
+                                PilaEstados.Push(151);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
 
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r89
+                            //r91
                             AccionReduccion(89);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r89
+                            //r91
                             AccionReduccion(89);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        //CONFLICTO 17
-                         else if (Lab_ASDR.TokenList[i] == "-")
-                         {
                             //PRECEDENCIA DEL TERMINAL
                             var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
                             //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 5;
+                            var proPrec = 7;
                             if (proPrec > terPrec)
                             {
-                                //r89
-                                AccionReduccion(89);
+                                //r91
+                                AccionReduccion(91);
                                 i--;
                             }
                             else
                             {
-                                //s150
-                                PilaEstados.Push(150);
+                                //s152
+                                PilaEstados.Push(152);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
                         }
+                        else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 7;
+                            if (proPrec > terPrec)
+                            {
+                                //r91
+                                AccionReduccion(91);
+                                i--;
+                            }
+                            else
+                            {
+                                //s153
+                                PilaEstados.Push(153);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
+                        }
+                        //CONFLICTO 17
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                         {
+
+                                //r91
+                                AccionReduccion(91);
+                                i--;
+
+                        }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
 
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r89
-                            AccionReduccion(89);
+                            //r91
+                            AccionReduccion(91);
                             i--;
                         }
                         else
@@ -7149,218 +7188,209 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "D'")
+                            if (Simbolos.Peek() == "C'")
                             {
-                                PilaEstados.Push(151);
+                                PilaEstados.Push(154);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 3;
+                            if (proPrec > terPrec)
+                            {
+                                //r94
+                                AccionReduccion(94);
+                                i--;
+                            }
+                            else
+                            {
+                                //s155
+                                PilaEstados.Push(155);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
                         //CONFLICTO 18
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 3;
-                            if (proPrec > terPrec)
-                            {
-                                //r93
-                                AccionReduccion(93);
+
+                                //r94
+                                AccionReduccion(94);
                                 i--;
-                            }
-                            else
-                            {
-                                //s152
-                                PilaEstados.Push(152);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
+           
                         }
                         //CONFLICTO 19
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 3;
-                            if (proPrec > terPrec)
-                            {
-                                //r93
-                                AccionReduccion(93);
+        
+                                //r94
+                                AccionReduccion(94);
                                 i--;
-                            }
-                            else
-                            {
-                                //s153
-                                PilaEstados.Push(153);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
+                
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r94
+                            AccionReduccion(94);
                             i--;
                         }
                         else
@@ -7375,174 +7405,163 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "E'")
+                            if (Simbolos.Peek() == "D'")
                             {
-                                PilaEstados.Push(154);
+                                PilaEstados.Push(156);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
 
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                       
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         //CONFLICTO 20
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 1;
-                            if (proPrec > terPrec)
-                            {
-                                //r97
-                                AccionReduccion(97);
+
+                                //r98
+                                AccionReduccion(98);
                                 i--;
-                            }
-                            else
-                            {
-                                //s155
-                                PilaEstados.Push(155);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
+    
                         }
                         //CONFLICTO 21
-                        else if (Lab_ASDR.TokenList[i] == "!")
+                        else if (Lab_ASDR.TokenList[i] == "/")
                         {
                             //PRECEDENCIA DEL TERMINAL
                             var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
@@ -7550,40 +7569,53 @@ namespace Compiladores_MiniJava
                             var proPrec = 1;
                             if (proPrec > terPrec)
                             {
-                                //r97
-                                AccionReduccion(97);
+                                //r98
+                                AccionReduccion(98);
                                 i--;
                             }
                             else
                             {
-                                //s156
-                                PilaEstados.Push(156);
+                                //s157
+                                PilaEstados.Push(157);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r97
-                            AccionReduccion(97);
-                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 1;
+                            if (proPrec > terPrec)
+                            {
+                                //r98
+                                AccionReduccion(98);
+                                i--;
+                            }
+                            else
+                            {
+                                //s158
+                                PilaEstados.Push(158);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!")
+                        {
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
 
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r98
+                            AccionReduccion(98);
                             i--;
                         }
                         else
@@ -7593,11 +7625,234 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 118:
-                        if (Lab_ASDR.TokenList[i] == "ident")
+                        if (BanderaReduccion == true)
                         {
-                            //s157
-                            PilaEstados.Push(157);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            BanderaReduccion = false;
+
+                            if (Simbolos.Peek() == "E'")
+                            {
+                                PilaEstados.Push(159);
+                                i--;
+                            }
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ";")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "ident")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "(")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ")")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ",")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "{")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+
+                        else if (Lab_ASDR.TokenList[i] == "}")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "if")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "else")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "while")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "for")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "return")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "break")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "System")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ".")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "null")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+
+                        else if (Lab_ASDR.TokenList[i] == "||")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        //CONFLICTO 20
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+
+                        }
+                        //CONFLICTO 21
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 1;
+                            if (proPrec > terPrec)
+                            {
+                                //r102
+                                AccionReduccion(102);
+                                i--;
+                            }
+                            else
+                            {
+                                //s160
+                                PilaEstados.Push(160);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "/")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "%")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!")
+                        {
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 1;
+                            if (proPrec > terPrec)
+                            {
+                                //r102
+                                AccionReduccion(102);
+                                i--;
+                            }
+                            else
+                            {
+                                //s161
+                                PilaEstados.Push(161);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "New")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
+
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "this")
+                        {
+                            //r102
+                            AccionReduccion(102);
+                            i--;
                         }
                         else
                         {
@@ -7606,186 +7861,11 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 119:
-                        if (Lab_ASDR.TokenList[i] == ";")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
-
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-                            //r99
-                            AccionReduccion(99);
-                            i--;
+                            //s162
+                            PilaEstados.Push(162);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
                         {
@@ -7794,72 +7874,260 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 120:
+                        if (Lab_ASDR.TokenList[i] == ";")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "ident")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "(")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ")")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ",")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "{")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "}")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "if")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "else")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "while")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "for")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "return")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "break")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "System")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ".")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "null")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "||")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!=")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "/")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "%")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "New")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "this")
+                        {
+                            //r104
+                            AccionReduccion(104);
+                            i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
+                        break;
+                    case 121:
                         if (BanderaReduccion == true)
                         {
                             BanderaReduccion = false;
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(122);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "Expr")
                             {
-                                PilaEstados.Push(158);
+                                PilaEstados.Push(163);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "A")
                             {
-                                PilaEstados.Push(112);
+                                PilaEstados.Push(113);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "B")
                             {
-                                PilaEstados.Push(113);
+                                PilaEstados.Push(114);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "C")
                             {
-                                PilaEstados.Push(114);
+                                PilaEstados.Push(115);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "D")
                             {
-                                PilaEstados.Push(115);
+                                PilaEstados.Push(116);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(116);
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s141
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -7894,203 +8162,15 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
                             //s123
                             PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else
-                        {
-                            ManejoError(i);
-                            i = -1;
-                        }
-                        break;
-                    case 121:
-                        if (Lab_ASDR.TokenList[i] == ";")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
-
-                        }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r101
-                            AccionReduccion(101);
-                            i--;
+                            //s124
+                            PilaEstados.Push(124);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
                         {
@@ -8099,11 +8179,186 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 122:
-                        if (Lab_ASDR.TokenList[i] == "(")
+                        if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //s159
-                            PilaEstados.Push(159);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "ident")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "(")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ")")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ",")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "{")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "}")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "if")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "else")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "while")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "for")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "return")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "break")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "System")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ".")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "null")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "||")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!=")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "/")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "%")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "New")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
+
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "this")
+                        {
+                            //r106
+                            AccionReduccion(106);
+                            i--;
                         }
                         else
                         {
@@ -8112,186 +8367,11 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 123:
-                        if (Lab_ASDR.TokenList[i] == ";")
+                        if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
-
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-                            //r103
-                            AccionReduccion(103);
-                            i--;
+                            //s164
+                            PilaEstados.Push(164);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
                         {
@@ -8300,202 +8380,186 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 124:
-                        if (BanderaReduccion == true)
+                        if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            BanderaReduccion = false;
-
-                            if (Simbolos.Peek() == "X'")
-                            {
-                                PilaEstados.Push(160);
-                                i--;
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ";")
-                        {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
 
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r106
-                            AccionReduccion(106);
+                            //r108
+                            AccionReduccion(108);
                             i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "=")
-                        {
-                            //s161
-                            PilaEstados.Push(161);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
                         {
@@ -8506,183 +8570,183 @@ namespace Compiladores_MiniJava
                     case 125:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
 
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r72
-                            AccionReduccion(72);
+                            //r77
+                            AccionReduccion(77);
                             i--;
                         }
                         else
@@ -8694,182 +8758,183 @@ namespace Compiladores_MiniJava
                     case 126:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
+
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r73
-                            AccionReduccion(73);
+                            //r78
+                            AccionReduccion(78);
                             i--;
                         }
                         else
@@ -8881,182 +8946,182 @@ namespace Compiladores_MiniJava
                     case 127:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r74
-                            AccionReduccion(74);
+                            //r79
+                            AccionReduccion(79);
                             i--;
                         }
                         else
@@ -9068,182 +9133,182 @@ namespace Compiladores_MiniJava
                     case 128:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r75
-                            AccionReduccion(75);
+                            //r80
+                            AccionReduccion(80);
                             i--;
                         }
                         else
@@ -9255,183 +9320,182 @@ namespace Compiladores_MiniJava
                     case 129:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r76
-                            AccionReduccion(76);
+                            //r81
+                            AccionReduccion(81);
                             i--;
                         }
                         else
@@ -9471,25 +9535,25 @@ namespace Compiladores_MiniJava
                             AccionReduccion(48);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "string")
-                        {
-                            //r48
-                            AccionReduccion(48);
-                            i--;
-                        }
                         else if (Lab_ASDR.TokenList[i] == "boolean")
                         {
                             //r48
                             AccionReduccion(48);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "(")
+                        else if (Lab_ASDR.TokenList[i] == "string")
                         {
                             //r48
                             AccionReduccion(48);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "void")
+                        {
+                            //r48
+                            AccionReduccion(48);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "(")
                         {
                             //r48
                             AccionReduccion(48);
@@ -9579,13 +9643,13 @@ namespace Compiladores_MiniJava
                             AccionReduccion(48);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r48
                             AccionReduccion(48);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r48
                             AccionReduccion(48);
@@ -9593,10 +9657,12 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
+
                             //r48
                             AccionReduccion(48);
                             i--;
                         }
+                        
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
                             //r48
@@ -9628,6 +9694,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(43);
                             i--;
                         }
+
                         else if (Lab_ASDR.TokenList[i] == "int")
                         {
                             //r43
@@ -9652,6 +9719,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(43);
                             i--;
                         }
+
                         else if (Lab_ASDR.TokenList[i] == "void")
                         {
                             //r43
@@ -9664,6 +9732,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(43);
                             i--;
                         }
+                        
                         else
                         {
                             ManejoError(i);
@@ -9858,13 +9927,13 @@ namespace Compiladores_MiniJava
                             AccionReduccion(45);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
                             //r45
                             AccionReduccion(45);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
                             //r45
                             AccionReduccion(45);
@@ -9872,10 +9941,12 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
+
                             //r45
                             AccionReduccion(45);
                             i--;
                         }
+
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
                             //r45
@@ -9907,6 +9978,7 @@ namespace Compiladores_MiniJava
                             AccionReduccion(50);
                             i--;
                         }
+                        
                         else
                         {
                             ManejoError(i);
@@ -10047,67 +10119,67 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(122);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "Expr")
                             {
-                                PilaEstados.Push(162);
+                                PilaEstados.Push(165);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "A")
                             {
-                                PilaEstados.Push(112);
+                                PilaEstados.Push(113);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "B")
                             {
-                                PilaEstados.Push(113);
+                                PilaEstados.Push(114);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "C")
                             {
-                                PilaEstados.Push(114);
+                                PilaEstados.Push(115);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "D")
                             {
-                                PilaEstados.Push(115);
+                                PilaEstados.Push(116);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(116);
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
+                            //s141
 
-                            PilaEstados.Push(124);
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -10142,14 +10214,14 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
+                            //s124
+                            PilaEstados.Push(124);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -10165,66 +10237,66 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(122);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "Expr")
                             {
-                                PilaEstados.Push(163);
+                                PilaEstados.Push(166);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "A")
                             {
-                                PilaEstados.Push(112);
+                                PilaEstados.Push(113);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "B")
                             {
-                                PilaEstados.Push(113);
+                                PilaEstados.Push(114);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "C")
                             {
-                                PilaEstados.Push(114);
+                                PilaEstados.Push(115);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "D")
                             {
-                                PilaEstados.Push(115);
+                                PilaEstados.Push(116);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(116);
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s141
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -10259,14 +10331,14 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
+                            //s124
+                            PilaEstados.Push(143);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -10282,66 +10354,66 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(122);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "Expr")
                             {
-                                PilaEstados.Push(164);
+                                PilaEstados.Push(167);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "A")
                             {
-                                PilaEstados.Push(112);
+                                PilaEstados.Push(113);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "B")
                             {
-                                PilaEstados.Push(113);
+                                PilaEstados.Push(114);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "C")
                             {
-                                PilaEstados.Push(114);
+                                PilaEstados.Push(115);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "D")
                             {
-                                PilaEstados.Push(115);
+                                PilaEstados.Push(116);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(116);
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s141
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -10376,14 +10448,14 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
+                            //s124
+                            PilaEstados.Push(124);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -10395,122 +10467,122 @@ namespace Compiladores_MiniJava
                     case 139:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r68
-                            AccionReduccion(68);
+                            //r69
+                            AccionReduccion(69);
                             i--;
                         }
                         else
@@ -10522,8 +10594,8 @@ namespace Compiladores_MiniJava
                     case 140:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //s165
-                            PilaEstados.Push(165);
+                            //s168
+                            PilaEstados.Push(168);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -10533,198 +10605,191 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 141:
-                        if (Lab_ASDR.TokenList[i] == "out")
-                        {
-                            //s166
-                            PilaEstados.Push(166);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
-                        }
-                        else
-                        {
-                            ManejoError(i);
-                            i = -1;
-                        }
-                        break;
-                    case 142:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            AccionReduccion(77);
+                            AccionReduccion(111);
                             i--;
-                            //r77
+                            //r111
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r77
-                            AccionReduccion(77);
+                            //r111
+                            AccionReduccion(111);
                             i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "=")
+                        {
+                            //s146
+                            PilaEstados.Push(146);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
                         {
@@ -10737,63 +10802,73 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "Constant")
+                            if (Simbolos.Peek() == "Actuals")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(170);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "Constant")
+                            {
+                                PilaEstados.Push(122);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "Expr")
+                            {
+                                PilaEstados.Push(171);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "A")
                             {
-                                PilaEstados.Push(167);
+                                PilaEstados.Push(113);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "B")
                             {
-                                PilaEstados.Push(113);
+                                PilaEstados.Push(114);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "C")
                             {
-                                PilaEstados.Push(114);
+                                PilaEstados.Push(115);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "D")
                             {
-                                PilaEstados.Push(115);
+                                PilaEstados.Push(116);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(116);
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s143
+                            PilaEstados.Push(143);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -10828,14 +10903,14 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
+                            //s124
+                            PilaEstados.Push(124);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -10845,186 +10920,11 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 144:
-                        if (Lab_ASDR.TokenList[i] == ";")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r80
-                            AccionReduccion(80);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-
-                            //r80
-                            AccionReduccion(80);
-                            i--;
+                            //s172
+                            PilaEstados.Push(172);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
                         {
@@ -11033,105 +10933,186 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 145:
-                        if (BanderaReduccion == true)
+                        if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            BanderaReduccion = false;
-
-                            if (Simbolos.Peek() == "Constant")
-                            {
-                                PilaEstados.Push(121);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "B")
-                            {
-                                PilaEstados.Push(168);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "C")
-                            {
-                                PilaEstados.Push(114);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "D")
-                            {
-                                PilaEstados.Push(115);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "E")
-                            {
-                                PilaEstados.Push(116);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "F")
-                            {
-                                PilaEstados.Push(117);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "G")
-                            {
-                                PilaEstados.Push(119);
-                                i--;
-                            }
+                            //r109
+                            AccionReduccion(109);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r109
+                            AccionReduccion(109);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ")")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ",")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "{")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "}")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "if")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "else")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "while")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "for")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "return")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "break")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "System")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r109
+                            AccionReduccion(109);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //s125
-                            PilaEstados.Push(125);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r109
+                            AccionReduccion(109);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //s126
-                            PilaEstados.Push(126);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r109
+                            AccionReduccion(109);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //s127
-                            PilaEstados.Push(127);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r109
+                            AccionReduccion(109);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //s128
-                            PilaEstados.Push(128);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r109
+                            AccionReduccion(109);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //s129
-                            PilaEstados.Push(129);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "||")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!=")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "/")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "%")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!")
+                        {
+                            //r109
+                            AccionReduccion(109);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r109
+                            AccionReduccion(109);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+
+                            //r109
+                            AccionReduccion(109);
+                            i--;
                         }
                         else
                         {
@@ -11140,244 +11121,72 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 146:
-                        if (Lab_ASDR.TokenList[i] == ";")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            AccionReduccion(83);
-                            i--;
-                            //r83
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-                            //r83
-                            AccionReduccion(83);
-                            i--;
-                        }
-                        else
-                        {
-                            ManejoError(i);
-                            i = -1;
-                        }
-                        break;
-                    case 147:
                         if (BanderaReduccion == true)
                         {
                             BanderaReduccion = false;
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(122);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "Expr")
+                            {
+                                PilaEstados.Push(173);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "A")
+                            {
+                                PilaEstados.Push(113);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "B")
+                            {
+                                PilaEstados.Push(114);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "C")
                             {
-                                PilaEstados.Push(169);
+                                PilaEstados.Push(115);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "D")
                             {
-                                PilaEstados.Push(115);
+                                PilaEstados.Push(116);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(116);
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s141
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -11412,15 +11221,202 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
+                            //s124
+                            PilaEstados.Push(124);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
+                        break;
+                    case 147:
+                        if (Lab_ASDR.TokenList[i] == ";")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "ident")
+                        {
+                            AccionReduccion(82);
+                            i--;
+                            //r82
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "(")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ")")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ",")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "{")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "}")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "if")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "else")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "while")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "for")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "return")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "break")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "System")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ".")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "null")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "||")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!=")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "/")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "%")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "New")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "this")
+                        {
+                            //r82
+                            AccionReduccion(82);
+                            i--;
                         }
                         else
                         {
@@ -11435,51 +11431,61 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(122);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "A")
+                            {
+                                PilaEstados.Push(174);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "B")
+                            {
+                                PilaEstados.Push(114);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "C")
                             {
-                                PilaEstados.Push(170);
+                                PilaEstados.Push(115);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "D")
                             {
-                                PilaEstados.Push(115);
+                                PilaEstados.Push(116);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(116);
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s141
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -11514,14 +11520,14 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
+                            //s124
+                            PilaEstados.Push(124);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -11533,183 +11539,183 @@ namespace Compiladores_MiniJava
                     case 149:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
 
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r87
-                            AccionReduccion(87);
+                            //r85
+                            AccionReduccion(85);
                             i--;
                         }
                         else
@@ -11725,46 +11731,56 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(122);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "B")
+                            {
+                                PilaEstados.Push(175);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "C")
+                            {
+                                PilaEstados.Push(115);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "D")
                             {
-                                PilaEstados.Push(171);
+                                PilaEstados.Push(116);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(116);
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s141
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -11799,14 +11815,14 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
+                            //s124
+                            PilaEstados.Push(124);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -11818,183 +11834,183 @@ namespace Compiladores_MiniJava
                     case 151:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
 
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
                             //r87
-                            AccionReduccion(90);
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r90
-                            AccionReduccion(90);
+                            //r88
+                            AccionReduccion(88);
                             i--;
                         }
                         else
@@ -12010,41 +12026,51 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(122);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "C")
+                            {
+                                PilaEstados.Push(176);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "D")
+                            {
+                                PilaEstados.Push(116);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(172);
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s141
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -12079,14 +12105,14 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
+                            //s124
+                            PilaEstados.Push(124);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -12102,41 +12128,51 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(122);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "C")
+                            {
+                                PilaEstados.Push(177);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "D")
+                            {
+                                PilaEstados.Push(116);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(173);
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s141
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -12171,14 +12207,14 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
+                            //s124
+                            PilaEstados.Push(124);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -12190,182 +12226,182 @@ namespace Compiladores_MiniJava
                     case 154:
                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            AccionReduccion(94);
+                            AccionReduccion(92);
                             i--;
-                            //r94
+                            //r92
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r94
-                            AccionReduccion(94);
+                            //r92
+                            AccionReduccion(92);
                             i--;
                         }
                         else
@@ -12381,36 +12417,46 @@ namespace Compiladores_MiniJava
 
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
+                                PilaEstados.Push(122);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "D")
+                            {
+                                PilaEstados.Push(178);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "E")
+                            {
+                                PilaEstados.Push(117);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(174);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s141
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -12445,14 +12491,14 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
+                            //s124
+                            PilaEstados.Push(124);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -12462,85 +12508,185 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 156:
-                        if (BanderaReduccion == true)
+                        if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            BanderaReduccion = false;
-
-                            if (Simbolos.Peek() == "Constant")
-                            {
-                                PilaEstados.Push(121);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "F")
-                            {
-                                PilaEstados.Push(175);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "G")
-                            {
-                                PilaEstados.Push(119);
-                                i--;
-                            }
+                            //r95
+                            AccionReduccion(95);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r95
+                            AccionReduccion(95);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ")")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ",")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "{")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "}")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "if")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "else")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "while")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "for")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "return")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "break")
+                        {
+                            AccionReduccion(95);
+                            i--;
+                            //r95
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "System")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r95
+                            AccionReduccion(95);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //s125
-                            PilaEstados.Push(125);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r95
+                            AccionReduccion(95);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //s126
-                            PilaEstados.Push(126);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r95
+                            AccionReduccion(95);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //s127
-                            PilaEstados.Push(127);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r95
+                            AccionReduccion(95);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //s128
-                            PilaEstados.Push(128);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r95
+                            AccionReduccion(95);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //s129
-                            PilaEstados.Push(129);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "||")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!=")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "/")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "%")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!")
+                        {
+                            //r95
+                            AccionReduccion(95);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r95
+                            AccionReduccion(95);
+                            i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //s123
-                            PilaEstados.Push(123);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            //r95
+                            AccionReduccion(95);
+                            i--;
                         }
                         else
                         {
@@ -12553,484 +12699,43 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "X'")
-                            {
-                                PilaEstados.Push(176);
-                                i--;
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ";")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            AccionReduccion(106);
-                            i--;
-                            //r106
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-                            //r106
-                            AccionReduccion(106);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "=")
-                        {
-                            //s161
-                            PilaEstados.Push(161);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
-                        }
-                        else
-                        {
-                            ManejoError(i);
-                            i = -1;
-                        }
-                        break;
-                    case 158:
-                        if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //s177
-                            PilaEstados.Push(177);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
-                        }
-                        else
-                        {
-                            ManejoError(i);
-                            i = -1;
-                        }
-                        break;
-                    case 159:
-                        if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //s178
-                            PilaEstados.Push(178);
-                            Simbolos.Push(Lab_ASDR.TokenList[i]);
-                        }
-                        else
-                        {
-                            ManejoError(i);
-                            i = -1;
-                        }
-                        break;
-                    case 160:
-                        if (Lab_ASDR.TokenList[i] == ";")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            AccionReduccion(104);
-                            i--;
-                            //r104
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-                            //r104
-                            AccionReduccion(104);
-                            i--;
-                        }
-                        else
-                        {
-                            ManejoError(i);
-                            i = -1;
-                        }
-                        break;
-                    case 161:
-                        if (BanderaReduccion == true)
-                        {
-                            BanderaReduccion = false;
-
                             if (Simbolos.Peek() == "Constant")
                             {
-                                PilaEstados.Push(121);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "Expr")
-                            {
-                                PilaEstados.Push(179);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "A")
-                            {
-                                PilaEstados.Push(112);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "B")
-                            {
-                                PilaEstados.Push(113);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "C")
-                            {
-                                PilaEstados.Push(114);
-                                i--;
-                            }
-                            else if (Simbolos.Peek() == "D")
-                            {
-                                PilaEstados.Push(115);
+                                PilaEstados.Push(122);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "E")
                             {
-                                PilaEstados.Push(116);
+                                PilaEstados.Push(179);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "F")
                             {
-                                PilaEstados.Push(117);
+                                PilaEstados.Push(118);
                                 i--;
                             }
                             else if (Simbolos.Peek() == "G")
                             {
-                                PilaEstados.Push(119);
+                                PilaEstados.Push(120);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s124
-                            PilaEstados.Push(124);
+                            //s141
+                            PilaEstados.Push(141);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //s120
-                            PilaEstados.Push(120);
+                            //s121
+                            PilaEstados.Push(121);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //s118
-                            PilaEstados.Push(118);
+                            //s119
+                            PilaEstados.Push(119);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
@@ -13065,14 +12770,468 @@ namespace Compiladores_MiniJava
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //s122
-                            PilaEstados.Push(122);
+                            //s123
+                            PilaEstados.Push(123);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
+                            //s124
+                            PilaEstados.Push(124);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
+                        break;
+                    case 158:
+                        if (BanderaReduccion == true)
+                        {
+                            BanderaReduccion = false;
+
+                            if (Simbolos.Peek() == "Constant")
+                            {
+                                PilaEstados.Push(122);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "E")
+                            {
+                                PilaEstados.Push(180);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "F")
+                            {
+                                PilaEstados.Push(118);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "G")
+                            {
+                                PilaEstados.Push(120);
+                                i--;
+                            }
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "ident")
+                        {
+                            //s141
+                            PilaEstados.Push(141);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "(")
+                        {
+                            //s121
+                            PilaEstados.Push(121);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ".")
+                        {
+                            //s119
+                            PilaEstados.Push(119);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
+                        {
+                            //s125
+                            PilaEstados.Push(125);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
+                        {
+                            //s126
+                            PilaEstados.Push(126);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        {
+                            //s127
+                            PilaEstados.Push(127);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        {
+                            //s128
+                            PilaEstados.Push(128);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "null")
+                        {
+                            //s129
+                            PilaEstados.Push(129);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "New")
+                        {
                             //s123
                             PilaEstados.Push(123);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "this")
+                        {
+                            //s124
+                            PilaEstados.Push(124);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
+                        break;
+                    case 159:
+                        if (Lab_ASDR.TokenList[i] == ";")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "ident")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "(")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ")")
+                        {
+                            AccionReduccion(99);
+                            i--;
+                            //r99
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ",")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "{")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "}")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "if")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "else")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "while")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "for")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "return")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "break")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "System")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ".")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "null")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "||")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!=")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "/")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "%")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "New")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "this")
+                        {
+                            //r99
+                            AccionReduccion(99);
+                            i--;
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
+                        break;
+                    case 160:
+                        if (BanderaReduccion == true)
+                        {
+                            BanderaReduccion = false;
+
+                            if (Simbolos.Peek() == "Constant")
+                            {
+                                PilaEstados.Push(122);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "F")
+                            {
+                                PilaEstados.Push(181);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "G")
+                            {
+                                PilaEstados.Push(120);
+                                i--;
+                            }
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "ident")
+                        {
+                            //s141
+                            PilaEstados.Push(141);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "(")
+                        {
+                            //s121
+                            PilaEstados.Push(121);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ".")
+                        {
+                            //s119
+                            PilaEstados.Push(119);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
+                        {
+                            //s125
+                            PilaEstados.Push(125);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
+                        {
+                            //s126
+                            PilaEstados.Push(126);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        {
+                            //s127
+                            PilaEstados.Push(127);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        {
+                            //s128
+                            PilaEstados.Push(128);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "null")
+                        {
+                            //s129
+                            PilaEstados.Push(129);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "New")
+                        {
+                            //s123
+                            PilaEstados.Push(123);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "this")
+                        {
+                            //s124
+                            PilaEstados.Push(124);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else
+                        {
+                            ManejoError(i);
+                            i = -1;
+                        }
+                        break;
+                        
+                    case 161:
+                        if (BanderaReduccion == true)
+                        {
+                            BanderaReduccion = false;
+
+                            if (Simbolos.Peek() == "Constant")
+                            {
+                                PilaEstados.Push(122);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "F")
+                            {
+                                PilaEstados.Push(182);
+                                i--;
+                            }
+                            else if (Simbolos.Peek() == "G")
+                            {
+                                PilaEstados.Push(120);
+                                i--;
+                            }
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "ident")
+                        {
+                            //s141
+                            PilaEstados.Push(141);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "(")
+                        {
+                            //s121
+                            PilaEstados.Push(121);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ".")
+                        {
+                            //s119
+                            PilaEstados.Push(119);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
+                        {
+                            //s125
+                            PilaEstados.Push(125);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
+                        {
+                            //s126
+                            PilaEstados.Push(126);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        {
+                            //s127
+                            PilaEstados.Push(127);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        {
+                            //s128
+                            PilaEstados.Push(128);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "null")
+                        {
+                            //s129
+                            PilaEstados.Push(129);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "New")
+                        {
+                            //s123
+                            PilaEstados.Push(123);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "this")
+                        {
+                            //s124
+                            PilaEstados.Push(124);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -13082,10 +13241,200 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 162:
-                        if (Lab_ASDR.TokenList[i] == ")")
+                        if (BanderaReduccion == true)
                         {
-                            //s180
-                            PilaEstados.Push(180);
+                            BanderaReduccion = false;
+
+                            if (Simbolos.Peek() == "X'")
+                            {
+                                PilaEstados.Push(183);
+                                i--;
+                            }
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ";")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "ident")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "(")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ")")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ",")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "{")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "}")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "if")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "else")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "while")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "for")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "return")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "break")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "System")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ".")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "intConstant")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
+                        {
+                            AccionReduccion(111);
+                            i--;
+                            //r111
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "null")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "||")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!=")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == ">=")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "-")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "/")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "%")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "!")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "New")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "this")
+                        {
+                            //r111
+                            AccionReduccion(111);
+                            i--;
+                        }
+                        else if (Lab_ASDR.TokenList[i] == "=")
+                        {
+                            //s146
+                            PilaEstados.Push(146);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -13097,8 +13446,8 @@ namespace Compiladores_MiniJava
                     case 163:
                         if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //s181
-                            PilaEstados.Push(181);
+                            //s184
+                            PilaEstados.Push(184);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -13108,10 +13457,10 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 164:
-                        if (Lab_ASDR.TokenList[i] == ";")
+                        if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //s182
-                            PilaEstados.Push(182);
+                            //s185
+                            PilaEstados.Push(185);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -13121,125 +13470,11 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 165:
-                        if (Lab_ASDR.TokenList[i] == ";")
+                        if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
+                            //s186
+                            PilaEstados.Push(186);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
                         {
@@ -13248,10 +13483,10 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 166:
-                        if (Lab_ASDR.TokenList[i] == ".")
+                        if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //s183
-                            PilaEstados.Push(183);
+                            //s187
+                            PilaEstados.Push(187);
                             Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
@@ -13261,209 +13496,11 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 167:
-                        if (BanderaReduccion == true)
+                        if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            BanderaReduccion = false;
-
-                            if (Simbolos.Peek() == "Expr'")
-                            {
-                                PilaEstados.Push(184);
-                                i--;
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ";")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            AccionReduccion(79);
-                            i--;
-                            //r79
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            AccionReduccion(79);
-                            i--;
-                            //r79
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            AccionReduccion(79);
-                            i--;
-                            //r79
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        //CONFLICTO 22
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 11;
-                            if (proPrec > terPrec)
-                            {
-                                //r79
-                                AccionReduccion(79);
-                                i--;
-                            }
-                            else
-                            {
-                                //s143
-                                PilaEstados.Push(143);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-                            //r79
-                            AccionReduccion(79);
-                            i--;
+                            //s188
+                            PilaEstados.Push(188);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
                         {
@@ -13472,208 +13509,125 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 168:
-                        if (BanderaReduccion == true)
+                         if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            BanderaReduccion = false;
-
-                            if (Simbolos.Peek() == "A'")
-                            {
-                                PilaEstados.Push(185);
-                                i--;
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ";")
-                        {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r82
-                            AccionReduccion(82);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r82
-                            AccionReduccion(82);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            AccionReduccion(68);
                             i--;
+                            //r68
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            AccionReduccion(68);
                             i--;
+                            //r68
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r67
-                            AccionReduccion(67);
-                            i--;
-                        }
-                        //CONFLICTO 23
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 9;
-                            if (proPrec > terPrec)
-                            {
-                                //r82
-                                AccionReduccion(82);
-                                i--;
-                            }
-                            else
-                            {
-                                //s145
-                                PilaEstados.Push(145);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r82
-                            AccionReduccion(82);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r82
-                            AccionReduccion(82);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r82
-                            AccionReduccion(82);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r82
-                            AccionReduccion(82);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r82
-                            AccionReduccion(82);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r82
-                            AccionReduccion(82);
-                            i--;
-                        }
+                  
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r82
-                            AccionReduccion(82);
+                            //r68
+                            AccionReduccion(68);
                             i--;
                         }
                         else
@@ -13682,225 +13636,15 @@ namespace Compiladores_MiniJava
                             i = -1;
                         }
                         break;
+                   
                     case 169:
-                        if (BanderaReduccion == true)
+                        if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            BanderaReduccion = false;
-
-                            if (Simbolos.Peek() == "B'")
-                            {
-                                PilaEstados.Push(186);
-                                i--;
-                            }
+                            //s189
+                            PilaEstados.Push(189);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
-                        else if (Lab_ASDR.TokenList[i] == ";")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        //CONFLICTO 24
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 7;
-                            if (proPrec > terPrec)
-                            {
-                                //r86
-                                AccionReduccion(86);
-                                i--;
-                            }
-                            else
-                            {
-                                //s147
-                                PilaEstados.Push(147);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
-                        }
-                        //CONFLICTO 25
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 7;
-                            if (proPrec > terPrec)
-                            {
-                                //r86
-                                AccionReduccion(86);
-                                i--;
-                            }
-                            else
-                            {
-                                //s148
-                                PilaEstados.Push(148);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
+                        
                         else
                         {
                             ManejoError(i);
@@ -13908,225 +13652,13 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 170:
-                        if (BanderaReduccion == true)
+                        if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            BanderaReduccion = false;
-
-                            if (Simbolos.Peek() == "B'")
-                            {
-                                PilaEstados.Push(187);
-                                i--;
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ";")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
+                            //s190
+                            PilaEstados.Push(190);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
 
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            AccionReduccion(86);
-                            i--;
-                            //r86
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        //CONFLICTO 26
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 7;
-                            if (proPrec > terPrec)
-                            {
-                                //r86
-                                AccionReduccion(86);
-                                i--;
-                            }
-                            else
-                            {
-                                //s147
-                                PilaEstados.Push(147);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
-                        }
-                        //CONFLICTO 27
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 7;
-                            if (proPrec > terPrec)
-                            {
-                                //r86
-                                AccionReduccion(86);
-                                i--;
-                            }
-                            else
-                            {
-                                //s148
-                                PilaEstados.Push(148);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-                            //r86
-                            AccionReduccion(86);
-                            i--;
-                        }
                         else
                         {
                             ManejoError(i);
@@ -14134,209 +13666,18 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 171:
-                        if (BanderaReduccion == true)
-                        {
-                            BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "C'")
-                            {
-                                PilaEstados.Push(188);
-                                i--;
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ";")
+                        if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r89
-                            AccionReduccion(89);
+                            //r76
+                            AccionReduccion(76);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            AccionReduccion(89);
-                            i--;
-                            //r89
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        //CONFLICTO 28
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 5;
-                            if (proPrec > terPrec)
-                            {
-                                //r89
-                                AccionReduccion(89);
-                                i--;
-                            }
-                            else
-                            {
-                                //s150
-                                PilaEstados.Push(150);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-                            //r89
-                            AccionReduccion(89);
-                            i--;
+                            //s191
+                            PilaEstados.Push(191);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else 
                         {
@@ -14345,223 +13686,11 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 172:
-                        if (BanderaReduccion == true)
+                        if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            BanderaReduccion = false;
-
-                            if (Simbolos.Peek() == "D'")
-                            {
-                                PilaEstados.Push(189);
-                                i--;
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ";")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "ident")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "(")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ")")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ",")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "{")
-                        {
-                            AccionReduccion(93);
-                            i--;
-                            //r93
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "}")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "if")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "else")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "while")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "for")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "return")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "break")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "System")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ".")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "intConstant")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "doubleConstant")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "boolConstant")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "stringConstant")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "null")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "||")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!=")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ">=")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "-")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        //CONFLICTO 29
-                        else if (Lab_ASDR.TokenList[i] == "/")
-                        {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 3;
-                            if (proPrec > terPrec)
-                            {
-                                //r93
-                                AccionReduccion(93);
-                                i--;
-                            }
-                            else
-                            {
-                                //s152
-                                PilaEstados.Push(152);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
-                        }
-                        //CONFLICTO 30
-                        else if (Lab_ASDR.TokenList[i] == "%")
-                        {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 3;
-                            if (proPrec > terPrec)
-                            {
-                                //r93
-                                AccionReduccion(93);
-                                i--;
-                            }
-                            else
-                            {
-                                //s153
-                                PilaEstados.Push(153);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "!")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "New")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
-                        }
-                        else if (Lab_ASDR.TokenList[i] == "this")
-                        {
-                            //r93
-                            AccionReduccion(93);
-                            i--;
+                            //s192
+                            PilaEstados.Push(192);
+                            Simbolos.Push(Lab_ASDR.TokenList[i]);
                         }
                         else
                         {
@@ -14570,222 +13699,189 @@ namespace Compiladores_MiniJava
                         }
                         break;
                     case 173:
-                        if (BanderaReduccion == true)
+                        if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            BanderaReduccion = false;
-
-                            if (Simbolos.Peek() == "D'")
-                            {
-                                PilaEstados.Push(190);
-                                i--;
-                            }
-                        }
-                        else if (Lab_ASDR.TokenList[i] == ";")
-                        {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         //CONFLICTO 31
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 3;
-                            if (proPrec > terPrec)
-                            {
-                                //r93
-                                AccionReduccion(93);
+   
+                                //r110
+                                AccionReduccion(110);
                                 i--;
-                            }
-                            else
-                            {
-                                //s152
-                                PilaEstados.Push(152);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
+                           
                         }
                         //CONFLICTO 32
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 3;
-                            if (proPrec > terPrec)
-                            {
-                                //r93
-                                AccionReduccion(93);
+                                //r110
+                                AccionReduccion(110);
                                 i--;
-                            }
-                            else
-                            {
-                                //s153
-                                PilaEstados.Push(153);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
+                            
                         }
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r93
-                            AccionReduccion(93);
+                            //r110
+                            AccionReduccion(110);
                             i--;
                         }
                         else
@@ -14799,219 +13895,210 @@ namespace Compiladores_MiniJava
                         {
                             BanderaReduccion = false;
 
-                            if (Simbolos.Peek() == "E'")
+                            if (Simbolos.Peek() == "Expr'")
                             {
-                                PilaEstados.Push(191);
+                                PilaEstados.Push(193);
                                 i--;
                             }
                         }
                         else if (Lab_ASDR.TokenList[i] == ";")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "ident")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "(")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ")")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ",")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "{")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "}")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "if")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "else")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "while")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "for")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
 
                         else if (Lab_ASDR.TokenList[i] == "return")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "break")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "System")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ".")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "intConstant")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "doubleConstant")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "boolConstant")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "stringConstant")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "null")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "||")
                         {
-                            //r97
-                            AccionReduccion(97);
-                            i--;
+                            //PRECEDENCIA DEL TERMINAL
+                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
+                            //PRECEDENCIA DE LA PRODUCCION
+                            var proPrec = 1;
+                            if (proPrec > terPrec)
+                            {
+                                //r84
+                                AccionReduccion(84);
+                                i--;
+                            }
+                            else
+                            {
+                                //s148
+                                PilaEstados.Push(148);
+                                Simbolos.Push(Lab_ASDR.TokenList[i]);
+                            }
                         }
                         else if (Lab_ASDR.TokenList[i] == "!=")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == ">=")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         //CONFLICTO 33
                          else if (Lab_ASDR.TokenList[i] == "-")
                         {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 1;
-                            if (proPrec > terPrec)
-                            {
-                                //r97
-                                AccionReduccion(97);
+     
+                                //r84
+                                AccionReduccion(84);
                                 i--;
-                            }
-                            else
-                            {
-                                //s155
-                                PilaEstados.Push(155);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
+                          
                         }
                         //CONFLICTO 34
                         else if (Lab_ASDR.TokenList[i] == "!")
                         {
-                            //PRECEDENCIA DEL TERMINAL
-                            var terPrec = PrecedenciaTerminales[Lab_ASDR.TokenList[i]];
-                            //PRECEDENCIA DE LA PRODUCCION
-                            var proPrec = 1;
-                            if (proPrec > terPrec)
-                            {
-                                //r97
-                                AccionReduccion(97);
+  
+                                //r84
+                                AccionReduccion(84);
                                 i--;
-                            }
-                            else
-                            {
-                                //s156
-                                PilaEstados.Push(156);
-                                Simbolos.Push(Lab_ASDR.TokenList[i]);
-                            }
+                          
                         }
                         else if (Lab_ASDR.TokenList[i] == "/")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "%")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "New")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else if (Lab_ASDR.TokenList[i] == "this")
                         {
-                            //r97
-                            AccionReduccion(97);
+                            //r84
+                            AccionReduccion(84);
                             i--;
                         }
                         else
