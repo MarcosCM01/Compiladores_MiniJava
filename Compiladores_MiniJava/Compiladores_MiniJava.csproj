@@ -43,12 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entorno.cs" />
     <Compile Include="Lab_ASDR.cs" />
     <Compile Include="MetodosAux_AL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reduccion.cs" />
+    <Compile Include="Simbolo.cs" />
     <Compile Include="SLR.cs" />
+    <Compile Include="TablaSimbolos.cs" />
     <Compile Include="Token.cs" />
   </ItemGroup>
   <ItemGroup>

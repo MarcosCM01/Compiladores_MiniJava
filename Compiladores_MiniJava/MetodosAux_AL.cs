@@ -56,12 +56,14 @@ namespace Compiladores_MiniJava
             var bandera_comentario_doble = false;
             var bandera_operadores = false;
             var tmp_string = string.Empty;
+            TablaSimbolos Tabla = new TablaSimbolos();
             using (StreamWriter writer = new StreamWriter(Escritura))
             {
                 using (StreamReader reader = new StreamReader(URL))
                 {
                     while ((line = reader.ReadLine()) != null)
                     {
+                        Tabla.CreacionToken(line);
                         num_columna = 1;
                         for (int posicion = 0; posicion < line.Length; posicion++)
                         {
