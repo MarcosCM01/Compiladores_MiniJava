@@ -137,165 +137,164 @@ namespace Compiladores_MiniJava
         }
         public static void LlenarPrecedenciaTerminales() 
         {
-            PrecedenciaTerminales.Add(";", 49);
-            PrecedenciaTerminales.Add("ident", 48);
-            PrecedenciaTerminales.Add("static", 47);
-            PrecedenciaTerminales.Add("int", 46);
-            PrecedenciaTerminales.Add("double", 46);
-            PrecedenciaTerminales.Add("boolean", 46);
-            PrecedenciaTerminales.Add("string", 46);
-            PrecedenciaTerminales.Add("[]", 44);
-            PrecedenciaTerminales.Add("(", 43);
-            PrecedenciaTerminales.Add(")", 43);
-            PrecedenciaTerminales.Add("void", 43);
-            PrecedenciaTerminales.Add("class", 40);
-            PrecedenciaTerminales.Add("{", 40);
-            PrecedenciaTerminales.Add("}", 40);
-            PrecedenciaTerminales.Add("extends", 39);
-            PrecedenciaTerminales.Add("implements", 38);
-            PrecedenciaTerminales.Add(",", 37);
-            PrecedenciaTerminales.Add("if", 25);
-            PrecedenciaTerminales.Add("else", 24);
-            PrecedenciaTerminales.Add("while", 23);
-            PrecedenciaTerminales.Add("for", 22);
-            PrecedenciaTerminales.Add("return", 21);
-            PrecedenciaTerminales.Add("break", 20);
-            PrecedenciaTerminales.Add("System", 19);
-            PrecedenciaTerminales.Add(".", 19);
-            PrecedenciaTerminales.Add("out", 19);
-            PrecedenciaTerminales.Add("println", 19);
-            PrecedenciaTerminales.Add("intConstant", 15);
-            PrecedenciaTerminales.Add("doubleConstant", 15);
-            PrecedenciaTerminales.Add("boolConstant", 15);
-            PrecedenciaTerminales.Add("stringConstant", 15);
-            PrecedenciaTerminales.Add("null", 15);
-            PrecedenciaTerminales.Add("||", 13);
-            PrecedenciaTerminales.Add("!=", 11);
-            PrecedenciaTerminales.Add(">", 9);
-            PrecedenciaTerminales.Add(">=", 9);
-            PrecedenciaTerminales.Add("-", 7);
-            PrecedenciaTerminales.Add("/", 5);
-            PrecedenciaTerminales.Add("%", 5);
-            PrecedenciaTerminales.Add("!", 3);
-            PrecedenciaTerminales.Add("this", 1);
-            PrecedenciaTerminales.Add("=", 0);
+            PrecedenciaTerminales.Add(";", 102);
+            PrecedenciaTerminales.Add("ident", 101);
+            PrecedenciaTerminales.Add("static", 100);
+            PrecedenciaTerminales.Add("int", 99);
+            PrecedenciaTerminales.Add("double", 98);
+            PrecedenciaTerminales.Add("boolean", 97);
+            PrecedenciaTerminales.Add("string", 96);
+            PrecedenciaTerminales.Add("[]", 90);
+            PrecedenciaTerminales.Add("(", 87);
+            PrecedenciaTerminales.Add(")", 87);
+            PrecedenciaTerminales.Add("void", 87);
+            PrecedenciaTerminales.Add(",", 85);
+            PrecedenciaTerminales.Add("class", 83);
+            PrecedenciaTerminales.Add("{", 83);
+            PrecedenciaTerminales.Add("}", 83);
+            PrecedenciaTerminales.Add("extends", 82);
+            PrecedenciaTerminales.Add("implements", 80);
+            PrecedenciaTerminales.Add("if", 48);
+            PrecedenciaTerminales.Add("else", 47);
+            PrecedenciaTerminales.Add("while", 45);
+            PrecedenciaTerminales.Add("for", 44);
+            PrecedenciaTerminales.Add("return", 43);
+            PrecedenciaTerminales.Add("break", 42);
+            PrecedenciaTerminales.Add("System", 41);
+            PrecedenciaTerminales.Add(".", 41);
+            PrecedenciaTerminales.Add("out", 41);
+            PrecedenciaTerminales.Add("println", 41);
+            PrecedenciaTerminales.Add("intConstant", 34);
+            PrecedenciaTerminales.Add("doubleConstant", 33);
+            PrecedenciaTerminales.Add("boolConstant", 32);
+            PrecedenciaTerminales.Add("stringConstant", 31);
+            PrecedenciaTerminales.Add("null", 30);
+            PrecedenciaTerminales.Add("||", 28);
+            PrecedenciaTerminales.Add("!=", 25);
+            PrecedenciaTerminales.Add(">", 22);
+            PrecedenciaTerminales.Add(">=", 21);
+            PrecedenciaTerminales.Add("-", 18);
+            PrecedenciaTerminales.Add("/", 15);
+            PrecedenciaTerminales.Add("%", 14);
+            PrecedenciaTerminales.Add("!", 10);
+            PrecedenciaTerminales.Add("this", 3);
+            PrecedenciaTerminales.Add("=", 1);
         }
-
-        public static void LlenarPrecedenciaProducciones() 
+        public static void LlenarPrecedenciaProducciones()
         {
-            PrecedenciaProducciones.Add(111, 0); //t = 
-            PrecedenciaProducciones.Add(110, 0); //t = =
-            PrecedenciaProducciones.Add(109, 0); //t = ident
-            PrecedenciaProducciones.Add(108, 0); //t = this
-            PrecedenciaProducciones.Add(107, 0); //t = )
-            PrecedenciaProducciones.Add(106, 0); //t = 
-            PrecedenciaProducciones.Add(105, 0); //t = )
-            PrecedenciaProducciones.Add(104, 0); //t = 
-            PrecedenciaProducciones.Add(103, 0); //t = .
-            PrecedenciaProducciones.Add(102, 0); //t = 
-            PrecedenciaProducciones.Add(101, 0); //t = !
-            PrecedenciaProducciones.Add(100, 0); //t = -
-            PrecedenciaProducciones.Add(99, 0); //t = 
-            PrecedenciaProducciones.Add(98, 0); //t = 
-            PrecedenciaProducciones.Add(97, 0); //t = %
-            PrecedenciaProducciones.Add(96, 0); //t = /
-            PrecedenciaProducciones.Add(95, 0); //t = 
-            PrecedenciaProducciones.Add(94, 0); //t = 
-            PrecedenciaProducciones.Add(93, 0); //t = -
-            PrecedenciaProducciones.Add(92, 0); //t = 
-            PrecedenciaProducciones.Add(91, 0); //t = 
-            PrecedenciaProducciones.Add(90, 0); //t = >=
-            PrecedenciaProducciones.Add(89, 0); //t = >
-            PrecedenciaProducciones.Add(88, 0); //t = 
-            PrecedenciaProducciones.Add(87, 0); //t = 
-            PrecedenciaProducciones.Add(86, 0); //t = !=
-            PrecedenciaProducciones.Add(85, 0); //t = 
-            PrecedenciaProducciones.Add(84, 0); //t = 
-            PrecedenciaProducciones.Add(83, 0); //t = ||
-            PrecedenciaProducciones.Add(82, 0); //t = 
-            PrecedenciaProducciones.Add(81, 0); //t = null
-            PrecedenciaProducciones.Add(80, 0); //t = stringConstant
-            PrecedenciaProducciones.Add(79, 0); //t = boolConstant
-            PrecedenciaProducciones.Add(78, 0); //t = doubleconstant
-            PrecedenciaProducciones.Add(77, 0); //t = intConstant
-            PrecedenciaProducciones.Add(76, 0); //t = 
-            PrecedenciaProducciones.Add(75, 0); //t = ,
-            PrecedenciaProducciones.Add(74, 0); //t = )
-            PrecedenciaProducciones.Add(73, 0); //t = )
-            PrecedenciaProducciones.Add(72, 0); //t = 
-            PrecedenciaProducciones.Add(71, 0); //t = 
-            PrecedenciaProducciones.Add(70, 0); //t = ;
-            PrecedenciaProducciones.Add(69, 0); //t = ;
-            PrecedenciaProducciones.Add(68, 0); //t = ;
-            PrecedenciaProducciones.Add(67, 0); //t = )
-            PrecedenciaProducciones.Add(66, 0); //t = )
-            PrecedenciaProducciones.Add(65, 0); //t = ;
-            PrecedenciaProducciones.Add(64, 0); //t = else
-            PrecedenciaProducciones.Add(63, 0); //t = )
-            PrecedenciaProducciones.Add(62, 0); //t = ;
-            PrecedenciaProducciones.Add(61, 0); //t = ;
-            PrecedenciaProducciones.Add(60, 0); //t = ;
-            PrecedenciaProducciones.Add(59, 0); //t = ;
-            PrecedenciaProducciones.Add(58, 0); //t = ;
-            PrecedenciaProducciones.Add(57, 0); //t = ;
-            PrecedenciaProducciones.Add(56, 0); //t = ;
-            PrecedenciaProducciones.Add(55, 0); //t = ;
-            PrecedenciaProducciones.Add(54, 0); //t = ;
-            PrecedenciaProducciones.Add(53, 0); //t = ;
-
-            PrecedenciaProducciones.Add(52,0); //t = ;
-            PrecedenciaProducciones.Add(51,0); //t = 
-            PrecedenciaProducciones.Add(50,0); //t = 
-            PrecedenciaProducciones.Add(49,49); //t = 
-            PrecedenciaProducciones.Add(48,48); //t = 
-            PrecedenciaProducciones.Add(47,49); //t = 
-            PrecedenciaProducciones.Add(46,46); //t = 
-            PrecedenciaProducciones.Add(45,0); //t = }
-            PrecedenciaProducciones.Add(44,0); //t = ;
-            PrecedenciaProducciones.Add(43,0); //t = ;
-            PrecedenciaProducciones.Add(42, 0); //t = 
-            PrecedenciaProducciones.Add(41, 0); //t = 
-            PrecedenciaProducciones.Add(40, 0); //t = }
-            PrecedenciaProducciones.Add(39, 0); //t = 
-            PrecedenciaProducciones.Add(38, 0); //t = 
-            PrecedenciaProducciones.Add(37, 0); //t = 
-            PrecedenciaProducciones.Add(36, 0); //t = 
-            PrecedenciaProducciones.Add(35, 0); //t = 
-            PrecedenciaProducciones.Add(34, 0); //t = 
-            PrecedenciaProducciones.Add(33, 0); //t = ident
-            PrecedenciaProducciones.Add(32, 0); //t = 
-            PrecedenciaProducciones.Add(31, 0); //t = ident
-            PrecedenciaProducciones.Add(30, 0); //t = 
-            PrecedenciaProducciones.Add(29, 0); //t = ident
-            PrecedenciaProducciones.Add(28, 0); //t = }
-            PrecedenciaProducciones.Add(27, 0); //t = 
-            PrecedenciaProducciones.Add(26, 0); //t = ,
-            PrecedenciaProducciones.Add(25, 0); //t = 
-            PrecedenciaProducciones.Add(24, 0); //t = )
-            PrecedenciaProducciones.Add(23, 0); //t = )
-            PrecedenciaProducciones.Add(22, 0); //t = 
-            PrecedenciaProducciones.Add(21, 0); //t = []
-            PrecedenciaProducciones.Add(20, 0); //t = ident
-            PrecedenciaProducciones.Add(19, 0); //t = string
-            PrecedenciaProducciones.Add(18, 0); //t = boolean
-            PrecedenciaProducciones.Add(17, 0); //t = double
-            PrecedenciaProducciones.Add(16, 0); //t = int
-            PrecedenciaProducciones.Add(15, 0); //t = string
-            PrecedenciaProducciones.Add(14, 0); //t = boolean
-            PrecedenciaProducciones.Add(13, 0); //t = double
-            PrecedenciaProducciones.Add(12, 0); //t = int
-            PrecedenciaProducciones.Add(11, 0); //t = ;
-            PrecedenciaProducciones.Add(10, 0);
-            PrecedenciaProducciones.Add(9, 0); //t = ;
-            PrecedenciaProducciones.Add(8, 0);
-            PrecedenciaProducciones.Add(7, 0);
-            PrecedenciaProducciones.Add(6, 0);
-            PrecedenciaProducciones.Add(5, 0);
-            PrecedenciaProducciones.Add(4, 0);
-            PrecedenciaProducciones.Add(3, 0);
-            PrecedenciaProducciones.Add(2, 0);
-            PrecedenciaProducciones.Add(1, 0);
+            PrecedenciaProducciones.Add(111, 0); //t = 0
+            PrecedenciaProducciones.Add(110, 0); //t = 0
+            PrecedenciaProducciones.Add(109, 0); //t = 0
+            PrecedenciaProducciones.Add(108, 0); //t = 0
+            PrecedenciaProducciones.Add(107, 0); //t = 0
+            PrecedenciaProducciones.Add(106, 0); //t = 0
+            PrecedenciaProducciones.Add(105, 0); //t = 0
+            PrecedenciaProducciones.Add(104, 0); //t = 0
+            PrecedenciaProducciones.Add(103, 0); //t = 0
+            PrecedenciaProducciones.Add(102, 101); //t = ident
+            PrecedenciaProducciones.Add(101, 101); //t = ident
+            PrecedenciaProducciones.Add(100, 102); //t = ;
+            PrecedenciaProducciones.Add(99, 99); //t = int
+            PrecedenciaProducciones.Add(98, 98); //t = double
+            PrecedenciaProducciones.Add(97, 97); //t = boolean
+            PrecedenciaProducciones.Add(96, 96); //t = string
+            PrecedenciaProducciones.Add(95, 99); //t = int
+            PrecedenciaProducciones.Add(94, 98); //t = double
+            PrecedenciaProducciones.Add(93, 97); //t = boolean
+            PrecedenciaProducciones.Add(92, 96); //t = string
+            PrecedenciaProducciones.Add(91, 101); //t = ident
+            PrecedenciaProducciones.Add(90, 90); //t = []
+            PrecedenciaProducciones.Add(89, 0); //t = 0
+            PrecedenciaProducciones.Add(88, 87); //t = )
+            PrecedenciaProducciones.Add(87, 87); //t = )
+            PrecedenciaProducciones.Add(86, 0); //t = 0
+            PrecedenciaProducciones.Add(85, 85); //t = ,
+            PrecedenciaProducciones.Add(84, 0); //t = 0
+            PrecedenciaProducciones.Add(83, 83); //t = }
+            PrecedenciaProducciones.Add(82, 101); //t = ident
+            PrecedenciaProducciones.Add(81, 0); //t = 0
+            PrecedenciaProducciones.Add(80, 101); //t = ident
+            PrecedenciaProducciones.Add(79, 0); //t = 0
+            PrecedenciaProducciones.Add(78, 85); //t = ,
+            PrecedenciaProducciones.Add(77, 0); //t = 0
+            PrecedenciaProducciones.Add(76, 0); //t = 0
+            PrecedenciaProducciones.Add(75, 0); //t = 0
+            PrecedenciaProducciones.Add(74, 0); //t = 0
+            PrecedenciaProducciones.Add(73, 0); //t = 0
+            PrecedenciaProducciones.Add(72, 0); //t = 0
+            PrecedenciaProducciones.Add(71, 0); //t = 0
+            PrecedenciaProducciones.Add(70, 0); //t = 0
+            PrecedenciaProducciones.Add(69, 0); //t = 0
+            PrecedenciaProducciones.Add(68, 102); //t = ;
+            PrecedenciaProducciones.Add(67, 102); //t = ;
+            PrecedenciaProducciones.Add(66, 83); //t = }
+            PrecedenciaProducciones.Add(65, 0); //t = 0
+            PrecedenciaProducciones.Add(64, 0); //t = 0
+            PrecedenciaProducciones.Add(63, 0); //t = 0
+            PrecedenciaProducciones.Add(62, 0); //t = 0
+            PrecedenciaProducciones.Add(61, 0); //t = 0
+            PrecedenciaProducciones.Add(60, 0); //t = 0
+            PrecedenciaProducciones.Add(59, 102); //t = ;
+            PrecedenciaProducciones.Add(58, 0); //t = 0
+            PrecedenciaProducciones.Add(57, 0); //t = 0
+            PrecedenciaProducciones.Add(56, 0); //t = 0
+            PrecedenciaProducciones.Add(55, 0); //t = 0
+            PrecedenciaProducciones.Add(54, 0); //t = 0
+            PrecedenciaProducciones.Add(53, 0); //t = 0
+            PrecedenciaProducciones.Add(52, 0); //t = 0
+            PrecedenciaProducciones.Add(51, 0); //t = 0
+            PrecedenciaProducciones.Add(50, 0); //t = 0
+            PrecedenciaProducciones.Add(49, 0); //t = 0
+            PrecedenciaProducciones.Add(48, 87); //t = )
+            PrecedenciaProducciones.Add(47, 47); //t = else
+            PrecedenciaProducciones.Add(46, 0); //t = 0
+            PrecedenciaProducciones.Add(45, 87); //t = )
+            PrecedenciaProducciones.Add(44, 87); //t = )
+            PrecedenciaProducciones.Add(43, 102); //t = ;
+            PrecedenciaProducciones.Add(42, 102); //t = 
+            PrecedenciaProducciones.Add(41, 102); //t = ;
+            PrecedenciaProducciones.Add(40, 85); //t = ,
+            PrecedenciaProducciones.Add(39, 0); //t = 0
+            PrecedenciaProducciones.Add(38, 87); //t = )
+            PrecedenciaProducciones.Add(37, 87); //t = )
+            PrecedenciaProducciones.Add(36, 85); //t = ,
+            PrecedenciaProducciones.Add(35, 0); //t = 0
+            PrecedenciaProducciones.Add(34, 34); //t = intConstant
+            PrecedenciaProducciones.Add(33, 33); //t = doubleConstant
+            PrecedenciaProducciones.Add(32, 32); //t = boolConstant
+            PrecedenciaProducciones.Add(31, 31); //t = stringConstant
+            PrecedenciaProducciones.Add(30, 30); //t = null
+            PrecedenciaProducciones.Add(29, 0); //t = 0
+            PrecedenciaProducciones.Add(28, 28); //t = ||
+            PrecedenciaProducciones.Add(27, 0); //t = 0
+            PrecedenciaProducciones.Add(26, 0); //t = 0
+            PrecedenciaProducciones.Add(25, 25); //t = !=
+            PrecedenciaProducciones.Add(24, 0); //t = 0
+            PrecedenciaProducciones.Add(23, 0); //t = 0
+            PrecedenciaProducciones.Add(22, 22); //t = >
+            PrecedenciaProducciones.Add(21, 21); //t = >=
+            PrecedenciaProducciones.Add(20, 0); //t = 0
+            PrecedenciaProducciones.Add(19, 0); //t = 0
+            PrecedenciaProducciones.Add(18, 18); //t = -
+            PrecedenciaProducciones.Add(17, 0); //t = 0
+            PrecedenciaProducciones.Add(16, 0); //t = 0
+            PrecedenciaProducciones.Add(15, 15); //t = /
+            PrecedenciaProducciones.Add(14, 14); //t = %
+            PrecedenciaProducciones.Add(13, 0); //t = 0
+            PrecedenciaProducciones.Add(12, 0); //t = 0
+            PrecedenciaProducciones.Add(11, 18); //t = -
+            PrecedenciaProducciones.Add(10, 10); //t= !
+            PrecedenciaProducciones.Add(9, 0); //t = 0
+            PrecedenciaProducciones.Add(8, 102); //t = ident
+            PrecedenciaProducciones.Add(7, 0); //t = 0
+            PrecedenciaProducciones.Add(6, 87); //t = )
+            PrecedenciaProducciones.Add(5, 0);//t = 0
+            PrecedenciaProducciones.Add(4, 87);//t = )
+            PrecedenciaProducciones.Add(3, 3);//t = this
+            PrecedenciaProducciones.Add(2, 102);//t = ident
+            PrecedenciaProducciones.Add(1, 1); //t = =
             PrecedenciaProducciones.Add(0, 0);
+            //Si no hay ningun terminal, su precedencia es 0
         }
         public static void AccionReduccion(int estado)
         {
