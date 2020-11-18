@@ -37,3 +37,16 @@ y el simbolo terminal que se esperaba pero no regresamos a la produccion inicial
 
 	Eduardo Albarizaez 1106918
 	Marcos Calderon 1060918 
+
+-----------------------------------------------------------
+ANALIZADOR SINTACTICO
+Como segunda fase de la creación de nuestro compilador que lee archivos en lenguaje java, se procedió a realizar el analisis sintáctico, por lo cual, dada
+una gramática brindada, se desarrolló el análisis mediante el algoritmo SLR, para el cual tuvimos que desarrollar la colección canónica de elementos, para su posterior
+uso ya al momento de programar lo que vendría siendo la tabla de análisis y parseo, mediante la utilización de pilas auxiliares.
+
+Funcionamiento: Al ejecutable, se procede a arrastrar el archivo que desea analizar, el cual desarrollara el analisis lexico y sintactico del lenguaje fuente, y el cual
+indicará (de no haber encontrado ningún error sintáctico), que el archivo está correcto, de lo contrario, mostrará el token que produjo el error.
+
+¿Cómo manejamos los errores?
+Al momento de encontrar un token que produjo un error, se procedió a eliminar el token de la lista de tokens que nos generó el analizador léxico, y de esta forma,
+se procede a volver a realizar el análisis, ya que de este modo no se requiere de mayor estructura de datos y no se añade complejidad algorítmica.

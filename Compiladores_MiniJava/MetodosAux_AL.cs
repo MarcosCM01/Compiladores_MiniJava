@@ -11,15 +11,15 @@ namespace Compiladores_MiniJava
     public static class MetodosAux_AL
     {
         public static List<String> Reservadas = new List<string> 
-        {"void","int","double","boolean","string", "class", "const", "interface", "null", "this", "extends", "implements", "for", "while", "if", "else", "return", "break", "New", "System", "out", "println" };
+        {"void","int","double","boolean","string", "class", "const", "interface", "null", "this", "extends", "implements", "for", "while", "if", "else", "return", "break", "New", "System", "out", "println","static" };
 
         public static List<String> Operadores_Simples = new List<string>
         {"+","-","*","/","%","<",">","=","!",";",",",".","[","]","(",")","{","}"};
 
         public static List<String> Operadores_Dobles = new List<string>
         { "<=", ">=","==","!=","&&","||","[]","()","{}"};
-        public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() {{ @"^\b(true|false)\b$", "T_es_ConstBool"}, 
-        {@"^0(x|X)[a-fA-F0-9]*$", "T_es_ConstHexadecimal"}, {@"^[0-9]+\.(([0-9])*|([0-9]*(E|e)(\+|-)?[0-9]+))?$","T_es_ConstDouble"}, {@"^\b[0-9]+\b$", "T_es_ConstDecimal"}, { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "T_es_Id"} };
+        public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() {{ @"^\b(true|false)\b$", "boolConstant"}, 
+        {@"^0(x|X)[a-fA-F0-9]*$", "hexaConstant"}, {@"^[0-9]+\.(([0-9])*|([0-9]*(E|e)(\+|-)?[0-9]+))?$","doubleConstant"}, {@"^\b[0-9]+\b$", "intConstant"}, { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "ident"} };
 
         public const int bufferLenght = 10;
 
@@ -54,13 +54,16 @@ namespace Compiladores_MiniJava
             var Bandera_String = false;
             var bandera_comentario_simple = false;
             var bandera_comentario_doble = false;
+            var bandera_operadores = false;
             var tmp_string = string.Empty;
+            TablaSimbolos Tabla = new TablaSimbolos();
             using (StreamWriter writer = new StreamWriter(Escritura))
             {
                 using (StreamReader reader = new StreamReader(URL))
                 {
                     while ((line = reader.ReadLine()) != null)
                     {
+                        Tabla.CreacionToken(line);
                         num_columna = 1;
                         for (int posicion = 0; posicion < line.Length; posicion++)
                         {
@@ -106,6 +109,71 @@ namespace Compiladores_MiniJava
                                     writer.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO :  {line[posicion]}");
                                 }
                             }
+                            else if (bandera_operadores == true)
+                            {
+                                if (tmp_string == "&")
+                                {
+                                    if (line[posicion] == '&')
+                                    {
+                                        tmp_string += line[posicion];
+                                        var token = CrearToken(tmp_string, num_linea, num_columna + 1, Trae_Match(tmp_string));
+                                        tmp_string = "";
+                                        writer.WriteLine(ImprimirToken(token));
+                                        bandera_operadores = false;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO ");
+                                        writer.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO ");
+                                        bandera_operadores = false;
+                                        tmp_string = "";
+                                    }
+                                }
+                                else if (tmp_string == "|")
+                                {
+                                    if (line[posicion] == '|')
+                                    {
+                                        tmp_string += line[posicion];
+                                        var token = CrearToken(tmp_string, num_linea, num_columna + 1, Trae_Match(tmp_string));
+                                        tmp_string = "";
+                                        writer.WriteLine(ImprimirToken(token));
+                                        bandera_operadores = false;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO ");
+                                        writer.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO ");
+                                        bandera_operadores = false;
+                                        tmp_string = "";
+                                    }
+                                }
+                            }
+                            else if (line[posicion] == '&' || line[posicion] == '|')
+                            {
+                                if (tmp_string.Length > 0) //Este si lleva algo
+                                {
+                                    if (line[posicion] >= 0) //line[posicion] != EOF
+                                    {
+                                        var token = CrearToken(tmp_string, num_linea, num_columna + 1, Trae_Match(tmp_string));
+                                        tmp_string = "";
+                                        writer.WriteLine(ImprimirToken(token));
+
+                                        bandera_operadores = true;
+                                        tmp_string += line[posicion];
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO ");
+                                        writer.WriteLine($"*** ERROR LINEA {num_linea}. *** CHAR INVALIDO ");
+
+                                    }
+                                }
+                                else
+                                {
+                                    tmp_string += line[posicion];
+                                    bandera_operadores = true;
+                                }
+                            }
                             else if (line[posicion] == '"')
                             {
                                 if (Bandera_String == true)
@@ -116,7 +184,7 @@ namespace Compiladores_MiniJava
                                         {
                                             tmp_string += line[posicion];
                                             Bandera_String = false;
-                                            var token = CrearToken(tmp_string, num_linea, num_columna + 1, $"T_es_String (value = {tmp_string})");
+                                            var token = CrearToken(tmp_string, num_linea, num_columna + 1, $"stringConstant (value = {tmp_string})");
                                             tmp_string = "";
 
                                             //Console.WriteLine(ImprimirToken(token));
@@ -164,11 +232,16 @@ namespace Compiladores_MiniJava
                                 }
                                 else if (tmp_string.Length >0)
                                 {
+                                    //Revisar Bien
                                     var token = CrearToken(tmp_string, num_linea, num_columna, Trae_Match(tmp_string));
                                     bandera_ID_Capacidad = false;
                                     //Console.WriteLine(ImprimirToken(token));
                                     writer.WriteLine(ImprimirToken(token));
                                     tmp_string = string.Empty;
+                                    token = CrearToken(line[posicion].ToString(), num_linea, num_columna, Trae_Match(tmp_string));
+                                    tmp_string = string.Empty;
+                                    //Console.WriteLine(ImprimirToken(token));
+                                    writer.WriteLine(ImprimirToken(token));
                                 }
                                 else if (posicion + 1 < line.Length)
                                 {
@@ -213,6 +286,7 @@ namespace Compiladores_MiniJava
                                         }
                                         tmp_string += line[posicion];
                                     }
+                                    
                                 }
                                 else
                                 //Cuando la barra viene al final de linea
@@ -266,7 +340,7 @@ namespace Compiladores_MiniJava
                                             bandera_espacio = true;
                                         }
                                     }
-                                    if (Trae_Match(tmp3).Contains("T_es_ConstDouble"))//ESTE TMP3 SE CREA DEBIDO A QUE LAS CONSTANTES DOBLE REQUIEREN MAYOR ANALISIS
+                                    if (Trae_Match(tmp3).Contains("doubleConstant"))//ESTE TMP3 SE CREA DEBIDO A QUE LAS CONSTANTES DOBLE REQUIEREN MAYOR ANALISIS
                                     {
                                         var token_aux = CrearToken(tmp3, num_linea, col_aux2, Trae_Match(tmp3));
                                         bandera_ID_Capacidad = false;
@@ -380,7 +454,7 @@ namespace Compiladores_MiniJava
             string tmp = "";
             if (MetodosAux_AL.EsReservada(lexema) != false)
             {
-                return "T_es_Reservada";
+                return "reservada";
             }
             else if (MetodosAux_AL.EsConstante(lexema, ref tmp) != false)
             {
@@ -388,17 +462,16 @@ namespace Compiladores_MiniJava
             }
             else if (Operadores_Dobles.Contains(lexema))
             {
-                return "T_es_Operador";
+                return "OperadorDoble";
             }
             else if (Operadores_Simples.Contains(lexema))
             {
-                return "T_es_Operador";
+                return "OperadorSimple";
             }
             else
             {
                 return "";
             }
-
         }
         public static bool EsReservada(string palabra) 
         {
@@ -424,7 +497,7 @@ namespace Compiladores_MiniJava
                 Regex rx = new Regex(item);
                 if (rx.IsMatch(palabra))
                 {//ES UNA CONSTANTE
-                    if (DiccionarioER_Valor[item] != "T_es_Id")
+                    if (DiccionarioER_Valor[item] != "ident")
                     {
                         valor = $"{DiccionarioER_Valor[item]} (value = {palabra})";
                     }
@@ -462,29 +535,30 @@ namespace Compiladores_MiniJava
             t.linea = num_Linea;
             t.columna_i = num_columna - palabra.Length;
             t.columna_f = num_columna-1;
-            if (t.valor.Contains("T_es_ConstBool"))
+            SLR.ErroresExplicitos.Add(t);
+            if (t.valor.Contains("boolConstant"))
             {
-               Lab_ASDR.TokenList.Add("T_es_ConstBool");
+               Lab_ASDR.TokenList.Add("boolConstant");
             }
-            else if (t.valor.Contains("T_es_ConstHexadecimal"))
+            else if (t.valor.Contains("hexaConstant"))
             {
-                Lab_ASDR.TokenList.Add("T_es_ConstHexadecimal");
+                Lab_ASDR.TokenList.Add("hexaConstant");
             }
-            else if (t.valor.Contains("T_es_ConstDouble"))
+            else if (t.valor.Contains("doubleConstant"))
             {
-                Lab_ASDR.TokenList.Add("T_es_ConstDouble");
+                Lab_ASDR.TokenList.Add("doubleConstant");
             }
-            else if (t.valor.Contains("T_es_ConstDecimal"))
+            else if (t.valor.Contains("intConstant"))
             {
-                Lab_ASDR.TokenList.Add("T_es_ConstDecimal");
+                Lab_ASDR.TokenList.Add("intConstant");
             }
-            else if (t.valor.Contains("T_es_String"))
+            else if (t.valor.Contains("stringConstant"))
             {
-                Lab_ASDR.TokenList.Add("T_es_String");
+                Lab_ASDR.TokenList.Add("stringConstant");
             }
-            else if (t.valor == "T_es_Id")
+            else if (t.valor == "ident")
             {
-                Lab_ASDR.TokenList.Add("T_es_Id");
+                Lab_ASDR.TokenList.Add("ident");
             }
             else //ESTE INCLUYE PARA: PALABRAS RESERVADAS, OP. DOBLES Y OP. SIMPLES
             {
