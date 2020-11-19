@@ -13,7 +13,7 @@ namespace Compiladores_MiniJava
         
         static void Main(string[] args)
         {
-            string URL = @"C:\Users\jalba\OneDrive\Escritorio\Prueba.txt";//Direccion archivo de prueba
+            string URL = @"C:\Users\Marcos Andrés CM\Desktop\6 Sexto ciclo\Compiladores\PROYECTO\ARCHIVOS DE PRUEBA\Tronitos-2-Java.txt";//Direccion archivo de prueba
             
             //foreach (var arg in args)
             //{
@@ -21,7 +21,12 @@ namespace Compiladores_MiniJava
                 {
                         //INICIO FASE 1: LEXICO
                     MetodosAux_AL.Analisis_Lex(URL);
-
+                    //GenerarTablaSimbolo();
+                    //For(i=0 hasta TokenList.Count)
+                    //{
+                        //contadorAmbitos++
+                        //contadorAmbitos--
+                    //}
                     //LAB A
                     //Lab_ASDR.Sintactico_Recursivo();
 

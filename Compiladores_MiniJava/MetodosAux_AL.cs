@@ -535,6 +535,7 @@ namespace Compiladores_MiniJava
             t.linea = num_Linea;
             t.columna_i = num_columna - palabra.Length;
             t.columna_f = num_columna-1;
+            //TokenList.Add(t);
             SLR.ErroresExplicitos.Add(t);
             if (t.valor.Contains("boolConstant"))
             {
