@@ -8,10 +8,10 @@ namespace Compiladores_MiniJava
 {
     public class Entorno
     {
-        public int ID;
-        public Dictionary<string,Simbolo> Simbolos = new Dictionary<string, Simbolo>();
+        public  int ID;
+        public  Dictionary<string,Simbolo> Simbolos = new Dictionary<string, Simbolo>();
 
-        bool Get(string ident)
+        public bool Get(string ident)
         {
             if(Simbolos.ContainsKey(ident))
             {
@@ -21,6 +21,14 @@ namespace Compiladores_MiniJava
             {
                 return false;
             }
+        }
+        public void Put(string ident,Simbolo sim)
+        {
+            Simbolos.Add(ident, sim);
+        }
+        public void PutID(int id)
+        {
+            ID = id;
         }
     }
 }

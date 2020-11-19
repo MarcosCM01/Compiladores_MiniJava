@@ -63,7 +63,6 @@ namespace Compiladores_MiniJava
                 {
                     while ((line = reader.ReadLine()) != null)
                     {
-                        Tabla.CreacionToken(line);
                         num_columna = 1;
                         for (int posicion = 0; posicion < line.Length; posicion++)
                         {
@@ -535,7 +534,7 @@ namespace Compiladores_MiniJava
             t.linea = num_Linea;
             t.columna_i = num_columna - palabra.Length;
             t.columna_f = num_columna-1;
-            //TokenList.Add(t);
+            TablaSimbolos.Tokens.Add(t);
             SLR.ErroresExplicitos.Add(t);
             if (t.valor.Contains("boolConstant"))
             {
