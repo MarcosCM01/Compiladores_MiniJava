@@ -22,9 +22,35 @@ namespace Compiladores_MiniJava
                 return false;
             }
         }
+        public string GetValue(string ident)
+        {
+            if (Simbolos.ContainsKey(ident))
+            {
+                return Simbolos[ident].tipo;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public Simbolo GetSimbolo(string ident)
+        {
+            if (Simbolos.ContainsKey(ident))
+            {
+                return Simbolos[ident];
+            }
+            else
+            {
+                return null;
+            }
+        }
         public void Put(string ident,Simbolo sim)
         {
             Simbolos.Add(ident, sim);
+        }
+        public void Insert(string ident, Simbolo sim)
+        {
+            Simbolos[ident] = sim;
         }
         public void PutID(int id)
         {

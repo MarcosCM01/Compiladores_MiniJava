@@ -13,7 +13,7 @@ namespace Compiladores_MiniJava
         public int valorInt;
         public string valorbool;
         public string valorString;
-        public static Dictionary<string,Simbolo> argumento = new Dictionary<string, Simbolo>();
+        public  Dictionary<string,Simbolo> argumento = new Dictionary<string, Simbolo>();
         public bool Get(string ident)
         {
             if (argumento.ContainsKey(ident))

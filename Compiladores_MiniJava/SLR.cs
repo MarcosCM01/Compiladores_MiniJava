@@ -310,9 +310,10 @@ namespace Compiladores_MiniJava
         public static void ManejoError(int index)
         {
             //CORREGIR ESTA PARTE
-            contador_Errores++;
+            
             Console.WriteLine($"Error sintactico #{contador_Errores}: {ErroresExplicitos[index].valor} (value = {ErroresExplicitos[index].palabra}) Linea: {ErroresExplicitos[index].linea} ColumnaI: {ErroresExplicitos[index].columna_i} ColumnaF: {ErroresExplicitos[index].columna_f}");
             Lab_ASDR.TokenList.RemoveAt(index);
+            contador_Errores++;
             Simbolos.Clear();
             PilaEstados.Clear();
             PilaEstados.Push(0);
@@ -21024,7 +21025,8 @@ namespace Compiladores_MiniJava
                         break;
 
                 }
-            }            
+            }
+            Console.WriteLine("Prueba recursividad");
         }
     }
 }
