@@ -13,14 +13,14 @@ namespace Compiladores_MiniJava
         
         static void Main(string[] args)
         {
-            string URL = @"C:\Users\Marcos Andrés CM\Desktop\6 Sexto ciclo\Compiladores\PROYECTO\ARCHIVOS DE PRUEBA\prueba3.txt";//Direccion archivo de prueba
+           //string URL = @"C:\Users\Marcos Andrés CM\Desktop\6 Sexto ciclo\Compiladores\PROYECTO\ARCHIVOS DE PRUEBA\prueba3.txt";//Direccion archivo de prueba
             
-            //foreach (var arg in args)
-            //{
-                if (MetodosAux_AL.VerificarArchivoVacio(URL) != true)
+           foreach (var arg in args)
+            {
+                if (MetodosAux_AL.VerificarArchivoVacio(arg) != true)
                 {
                         //INICIO FASE 1: LEXICO
-                    MetodosAux_AL.Analisis_Lex(URL);
+                    MetodosAux_AL.Analisis_Lex(arg);
                     //GenerarTablaSimbolo();
                     TablaSimbolos.CreacionTabla();
                     //ImprimirTabla();
@@ -36,7 +36,7 @@ namespace Compiladores_MiniJava
                     Console.WriteLine("ARCHIVO DE ENTRADA VACIO");
                 }
                 Console.ReadKey();
-            //}
+           }
         }
     }
 }
