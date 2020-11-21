@@ -457,21 +457,80 @@ namespace Compiladores_MiniJava
                             }
                             Entornos[ContadorEntorno].Put(temp, temporal);
                         }
-                        else if (Tokens[i].palabra == ".")
-                        {
-                            //FALTA REVISAR COMPROBACION DE METODOS
-                            for (int j = i; j < Tokens.Count; j++)
-                            {
-
-                            }
-                        }
-
                     }
                     else
                     {
                         TablaSimbolos error = new TablaSimbolos();
                         error.ImprimirError(Tokens[i], "Token ya definido");
                         //Error ya se encuentra declarado
+                    }
+                }
+                else if (Tokens[i].palabra == ".")
+                {
+                    i++;
+                    var traerTipo = string.Empty;
+                    Simbolo parametros = new Simbolo();
+                    foreach (var item in Entornos) //Recorro listas
+                    {
+                        //De cada elemento de la lista
+                        foreach (var tmp in item.Simbolos.Keys) //Recorro el diccionario <string, simbolo>
+                        {
+                            if (tmp == Tokens[i].palabra)
+                            {
+                                traerTipo = item.Simbolos[tmp].tipo;
+                                parametros = item.Simbolos[tmp];
+                            }
+                        }
+                    }
+                    if (traerTipo == string.Empty) //no lo encontró
+                    {
+                        //ERROR: IDENT NO DEFINIDO
+                    }
+                    else
+                    {
+                        i = i + 2;
+                        //FALTA REVISAR COMPROBACION DE METODOS
+                        foreach (var item in parametros.argumento.Values)
+                        {
+                            //SE MANDA UNA CONSTANTE
+                            if (Tokens[i].valor.Contains(item.tipo))
+                            {
+                                i = i + 2;
+                            }
+                            //SE MANDA UNA VARIABLE
+                            else if (Tokens[i].valor == "ident")
+                            {
+                                if (Entornos[ContadorEntorno].Get(Tokens[i].palabra))
+                                {
+                                    var tmp = Entornos[ContadorEntorno].GetValue(Tokens[i].palabra);
+                                    if (tmp.Contains(item.tipo))
+                                    {
+                                        i = i + 2;
+                                    }
+                                    else
+                                    {
+                                        //ERROR: ENVIO DE PARAMETROS INCORRECTO
+                                        i = i + 2;
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Envio de parametros incorrectos");
+                                    }
+                                }
+                                else
+                                {
+                                    i = i + 2;
+                                    TablaSimbolos error = new TablaSimbolos();
+                                    error.ImprimirError(Tokens[i], "Parametro sin definicion de tipo");
+                                    //ERROR: PARAMETRO SIN DECLARAR
+                                }
+                            }
+                            else
+                            {
+                                i = i + 2;
+                                TablaSimbolos error = new TablaSimbolos();
+                                error.ImprimirError(Tokens[i], "Distintos tipos de tokens para operar");
+                                //ERROR: "ENVIO DE PARAMETROS INCORRECTO"
+                            }
+                        }
                     }
                 }
                 else if (Tokens[i].palabra == "double") //METODOS TIPO DOUBLE

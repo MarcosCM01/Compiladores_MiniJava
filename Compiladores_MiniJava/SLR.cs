@@ -166,7 +166,7 @@ namespace Compiladores_MiniJava
             PrecedenciaTerminales.Add("println", 41);
             PrecedenciaTerminales.Add("intConstant", 34);
             PrecedenciaTerminales.Add("doubleConstant", 33);
-            PrecedenciaTerminales.Add("boolConstant", 32);
+            PrecedenciaTerminales.Add("booleanConstant", 32);
             PrecedenciaTerminales.Add("stringConstant", 31);
             PrecedenciaTerminales.Add("null", 30);
             PrecedenciaTerminales.Add("||", 28);
@@ -261,7 +261,7 @@ namespace Compiladores_MiniJava
             PrecedenciaProducciones.Add(35, 0); //t = 0
             PrecedenciaProducciones.Add(34, 34); //t = intConstant
             PrecedenciaProducciones.Add(33, 33); //t = doubleConstant
-            PrecedenciaProducciones.Add(32, 32); //t = boolConstant
+            PrecedenciaProducciones.Add(32, 32); //t = booleanConstant
             PrecedenciaProducciones.Add(31, 31); //t = stringConstant
             PrecedenciaProducciones.Add(30, 30); //t = null
             PrecedenciaProducciones.Add(29, 0); //t = 0
@@ -1432,7 +1432,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(9);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r9
                                 AccionReduccion(9);
@@ -2259,7 +2259,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(11);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r11
                                 AccionReduccion(11);
@@ -3195,7 +3195,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(47);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r47
                                 AccionReduccion(47);
@@ -3905,7 +3905,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(49);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r49
                                 AccionReduccion(49);
@@ -4181,7 +4181,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(47);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r47
                                 AccionReduccion(47);
@@ -4550,7 +4550,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -4754,7 +4754,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(49);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r49
                                 AccionReduccion(49);
@@ -4935,7 +4935,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(46);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r46
                                 AccionReduccion(46);
@@ -5220,7 +5220,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -5360,7 +5360,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(53);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r53
                                 AccionReduccion(53);
@@ -5487,7 +5487,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(54);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r54
                                 AccionReduccion(54);
@@ -5614,7 +5614,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(55);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r55
                                 AccionReduccion(55);
@@ -5741,7 +5741,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(56);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r56
                                 AccionReduccion(56);
@@ -5868,7 +5868,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(57);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r57
                                 AccionReduccion(57);
@@ -5995,7 +5995,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(58);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r58
                                 AccionReduccion(58);
@@ -6122,7 +6122,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(59);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r59
                                 AccionReduccion(59);
@@ -6317,7 +6317,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -6505,7 +6505,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(111);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r111
                                 AccionReduccion(111);
@@ -6712,7 +6712,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(84);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r84
                                 AccionReduccion(84);
@@ -6930,7 +6930,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(87);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r87
                                 AccionReduccion(87);
@@ -7141,7 +7141,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(89);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r91
                                 AccionReduccion(91);
@@ -7374,7 +7374,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(94);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r94
                                 AccionReduccion(94);
@@ -7586,7 +7586,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(98);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r98
                                 AccionReduccion(98);
@@ -7810,7 +7810,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(102);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r102
                                 AccionReduccion(102);
@@ -8054,7 +8054,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(104);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r104
                                 AccionReduccion(104);
@@ -8220,7 +8220,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -8359,7 +8359,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(106);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r106
                                 AccionReduccion(106);
@@ -8560,7 +8560,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(108);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r108
                                 AccionReduccion(108);
@@ -8748,7 +8748,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(77);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r77
                                 AccionReduccion(77);
@@ -8936,7 +8936,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(78);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r78
                                 AccionReduccion(78);
@@ -9124,7 +9124,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(79);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r79
                                 AccionReduccion(79);
@@ -9311,7 +9311,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(80);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r80
                                 AccionReduccion(80);
@@ -9498,7 +9498,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(81);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r81
                                 AccionReduccion(81);
@@ -9721,7 +9721,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(48);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r48
                                 AccionReduccion(48);
@@ -10005,7 +10005,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(45);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r45
                                 AccionReduccion(45);
@@ -10148,7 +10148,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(52);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r52
                                 AccionReduccion(52);
@@ -10266,7 +10266,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -10383,7 +10383,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -10500,7 +10500,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -10627,7 +10627,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(69);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r69
                                 AccionReduccion(69);
@@ -10779,7 +10779,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(111);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r111
                                 AccionReduccion(111);
@@ -10955,7 +10955,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -11107,7 +11107,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(109);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r109
                                 AccionReduccion(109);
@@ -11273,7 +11273,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -11412,7 +11412,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(82);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r82
                                 AccionReduccion(82);
@@ -11572,7 +11572,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -11712,7 +11712,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(85);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r85
                                 AccionReduccion(85);
@@ -11867,7 +11867,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -12006,7 +12006,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(88);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r88
                                 AccionReduccion(88);
@@ -12157,7 +12157,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -12259,7 +12259,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -12398,7 +12398,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(92);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r92
                                 AccionReduccion(92);
@@ -12543,7 +12543,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -12682,7 +12682,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(95);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r95
                                 AccionReduccion(95);
@@ -12822,7 +12822,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -12914,7 +12914,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -13053,7 +13053,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(99);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r99
                                 AccionReduccion(99);
@@ -13188,7 +13188,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -13276,7 +13276,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -13425,7 +13425,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(111);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r111
                                 AccionReduccion(111);
@@ -13671,7 +13671,7 @@ namespace Compiladores_MiniJava
                                 i--;
                                 //r68
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r68
                                 AccionReduccion(68);
@@ -13873,7 +13873,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(110);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r110
                                 AccionReduccion(110);
@@ -14076,7 +14076,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(84);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r84
                                 AccionReduccion(84);
@@ -14292,7 +14292,7 @@ namespace Compiladores_MiniJava
                                 i--;
                                 //r87
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r87
                                 AccionReduccion(87);
@@ -14509,7 +14509,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(91);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r91
                                 AccionReduccion(91);
@@ -14732,7 +14732,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(91);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r91
                                 AccionReduccion(91);
@@ -14955,7 +14955,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(94);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r94
                                 AccionReduccion(94);
@@ -15169,7 +15169,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(98);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r98
                                 AccionReduccion(98);
@@ -15397,7 +15397,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(98);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r98
                                 AccionReduccion(98);
@@ -15625,7 +15625,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(102);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r102
                                 AccionReduccion(102);
@@ -15853,7 +15853,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(102);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r102
                                 AccionReduccion(102);
@@ -16071,7 +16071,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(103);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r103
                                 AccionReduccion(103);
@@ -16259,7 +16259,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(105);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r105
                                 AccionReduccion(105);
@@ -16536,7 +16536,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -16751,7 +16751,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -16868,7 +16868,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -17009,7 +17009,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(73);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r73
                                 AccionReduccion(73);
@@ -17132,7 +17132,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -17254,7 +17254,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -17393,7 +17393,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(83);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r83
                                 AccionReduccion(83);
@@ -17580,7 +17580,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(86);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r86
                                 AccionReduccion(86);
@@ -17767,7 +17767,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(89);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r89
                                 AccionReduccion(89);
@@ -17954,7 +17954,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(90);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r90
                                 AccionReduccion(90);
@@ -18141,7 +18141,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(93);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r93
                                 AccionReduccion(93);
@@ -18328,7 +18328,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(96);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r96
                                 AccionReduccion(96);
@@ -18515,7 +18515,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(97);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r97
                                 AccionReduccion(97);
@@ -18702,7 +18702,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(100);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r100
                                 AccionReduccion(100);
@@ -18889,7 +18889,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(101);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r101
                                 AccionReduccion(101);
@@ -19076,7 +19076,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(107);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r107
                                 AccionReduccion(107);
@@ -19273,7 +19273,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(65);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r65
                                 AccionReduccion(65);
@@ -19404,7 +19404,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(66);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r66
                                 AccionReduccion(66);
@@ -19586,7 +19586,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(63);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r63
                                 AccionReduccion(63);
@@ -19801,7 +19801,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -19918,7 +19918,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -20041,7 +20041,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -20169,7 +20169,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(74);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r74
                                 AccionReduccion(74);
@@ -20297,7 +20297,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(64);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r64
                                 AccionReduccion(64);
@@ -20554,7 +20554,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -20679,7 +20679,7 @@ namespace Compiladores_MiniJava
                                 PilaEstados.Push(126);
                                 Simbolos.Push(Lab_ASDR.TokenList[i]);
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //s127
                                 PilaEstados.Push(127);
@@ -20807,7 +20807,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(67);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r67
                                 AccionReduccion(67);
@@ -20977,7 +20977,7 @@ namespace Compiladores_MiniJava
                                 AccionReduccion(70);
                                 i--;
                             }
-                            else if (Lab_ASDR.TokenList[i] == "boolConstant")
+                            else if (Lab_ASDR.TokenList[i] == "booleanConstant")
                             {
                                 //r70
                                 AccionReduccion(70);

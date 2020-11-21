@@ -18,7 +18,7 @@ namespace Compiladores_MiniJava
 
         public static List<String> Operadores_Dobles = new List<string>
         { "<=", ">=","==","!=","&&","||","[]","()","{}"};
-        public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() {{ @"^\b(true|false)\b$", "boolConstant"}, 
+        public static Dictionary<string, string> DiccionarioER_Valor = new Dictionary<string, string>() {{ @"^\b(true|false)\b$", "booleanConstant"}, 
         {@"^0(x|X)[a-fA-F0-9]*$", "hexaConstant"}, {@"^[0-9]+\.(([0-9])*|([0-9]*(E|e)(\+|-)?[0-9]+))?$","doubleConstant"}, {@"^\b[0-9]+\b$", "intConstant"}, { @"^[a-zA-Z$]+[a-zA-Z0-9$]*$", "ident"} };
 
         public const int bufferLenght = 10;
@@ -537,9 +537,9 @@ namespace Compiladores_MiniJava
             t.columna_f = num_columna-1;
             TablaSimbolos.Tokens.Add(t);
             SLR.ErroresExplicitos.Add(t);
-            if (t.valor.Contains("boolConstant"))
+            if (t.valor.Contains("booleanConstant"))
             {
-               Lab_ASDR.TokenList.Add("boolConstant");
+               Lab_ASDR.TokenList.Add("booleanConstant");
             }
             else if (t.valor.Contains("hexaConstant"))
             {
