@@ -50,3 +50,16 @@ indicará (de no haber encontrado ningún error sintáctico), que el archivo est
 ¿Cómo manejamos los errores?
 Al momento de encontrar un token que produjo un error, se procedió a eliminar el token de la lista de tokens que nos generó el analizador léxico, y de esta forma,
 se procede a volver a realizar el análisis, ya que de este modo no se requiere de mayor estructura de datos y no se añade complejidad algorítmica.
+
+
+-------------------------------
+CREACION DE TABLA DE SIMBOLOS Y COMPROBACION DE TIPOS
+Como tercera fase de la creacion y desarrollo de un compilador, se procedio a realizar la creacion de la tabla de simbolos y comprobacion de tipos.
+La tabla de simbolos es una estructura de datos, para la cual, nosotros hicimos uso de muchos objetos para el manejo y poder diferenciar los 
+distintos ámbitos que existen en un programa. Para ello, utilizaremos una lista de objeto entorno, en donde se almacenaran por entorno, una serie
+de simbolos que esten declarados. Cada simbolo con su respectivo valor y tipo, asi como una serie de argumentos para aquellos simbolos que representen
+un metodo con parametros a enviar. En la tabla de simbolos verificamos la existencia de un identificador en el ambiente actual; si no se encuentra,
+se agrega a la tabla; de lo contrario, se muestra un error que se ha repetido la declaracion para el mismo simbolo. 
+
+Para la comprobacion de tipos, se hizo uso del atributo tipo, en el cual validamos al momento de asignaciones, operaciones y paso de parametros.
+Si no se cumple alguna regla, se muestra el error en pantalla.
