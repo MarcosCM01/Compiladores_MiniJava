@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,65 @@ namespace Compiladores_MiniJava
     {
         public static List<Token> Tokens = new List<Token>();//Tokens ingresados desde el analisis sintactico
         public static List<Entorno> Entornos = new List<Entorno>();
+        public static string URL;
+
+        public static void Imprimir()
+        {
+            var dir = URL.Split('.');
+            string Escritura = dir[0] + "TS." + dir[1];
+            using (StreamWriter writer = new StreamWriter(Escritura))
+            {
+                foreach(var item in Entornos)
+                {
+                    foreach(var simb in item.Simbolos)
+                    {
+                        if(simb.Value.tipo == "int")
+                        {
+                            writer.WriteLine($"Token: {simb.Key} Type: int Value:{simb.Value.valorInt} ");
+                        }
+                        else if (simb.Value.tipo == "double")
+                        {
+                            writer.WriteLine($"Token: {simb.Key} Type: double Value:{simb.Value.valorDouble} ");
+                        }
+                        else if (simb.Value.tipo == "string")
+                        {
+                            writer.WriteLine($"Token: {simb.Key} Type: string Value:{simb.Value.valorString} ");
+
+                        }
+                        else if (simb.Value.tipo == "boolean")
+                        {
+                            writer.WriteLine($"Token: {simb.Key} Type: boolean Value:{simb.Value.valorbool} ");
+                        }
+                        else if (simb.Value.tipo.Contains("void") )
+                        {
+                            writer.WriteLine($"Token: {simb.Key} Type: {simb.Value.tipo}  ");
+                            writer.Write("Atributos: ");
+                            foreach (var arg in simb.Value.argumento)
+                            {
+                                writer.Write($" {arg.Key} : {arg.Value.tipo} ,");
+                            }
+                            writer.WriteLine("");
+                        }
+                        else if (simb.Value.tipo == "class")
+                        {
+                            writer.WriteLine($"Token: {simb.Key} Type: class  ");
+                            writer.Write("Implements:");
+                            for (int i = 0;i<simb.Value.Implements.Count;i++)
+                            {
+                                writer.Write(simb.Value.Implements[i] + ", ");
+                            }
+                            writer.WriteLine("");
+                            writer.Write("Extends:");
+                            for (int i = 0; i < simb.Value.Extends.Count; i++)
+                            {
+                                writer.Write(simb.Value.Extends[i] );
+                            }
+                            writer.WriteLine("");
+                        }
+                    }
+                }
+            }
+        }
         public void ImprimirError(Token  token, string error)
         {
             Console.WriteLine($"ERROR: {error}. Token: {token.palabra} Linea: {token.linea} ColumnaI: {token.columna_i} ColumnaF: {token.columna_f}");
@@ -137,12 +197,12 @@ namespace Compiladores_MiniJava
                         Simbolo temporal = new Simbolo();
                         temporal.tipo = Tokens[i - 1].palabra; //Setear ident.tipo = int
                         string temp = Tokens[i].palabra;
-                        if (Tokens[i+1].palabra == "extends")
+                        if (Tokens[i + 1].palabra == "extends")
                         {
-                            i=i+2;
+                            i = i + 2;
                             temporal.AddExt(Tokens[i].palabra);
                         }
-                        if (Tokens[i+1].palabra == "implements")
+                        if (Tokens[i + 1].palabra == "implements")
                         {
                             i = i + 2;
                             for (int j = i; j < Tokens.Count; j++)
@@ -395,6 +455,7 @@ namespace Compiladores_MiniJava
                                 }
                                 i++;
                             }
+                            Entornos[ContadorEntorno].Put(temp, temporal);
                         }
                         else if (Tokens[i].palabra == ".")
                         {
@@ -404,7 +465,7 @@ namespace Compiladores_MiniJava
 
                             }
                         }
-                        Entornos[ContadorEntorno].Put(temp, temporal);
+
                     }
                     else
                     {
@@ -654,8 +715,9 @@ namespace Compiladores_MiniJava
                                 }
                                 i++;
                             }
+                            Entornos[ContadorEntorno].Put(temp, temporal);
                         }
-                        Entornos[ContadorEntorno].Put(temp, temporal);
+
                     }
                 }
                 else if (Entornos[ContadorEntorno].Get(Tokens[i].palabra)) //Cuando ya se definen los tokens sin valor, y se actualizan o asignan
@@ -804,7 +866,7 @@ namespace Compiladores_MiniJava
                     }
                     else if (actual.tipo == "double")
                     {
-                        i++;   
+                        i++;
                         if (Tokens[i].palabra == "=")
                         {
                             //OJO
@@ -819,7 +881,7 @@ namespace Compiladores_MiniJava
                                 }
                                 else if (Entornos[ContadorEntorno].Get(Tokens[j].palabra))
                                 {
-                                    if(Entornos[ContadorEntorno].GetValue(Tokens[j].palabra) == "int")
+                                    if (Entornos[ContadorEntorno].GetValue(Tokens[j].palabra) == "int")
                                     {
                                         Simbolo declarado = Entornos[ContadorEntorno].GetSimbolo(Tokens[j].palabra);
                                         valor_temporal = declarado.valorInt;
@@ -967,7 +1029,49 @@ namespace Compiladores_MiniJava
                             Entornos[ContadorEntorno].Insert(aux, temporal);
                         }
                     }
+                    else if (actual.tipo == "string")
+                    {
+                        i++;
+                        if (Tokens[i].palabra == "=")
+                        {
+                            i++;
+                            actual.valorString = Tokens[i].palabra;
+                            
+                            Entornos[ContadorEntorno].Insert(aux, actual);
+                        }
+                    }
+                    else if (actual.tipo == "boolean")
+                    {
+                        i++;
+                        if (Tokens[i].palabra == "=")
+                        {
+                            i++;
+                            if (Tokens[i].palabra == "true")
+                            {
+                                actual.valorbool = "true";
+                                Entornos[ContadorEntorno].Insert(aux, actual);
+                            }
+                            else if (Tokens[i].palabra == "false")
+                            {
+                                actual.valorbool = "false";
+                                Entornos[ContadorEntorno].Insert(aux, actual);
+                            }
+                            else if (Entornos[ContadorEntorno].Get(Tokens[i].palabra) && Entornos[ContadorEntorno].GetValue(Tokens[i].palabra) == "boolean")
+                            {
+                                Simbolo declarado = Entornos[ContadorEntorno].GetSimbolo(Tokens[i].palabra);
+                                actual.valorbool = declarado.valorbool;
+                                Entornos[ContadorEntorno].Insert(aux, actual);
+                            }
+                            else
+                            {
+                                TablaSimbolos error = new TablaSimbolos();
+                                error.ImprimirError(Tokens[i], "Asignacion incorrecta de tipos");
+                                //error
+                            }
+                        }
+                    }
                 }
+
                 else if (Tokens[i].palabra == "boolean")
                 {
                     i++;
@@ -1088,8 +1192,9 @@ namespace Compiladores_MiniJava
                                 }
                                 i++;
                             }
+                            Entornos[ContadorEntorno].Put(temp, temporal);
                         }
-                        Entornos[ContadorEntorno].Put(temp, temporal);
+
                     }
                     else
                     {
@@ -1207,8 +1312,9 @@ namespace Compiladores_MiniJava
                                 }
                                 i++;
                             }
+                            Entornos[ContadorEntorno].Put(temp, temporal);
                         }
-                        Entornos[ContadorEntorno].Put(temp, temporal);
+
                     }
                     else
                     {
@@ -1223,7 +1329,7 @@ namespace Compiladores_MiniJava
                     error.ImprimirError(Tokens[i], "El ident no se encuentra en el entorno actual");
                 }
             }
-            Console.ReadKey();
+
    
         }
 

@@ -43,6 +43,7 @@ namespace Compiladores_MiniJava
         }
         public static void Analisis_Lex(string URL)
         {
+            TablaSimbolos.URL = URL;
             var bandera_ID_Capacidad = false;
             var Linea_a_Regresar = 0;
             var direccion = URL.Split('.');//ARG
