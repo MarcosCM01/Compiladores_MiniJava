@@ -13,37 +13,28 @@ namespace Compiladores_MiniJava
         
         static void Main(string[] args)
         {
-            string URL = @"C:\Users\jalba\OneDrive\Escritorio\Prueba.txt";//Direccion archivo de prueba
+            string URL = @"C:\Users\Marcos Andrés CM\Desktop\6 Sexto ciclo\Compiladores\PROYECTO\ARCHIVOS DE PRUEBA\Prueba3.txt";//Direccion archivo de prueba
             
             //foreach (var arg in args)
             //{
                 if (MetodosAux_AL.VerificarArchivoVacio(URL) != true)
                 {
                         //INICIO FASE 1: LEXICO
-                MetodosAux_AL.Analisis_Lex(URL);
-                //GenerarTablaSimbolo();
-                TablaSimbolos.CreacionTabla();
-                    //For(i=0 hasta TokenList.Count)
-                    //{
-                    //contadorAmbitos++
-                    //contadorAmbitos--
-                    //}
-                    //LAB A
-                    //Lab_ASDR.Sintactico_Recursivo();
+                    MetodosAux_AL.Analisis_Lex(URL);
+                    //GenerarTablaSimbolo();
+                    TablaSimbolos.CreacionTabla();
+                    //ImprimirTabla();
 
-                //INICIO FASE 2: SINTACTICO
-                SLR.PARSER_PILA();
-                    //2. PARSEO EN LA PILA
+                    //INICIO FASE 2: SINTACTICO
+                    SLR.PARSER_PILA();
 
 
                     Console.WriteLine("Fin de analisis sintactico");
-                    //MetodosAux_AL.ImprimirResultado();
                 }
                 else
                 {
                     Console.WriteLine("ARCHIVO DE ENTRADA VACIO");
                 }
-                
                 Console.ReadKey();
             //}
         }

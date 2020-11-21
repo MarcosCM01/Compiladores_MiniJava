@@ -13,7 +13,18 @@ namespace Compiladores_MiniJava
         public int valorInt;
         public string valorbool;
         public string valorString;
-        public  Dictionary<string,Simbolo> argumento = new Dictionary<string, Simbolo>();
+        public Dictionary<string,Simbolo> argumento = new Dictionary<string, Simbolo>();
+        public List<string> Extends = new List<string>();
+        public List<string> Implements = new List<string>();
+
+        public void AddExt(string ident) 
+        {
+            Extends.Add(ident);
+        }
+        public void AddImpl(string ident)
+        {
+            Implements.Add(ident);
+        }
         public bool Get(string ident)
         {
             if (argumento.ContainsKey(ident))
@@ -30,6 +41,7 @@ namespace Compiladores_MiniJava
             argumento.Add(ident, sim);
         }
         //void x (int x , int y)
+        
     }
 }
 

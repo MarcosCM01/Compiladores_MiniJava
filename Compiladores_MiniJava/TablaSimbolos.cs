@@ -10,8 +10,10 @@ namespace Compiladores_MiniJava
     {
         public static List<Token> Tokens = new List<Token>();//Tokens ingresados desde el analisis sintactico
         public static List<Entorno> Entornos = new List<Entorno>();
-        //if { i++
-        //if } i--
+        public void ImprimirError(Token  token, string error)
+        {
+            Console.WriteLine($"ERROR: {error}. Token: {token.palabra} Linea: {token.linea} ColumnaI: {token.columna_i} ColumnaF: {token.columna_f}");
+        }
         public static void CreacionTabla()
         {
             Entorno inicial = new Entorno();
@@ -53,7 +55,9 @@ namespace Compiladores_MiniJava
                                 }
                                 else
                                 {
-                                    //Error en void argumento ya declarado
+                                    TablaSimbolos error = new TablaSimbolos();
+                                    error.ImprimirError(Tokens[i], "entero ya declarado");
+                                    //Error en void, argumento de tipo ya declarado
                                 }
                             }
                             else if (Tokens[j].palabra == "double")
@@ -68,6 +72,8 @@ namespace Compiladores_MiniJava
                                 }
                                 else
                                 {
+                                    TablaSimbolos error = new TablaSimbolos();
+                                    error.ImprimirError(Tokens[i], "double ya declarado");
                                     //Error en void argumento ya declarado
                                 }
                             }
@@ -83,6 +89,8 @@ namespace Compiladores_MiniJava
                                 }
                                 else
                                 {
+                                    TablaSimbolos error = new TablaSimbolos();
+                                    error.ImprimirError(Tokens[i], "boolean ya declarado");
                                     //Error en void argumento ya declarado
                                 }
                             }
@@ -98,6 +106,8 @@ namespace Compiladores_MiniJava
                                 }
                                 else
                                 {
+                                    TablaSimbolos error = new TablaSimbolos();
+                                    error.ImprimirError(Tokens[i], "string ya declarado");
                                     //Error en void argumento ya declarado
                                 }
                             }
@@ -114,6 +124,8 @@ namespace Compiladores_MiniJava
                     }
                     else
                     {
+                        TablaSimbolos error = new TablaSimbolos();
+                        error.ImprimirError(Tokens[i], "identificador ya declarado");
                         //Error ya se encuentra declarado en el entorno
                     }
                 }
@@ -122,33 +134,59 @@ namespace Compiladores_MiniJava
                     i++;
                     if (!Entornos[ContadorEntorno].Get(Tokens[i].palabra))
                     {
-
+                        Simbolo temporal = new Simbolo();
+                        temporal.tipo = Tokens[i - 1].palabra; //Setear ident.tipo = int
+                        string temp = Tokens[i].palabra;
+                        if (Tokens[i+1].palabra == "extends")
+                        {
+                            i=i+2;
+                            temporal.AddExt(Tokens[i].palabra);
+                        }
+                        if (Tokens[i+1].palabra == "implements")
+                        {
+                            i = i + 2;
+                            for (int j = i; j < Tokens.Count; j++)
+                            {
+                                if (Tokens[j].palabra == "{")
+                                {
+                                    i--;
+                                    break;
+                                }
+                                else if (Tokens[j].valor == "ident")
+                                {
+                                    temporal.AddImpl(Tokens[j].palabra);
+                                }
+                                i++;
+                            }
+                        }
+                        Entornos[ContadorEntorno].Put(temp, temporal);
                     }
                     else
                     {
                         //Error ya se encuentra declarado en el entorno
+                        TablaSimbolos error = new TablaSimbolos();
+                        error.ImprimirError(Tokens[i], "identificador ya declarado");
                     }
                 }
-                else if (Tokens[i].palabra == "int")
+                else if (Tokens[i].palabra == "int") //METODOS TIPO ENTERO
                 {
                     i++;
                     if (!Entornos[ContadorEntorno].Get(Tokens[i].palabra))
                     {
                         Simbolo temporal = new Simbolo();
-                        temporal.tipo = Tokens[i - 1].palabra;
+                        temporal.tipo = Tokens[i - 1].palabra; //Setear ident.tipo = int
                         string temp = Tokens[i].palabra;
-                        if (Tokens[i + 1].palabra == ";")
+                        i++; //consumo token del ident
+                        if (Tokens[i].palabra == ";")
                         {
                             Entornos[ContadorEntorno].Put(temp, temporal);
                         }
-                        else if (Tokens[i + 1].palabra == "=")
+                        else if (Tokens[i].palabra == "=")
                         {
                             //OJO
                             i = i + 2;
 
-                            char operador;
                             int valor_temporal = 0;
-                            bool Operacion = false;
                             for (int j = i; j < Tokens.Count; j++)
                             {
                                 if (Tokens[j].valor.Contains("intConstant"))
@@ -171,6 +209,8 @@ namespace Compiladores_MiniJava
                                     else
                                     {
                                         //Tipos diferentes para operar
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Error al operar distintos tipos");
                                     }
                                 }
                                 else if (Tokens[j].palabra == "-")
@@ -188,6 +228,8 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Error al operar distintos tipos");
                                         //Tipos diferentes para operar
                                     }
                                 }
@@ -206,6 +248,8 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Error al operar distintos tipos");
                                         //Tipos diferentes para operar
                                     }
                                 }
@@ -224,6 +268,8 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Error al operar distintos tipos");
                                         //Tipos diferentes para operar
                                     }
                                 }
@@ -242,56 +288,132 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Error al operar distintos tipos");
                                         //Tipos diferentes para operar
                                     }
                                 }
                                 else if (Tokens[j].palabra == ";")
                                 {
-
                                     break;
                                 }
                                 else if (!Entornos[ContadorEntorno].Get(Tokens[i].palabra))
                                 {
+                                    TablaSimbolos error = new TablaSimbolos();
+                                    error.ImprimirError(Tokens[i], "Token no definido");
                                     //Error Token no definido en el entorno 
                                 }
                                 else
                                 {
+                                    TablaSimbolos error = new TablaSimbolos();
+                                    error.ImprimirError(Tokens[i], "Token sin definir su tipo");
                                     //Error valor no definido
                                 }
                                 i++;
-
                             }
-
-
                             temporal.valorInt = valor_temporal;
                             Entornos[ContadorEntorno].Put(temp, temporal);
                         }
-                        else if (Tokens[i + 1].palabra == "(")
+                        else if (Tokens[i].palabra == "(")
                         {
-                            //OJO
-                            int valor_temporal = 0;
+                            i++;
+                            temporal.tipo = "int void";
+                            for (int j = i; j < Tokens.Count; j++)
+                            {
+                                if (Tokens[j].palabra == "int")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[i].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro sin tipo definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[j].palabra == "double")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro sin tipo definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[j].palabra == "boolean")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro sin tipo definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[i].palabra == "string")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro sin tipo definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[i].palabra == ")")
+                                {
+                                    i--;
+                                    j = Tokens.Count;
+                                }
+                                i++;
+                            }
+                        }
+                        else if (Tokens[i].palabra == ".")
+                        {
+                            //FALTA REVISAR COMPROBACION DE METODOS
                             for (int j = i; j < Tokens.Count; j++)
                             {
 
                             }
                         }
-                        else if (Tokens[i + 1].palabra == ".")
-                        {
-                            //OJO
-                            int valor_temporal = 0;
-                            for (int j = i; j < Tokens.Count; j++)
-                            {
-
-                            }
-                        }
-
+                        Entornos[ContadorEntorno].Put(temp, temporal);
                     }
                     else
                     {
+                        TablaSimbolos error = new TablaSimbolos();
+                        error.ImprimirError(Tokens[i], "Token ya definido");
                         //Error ya se encuentra declarado
                     }
                 }
-                else if (Tokens[i].palabra == "double")
+                else if (Tokens[i].palabra == "double") //METODOS TIPO DOUBLE
                 {
                     i++;
                     if (!Entornos[ContadorEntorno].Get(Tokens[i].palabra))
@@ -299,18 +421,16 @@ namespace Compiladores_MiniJava
                         Simbolo temporal = new Simbolo();
                         temporal.tipo = Tokens[i - 1].palabra;
                         string temp = Tokens[i].palabra;
-                        if (Tokens[i + 1].palabra == ";")
+                        i++;
+                        if (Tokens[i].palabra == ";")
                         {
                             Entornos[ContadorEntorno].Put(temp, temporal);
                         }
-                        else if (Tokens[i + 1].palabra == "=")
+                        else if (Tokens[i].palabra == "=")
                         {
                             //OJO
-                            i = i + 2;
-
-                            char operador;
+                            i++;
                             double valor_temporal = 0;
-                            bool Operacion = false;
                             for (int j = i; j < Tokens.Count; j++)
                             {
                                 if (Tokens[j].valor.Contains("intConstant") || Tokens[j].valor.Contains("doubleConstant"))
@@ -337,7 +457,9 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
-                                        //Tipos diferentes para operar
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Distintos tipos de tokens para operar");
+                                        //ERROR Tipos diferentes para operar
                                     }
                                 }
                                 else if (Tokens[j].palabra == "-")
@@ -360,7 +482,9 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
-                                        //Tipos diferentes para operar
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Distintos tipos de tokens para operar");
+                                        //ERROR Tipos diferentes para operar
                                     }
                                 }
                                 else if (Tokens[i].palabra == "*")
@@ -383,7 +507,9 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
-                                        //Tipos diferentes para operar
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Distintos tipos de tokens para operar");
+                                        //ERROR Tipos diferentes para operar
                                     }
                                 }
                                 else if (Tokens[j].palabra == "/")
@@ -401,7 +527,9 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
-                                        //Tipos diferentes para operar
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Distintos tipos de tokens para operar");
+                                        //ERROR Tipos diferentes para operar
                                     }
                                 }
                                 else if (Tokens[j].palabra == "%")
@@ -424,7 +552,9 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
-                                        //Tipos diferentes para operar
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Distintos tipos de tokens para operar");
+                                        //ERROR Tipos diferentes para operar
                                     }
                                 }
                                 else if (Tokens[j].palabra == ";")
@@ -432,25 +562,103 @@ namespace Compiladores_MiniJava
 
                                     break;
                                 }
-                                else if (!Entornos[ContadorEntorno].Get(Tokens[i].palabra))
-                                {
-                                    //Error Token no definido en el entorno 
-                                }
                                 else
                                 {
-                                    //Error valor no definido
+                                    TablaSimbolos error = new TablaSimbolos();
+                                    error.ImprimirError(Tokens[i], "Se esperaba un operador");
+                                    //Error Token no definido en el entorno 
                                 }
                                 i++;
-
                             }
-
-
                             temporal.valorDouble = valor_temporal;
                             Entornos[ContadorEntorno].Put(temp, temporal);
                         }
+                        else if (Tokens[i].palabra == "(")
+                        {
+                            i++;
+                            temporal.tipo = "double void";
+                            for (int j = i; j < Tokens.Count; j++)
+                            {
+                                if (Tokens[j].palabra == "int")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[i].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Token ya definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[j].palabra == "double")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Token ya definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[j].palabra == "boolean")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Token ya definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[i].palabra == "string")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Token ya definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[i].palabra == ")")
+                                {
+                                    i--;
+                                    j = Tokens.Count;
+                                }
+                                i++;
+                            }
+                        }
+                        Entornos[ContadorEntorno].Put(temp, temporal);
                     }
                 }
-                else if (Entornos[ContadorEntorno].Get(Tokens[i].palabra))
+                else if (Entornos[ContadorEntorno].Get(Tokens[i].palabra)) //Cuando ya se definen los tokens sin valor, y se actualizan o asignan
                 {
                     string aux = Tokens[i].palabra;
                     Simbolo actual = Entornos[ContadorEntorno].GetSimbolo(Tokens[i].palabra);
@@ -462,9 +670,7 @@ namespace Compiladores_MiniJava
                             //OJO
                             i = i + 2;
 
-                            char operador;
                             int valor_temporal = 0;
-                            bool Operacion = false;
                             for (int j = i; j < Tokens.Count; j++)
                             {
                                 if (Tokens[j].valor.Contains("intConstant"))
@@ -494,6 +700,8 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Tokens de distintos tipos");
                                         //Tipos diferentes para operar
                                     }
                                 }
@@ -512,6 +720,8 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Tokens de distintos tipos");
                                         //Tipos diferentes para operar
                                     }
                                 }
@@ -530,6 +740,8 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Tokens de distintos tipos");
                                         //Tipos diferentes para operar
                                     }
                                 }
@@ -548,6 +760,8 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Tokens de distintos tipos");
                                         //Tipos diferentes para operar
                                     }
                                 }
@@ -566,27 +780,23 @@ namespace Compiladores_MiniJava
                                     }
                                     else
                                     {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Tokens de distintos tipos");
                                         //Tipos diferentes para operar
                                     }
                                 }
                                 else if (Tokens[j].palabra == ";")
                                 {
-
                                     break;
                                 }
                                 else if (!Entornos[ContadorEntorno].Get(Tokens[i].palabra))
                                 {
-                                    //Error Token no definido en el entorno 
-                                }
-                                else
-                                {
-                                    //Error valor no definido
+                                    //Error Token no definido en el entorno
+                                    TablaSimbolos error = new TablaSimbolos();
+                                    error.ImprimirError(Tokens[i], "Token sin definir");
                                 }
                                 i++;
-
                             }
-
-
                             temporal.valorInt = valor_temporal;
                             temporal.tipo = actual.tipo;
                             Entornos[ContadorEntorno].Insert(aux, temporal);
@@ -594,15 +804,13 @@ namespace Compiladores_MiniJava
                     }
                     else if (actual.tipo == "double")
                     {
-                        
-                        if (Tokens[i + 1].palabra == "=")
+                        i++;   
+                        if (Tokens[i].palabra == "=")
                         {
                             //OJO
-                            i = i + 2;
+                            i++;
 
-                            char operador;
                             double valor_temporal = 0;
-                            bool Operacion = false;
                             for (int j = i; j < Tokens.Count; j++)
                             {
                                 if (Tokens[j].valor.Contains("intConstant") || Tokens[j].valor.Contains("doubleConstant"))
@@ -643,6 +851,8 @@ namespace Compiladores_MiniJava
                                     else
                                     {
                                         //Tipos diferentes para operar
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Tokens de distintos tipos");
                                     }
                                 }
                                 else if (Tokens[j].palabra == "-")
@@ -666,6 +876,8 @@ namespace Compiladores_MiniJava
                                     else
                                     {
                                         //Tipos diferentes para operar
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Tokens de distintos tipos");
                                     }
                                 }
                                 else if (Tokens[i].palabra == "*")
@@ -689,6 +901,8 @@ namespace Compiladores_MiniJava
                                     else
                                     {
                                         //Tipos diferentes para operar
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Tokens de distintos tipos");
                                     }
                                 }
                                 else if (Tokens[j].palabra == "/")
@@ -707,6 +921,8 @@ namespace Compiladores_MiniJava
                                     else
                                     {
                                         //Tipos diferentes para operar
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Tokens de distintos tipos");
                                     }
                                 }
                                 else if (Tokens[j].palabra == "%")
@@ -730,32 +946,27 @@ namespace Compiladores_MiniJava
                                     else
                                     {
                                         //Tipos diferentes para operar
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Tokens de distintos tipos");
                                     }
                                 }
                                 else if (Tokens[j].palabra == ";")
                                 {
-
                                     break;
                                 }
                                 else if (!Entornos[ContadorEntorno].Get(Tokens[i].palabra))
                                 {
-                                    //Error Token no definido en el entorno 
-                                }
-                                else
-                                {
-                                    //Error valor no definido
+                                    //Error Token no definido en el entorno
+                                    TablaSimbolos error = new TablaSimbolos();
+                                    error.ImprimirError(Tokens[i], "Tokens no definido en el entorno");
                                 }
                                 i++;
-
                             }
-
-
                             temporal.valorDouble = valor_temporal;
                             temporal.tipo = actual.tipo;
                             Entornos[ContadorEntorno].Insert(aux, temporal);
                         }
                     }
-
                 }
                 else if (Tokens[i].palabra == "boolean")
                 {
@@ -765,13 +976,14 @@ namespace Compiladores_MiniJava
                         Simbolo temporal = new Simbolo();
                         temporal.tipo = Tokens[i - 1].palabra;
                         string temp = Tokens[i].palabra;
-                        if (Tokens[i + 1].palabra == ";")
+                        i++;
+                        if (Tokens[i].palabra == ";")
                         {
                             Entornos[ContadorEntorno].Put(temp, temporal);
                         }
-                        else if (Tokens[i + 1].palabra == "=")
+                        else if (Tokens[i].palabra == "=")
                         {
-                            i = i + 2;
+                            i++;
                             if (Tokens[i].palabra == "true")
                             {
                                 temporal.valorbool = "true";
@@ -790,12 +1002,99 @@ namespace Compiladores_MiniJava
                             }
                             else
                             {
+                                TablaSimbolos error = new TablaSimbolos();
+                                error.ImprimirError(Tokens[i], "Asignacion incorrecta de tipos");
                                 //error
                             }
                         }
+                        else if (Tokens[i].palabra == "(") //Para metodos BOOLEAN
+                        {
+                            i++;
+                            temporal.tipo = "boolean void";
+                            for (int j = i; j < Tokens.Count; j++)
+                            {
+                                if (Tokens[j].palabra == "int")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[i].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro ya declarado");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[j].palabra == "double")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro ya definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[j].palabra == "boolean")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro ya definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[i].palabra == "string")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro ya definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[i].palabra == ")")
+                                {
+                                    i--;
+                                    j = Tokens.Count;
+                                }
+                                i++;
+                            }
+                        }
+                        Entornos[ContadorEntorno].Put(temp, temporal);
                     }
                     else
                     {
+                        TablaSimbolos error = new TablaSimbolos();
+                        error.ImprimirError(Tokens[i], "Token ya definido");
                         //Error ya se encuentra declarado
                     }
                 }
@@ -807,13 +1106,14 @@ namespace Compiladores_MiniJava
                         Simbolo temporal = new Simbolo();
                         temporal.tipo = Tokens[i - 1].palabra;
                         string temp = Tokens[i].palabra;
-                        if (Tokens[i + 1].palabra == ";")
+                        i++;
+                        if (Tokens[i].palabra == ";")
                         {
                             Entornos[ContadorEntorno].Put(temp, temporal);
                         }
-                        else if (Tokens[i + 1].palabra == "=")
+                        else if (Tokens[i].palabra == "=")
                         {
-                            i = i + 2;
+                            i++;
                             if (Tokens[i].valor.Contains("stringConstant"))
                             {
                                 temporal.valorString = Tokens[i].palabra;
@@ -825,13 +1125,102 @@ namespace Compiladores_MiniJava
                                 temporal.valorString = declarado.valorString;
                                 Entornos[ContadorEntorno].Put(temp, temporal);
                             }
-
                         }
+                        else if (Tokens[i].palabra == "(")
+                        {
+                            i++;
+                            temporal.tipo = "string void";
+                            for (int j = i; j < Tokens.Count; j++)
+                            {
+                                if (Tokens[j].palabra == "int")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[i].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro ya definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[j].palabra == "double")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        //Error en void argumento ya declarado
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro ya definido");
+                                    }
+                                }
+                                else if (Tokens[j].palabra == "boolean")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro ya definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[i].palabra == "string")
+                                {
+                                    Simbolo arg = new Simbolo();
+                                    arg.tipo = Tokens[j].palabra;
+                                    i++;
+                                    j++;
+                                    if (!temporal.Get(Tokens[j].palabra))
+                                    {
+                                        temporal.Put(Tokens[j].palabra, arg);
+                                    }
+                                    else
+                                    {
+                                        TablaSimbolos error = new TablaSimbolos();
+                                        error.ImprimirError(Tokens[i], "Parametro ya definido");
+                                        //Error en void argumento ya declarado
+                                    }
+                                }
+                                else if (Tokens[i].palabra == ")")
+                                {
+                                    i--;
+                                    j = Tokens.Count;
+                                }
+                                i++;
+                            }
+                        }
+                        Entornos[ContadorEntorno].Put(temp, temporal);
                     }
                     else
                     {
+                        TablaSimbolos error = new TablaSimbolos();
+                        error.ImprimirError(Tokens[i], "Token ya definido");
                         //Error ya se encuentra declarado
                     }
+                }
+                else if (Tokens[i].valor == "ident")
+                {
+                    TablaSimbolos error = new TablaSimbolos();
+                    error.ImprimirError(Tokens[i], "El ident no se encuentra en el entorno actual");
                 }
             }
             Console.ReadKey();
